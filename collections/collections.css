@@ -1,0 +1,70 @@
+/* Initial configuration */
+body { margin: 0px; padding: 0px; }
+div { padding: 5px; }
+
+/* Define grid layout */
+#row-1-col-1 { grid-area: row-1-col-1; }
+#row-1-col-2 { grid-area: row-1-col-2; }
+#row-1-col-3 { grid-area: row-1-col-3; }
+#row-2 { grid-area: row-2; }
+#row-3-col-1 { grid-area: row-3-col-1; }
+#row-3-col-2 { grid-area: row-3-col-2; }
+#row-4 { grid-area: row-4; }
+
+#container > * { 
+    overflow: hidden; 
+}
+
+#container {
+    /* background-color: black;
+    color: white; */
+    margin: 0 auto;
+    display: grid;
+    width: 80em;
+    grid-template-columns: 2fr 3fr 16fr 3fr;
+    grid-template-areas: 
+        'row-1-col-1 row-1-col-2 row-1-col-2 row-1-col-3'
+        'row-2 row-2 row-2 row-2'
+        'row-3-col-1 row-3-col-1 row-3-col-2 row-3-col-2'
+        'row-4 row-4 row-4 row-4';
+    grid-auto-rows: auto;
+}
+
+#product-view {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+/* General styling */
+* {
+    background-color: black;
+    color: white; 
+    font-family: sans-serif;
+}
+a {
+    text-decoration: none;
+}
+
+/* Style grid items */
+#row-1-col-1 > img { width: 100%; height: auto; }
+#row-1-col-2 {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0 8em;
+}
+#row-1-col-2 > h1 { display: inline-block; }
+
+.item-view {
+    display: block;
+    padding: 5px;
+}
+.item-view > * {
+    margin: 2px auto;
+}
+
+.item-view img {
+    width: 100%;
+    aspect-ratio: 4/3;
+}
