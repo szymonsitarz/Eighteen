@@ -9,7 +9,7 @@
     <body>
         <div id="container">
             <div id="row-1-col-1">
-                <img src="/shared-images/fire-ball-1-scaled.png" width="50" height="50">
+                <img src="/shared-images/logo-2.png" width="50" height="50">
             </div>
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
@@ -55,9 +55,9 @@
                             if(isset($_SESSION['review']['notification']))
                             {
                                 if($_SESSION['review']['success'])
-                                    echo "<p style=\"color:green;\">";
+                                    echo "<p style=\"background-color:#00ff00;\">";
                                 else
-                                    echo "<p style=\"color:red;\">";
+                                    echo "<p style=\"background-color:#ff0000;\">";
                                 echo "<strong>" . $_SESSION['review']['notification'] . "</strong></span>";
                                 unset($_SESSION['review']);
                             }
@@ -75,29 +75,29 @@
                 <div id="product-stage">
                     <div id="product-gallery">
                         <?php 
-                            $dir = "/img/";
+                            $dir = "/img/" . $_SESSION['product']['name'] . "/";
                             $images = glob(getcwd() . $dir . "*");
                             $n = count($images);
                             for($i=1;$i<=$n && $i <= 4;$i++)
                             {
-                                echo "<a href=\"/product/product.php?model=" . $_SESSION['product']['model'] . "&selected=" . $i . "\"><img src=\"/product/img/" . $_SESSION['product']['model'] . "/" . $i . ".jpg\"></a>"; 
+                                echo "<a href=\"/product/product.php?model=" . $_SESSION['product']['model'] . "&selected=" . $i . "\"><img src=\"/product/img/" . $_SESSION['product']['name'] . "/" . $i . ".jpg\"></a>"; 
                             }
                         ?>
                     </div>
-                    <img id="product-selected-image" src="/product/img/<?= $_SESSION['product']['model'] . "/" . ((isset($_GET['selected'])) ? $_GET['selected'] : "1") ?>.jpg">
+                    <img id="product-selected-image" src="/product/img/<?= $_SESSION['product']['name'] . "/" . ((isset($_GET['selected'])) ? $_GET['selected'] : "1") ?>.jpg">
                     <div id="product-attributes">
                         <h2><strong><?= $_SESSION['product']['name'] ?></strong></h2>
                         <a href="#product-list-reviews">
-                            <span id="product-feedback-overview">
+                            <span class="product-feedback-overview">
                                 <?php
                                 for($j=1;$j <= 5;$j++)
-                                    {
-                                        echo "<img class=\"star\" src=\"/shared-images/star-";
-                                        if($j <= $product['avg_rating'])
-                                            echo "full.png\">";
-                                        else
-                                            echo "empty.png\">";
-                                    }
+                                {
+                                    echo "<img class=\"star\" src=\"/shared-images/star-";
+                                    if($j <= $product['avg_rating'])
+                                        echo "full.png\">";
+                                    else
+                                        echo "empty.png\">";
+                                }
                                 ?>
                                 <span><?= $product['avg_rating'] ?></span>
                             </span>
@@ -148,6 +148,7 @@
             </div>
             <div id="row-4">
                 <p>(footer)</p>
+                <?php require_once('scripts/increment_views.php'); ?>
             </div>
         </div>
     </body>

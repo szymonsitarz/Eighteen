@@ -74,3 +74,5 @@ a { text-decoration: none; }
         'product-gallery product-selected-image product-attributes';
     grid-column-gap: 1em;
 }
+
+.review-username { margin: 0px; display: inline-block; }

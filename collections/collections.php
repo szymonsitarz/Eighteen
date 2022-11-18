@@ -9,7 +9,7 @@
     <body>
         <div id="container">
             <div id="row-1-col-1">
-                <img src="/shared-images/logo.png" width=50px height=50px>
+                <img src="/shared-images/logo-2.png" width=50px height=50px>
             </div>
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
