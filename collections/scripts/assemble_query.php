@@ -1,5 +1,5 @@
 <?php
-    $query = "SELECT name,model,price,avg_rating,rank FROM products" ;
+    $query = "SELECT name,model,price,avg_rating FROM products" ;
 
     // Set greater than zero if there are conditions for WHERE clause.
     $filters = count($_POST) + (!empty($_GET['q']) ? 1 : 0);
@@ -87,18 +87,32 @@
     $query .= " GROUP BY model;";
 
     // Parse query data for sorting function of search engine.
-    if(!isset($_GET['sort']) || $_GET['sort'] == "relevance")
-        $query .= " ORDER BY rank";
+    if(!isset($_GET['sort']) || $_GET['sort'] == "relevance") {}
     else
     {
-        if($_GET['sort'] == "low-to-high")
-            $query .= " ORDER BY price";
-        else if($_GET['sort'] == "high-to-low")
-            $query .= " ORDER BY price DESC";
-        else if($_GET['sort'] == "rating")
-            $query .= " ORDER BY avg_rating DESC";
-        else
-            echo "Throw error.";
+        switch($_GET['sort'])
+        {
+            case "best_selling":
+                $query .= "ORDER BY bought_all_time DESC";
+                break;
+            case "latest":
+                $query .= "ORDER BY date_time DESC";
+                break;
+            case "trending":
+                $query .= "ORDER BY bought_all_time DESC, views DESC, avg_rating DESC";
+                break;
+            case "low-to-high":
+                $query .= " ORDER BY price";
+                break;
+            case "high-to-low":
+                $query .= " ORDER BY price DESC";
+                break;
+            case "rating":
+                $query .= " ORDER BY avg_rating DESC";
+                break;
+            default:
+                echo "THROW ERROR";
+        }
     }
 
     // Finally, building and execute parameterized query

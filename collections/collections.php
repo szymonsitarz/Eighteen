@@ -88,9 +88,30 @@
                 </form>
             </div>
             <div id="row-3-col-2">
-                <h2>Products</h2>
                 <?php
-                    
+                    echo "<h2>";
+                    if(isset($_GET['sort']))
+                    {
+                        switch($_GET['sort'])
+                        {
+                            // Most views and most sold
+                            case "best_selling":
+                                echo "Best Selling";
+                                break;
+                            case "latest":
+                                echo "Latest";
+                                break;
+                            case "trending":
+                                echo "Trending";
+                                break;
+                            default:
+                                echo "Products";
+                        }
+                    }
+                    else
+                        echo "Products";
+
+                    echo "</h2>";
                     ini_set('display_errors', 1);
                     ini_set('display_startup_errors', 1);
                     error_reporting(E_ALL);
