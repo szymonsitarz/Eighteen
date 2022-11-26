@@ -1,5 +1,5 @@
 /* Handle conflict in testing; simply rerun script */
-DROP DATABASE cs2tp;
+DROP DATABASE IF EXISTS cs2tp;
 CREATE DATABASE cs2tp;
 USE cs2tp;
 
@@ -19,7 +19,7 @@ CREATE TABLE products (
     name VARCHAR(128),
     category VARCHAR(32),
     color VARCHAR(32),
-    size CHAR(3),                   o                    /* S,M,L,XL,XXL,3XL,OS */
+    size CHAR(3),                                       /* S,M,L,XL,XXL,3XL,OS */
     price DOUBLE,
     stock INT,
     views INT,
@@ -35,7 +35,7 @@ CREATE TABLE orders (
     uid SMALLINT UNSIGNED,
     pid SMALLINT UNSIGNED,
     status VARCHAR(32),                                 /* processing/dispatched/delivered/cancelled/refunded */
-    time INT,                                           /* set in php via UNIX_TIMESTAMP(now()) */
+    date_time DATETIME,
     PRIMARY KEY(tid)
 );
 
@@ -45,7 +45,7 @@ CREATE TABLE feedback (
     username VARCHAR(16),
     review LONGTEXT,
     rating INT,
-    time INT,                                           /* '' */
+    seconds_since_epoch INT,                                           /* '' */
     PRIMARY KEY(fid)
 );
 
@@ -66,43 +66,43 @@ VALUES ('elon', 'elon@domain.com', 'musk');
 /* >>PRODUCT TYPE #1 */
 SET @model_a := UUID();
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'S',  50.00, 25, 200, 3, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', GETDATE());
+VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'S',  50.00, 25, 200, 3, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
 
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'M',  50.00, 50, 200, 10, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', GETDATE());
+VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'M',  50.00, 50, 200, 10, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
 
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'L',  50.00, 50, 200, 15, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', GETDATE());
+VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'L',  50.00, 50, 200, 15, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
 
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'XL',  50.00, 30, 200, 5, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', GETDATE());
+VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'XL',  50.00, 30, 200, 5, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
 
 /* >>PRODUCT TYPE #2 */
 SET @model_b := UUID();
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_b, 'SUN_T-SHIRT', 't-shirt', 'red', 'S',  17.99, 1000, 50, 300, 2.5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', GETDATE());
+VALUES (@model_b, 'SUN_T-SHIRT', 't-shirt', 'red', 'S',  17.99, 1000, 50, 300, 2.5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
 
 /* >>PRODUCT TYPE #3 */
 SET @model_c := UUID();
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_c, 'OCEAN_T-SHIRT', 't-shirt', 'blue', 'M',  20.99, 1000, 50, 300, 3.75, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', GETDATE());
+VALUES (@model_c, 'OCEAN_T-SHIRT', 't-shirt', 'blue', 'M',  20.99, 1000, 50, 300, 3.75, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
 
 /* Seeding orders table */
-INSERT INTO orders (uid, pid, status)
-VALUES (1, 1, 'delivered');
+INSERT INTO orders (uid, pid, status, date_time)
+VALUES (1, 1, 'delivered', NOW());
 
-INSERT INTO orders (uid, pid, status)
-VALUES (1, 2, 'refunded');
+INSERT INTO orders (uid, pid, status, date_time)
+VALUES (1, 2, 'refunded', NOW());
 
-INSERT INTO orders (uid, pid, status)
-VALUES (2, 2, 'dispatched');
+INSERT INTO orders (uid, pid, status, date_time)
+VALUES (2, 2, 'dispatched', NOW());
 
 /* Seeding feedback table */
-INSERT INTO feedback (username, model, review, rating, time)
-VALUES ('julius', @model_a, "Excellent product.", 5, UNIX_TIMESTAMP(now()));
+INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
+VALUES ('julius', @model_a, "Excellent product.", 5, UNIX_TIMESTAMP(CURRENT_TIMESTAMP));
 
-INSERT INTO feedback (username, model, review, rating, time)
-VALUES ('genghis', @model_b, "Satisfied customer.", 5, UNIX_TIMESTAMP(now()));
+INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
+VALUES ('genghis', @model_b, "Satisfied customer.", 5, UNIX_TIMESTAMP(CURRENT_TIMESTAMP));
 
-INSERT INTO feedback (username, model, review, rating, time)
-VALUES ('elon', @model_c, "It was okay.", 3, UNIX_TIMESTAMP(now()));
+INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
+VALUES ('elon', @model_c, "It was okay.", 3, UNIX_TIMESTAMP(CURRENT_TIMESTAMP));
