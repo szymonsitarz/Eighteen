@@ -1,5 +1,5 @@
 <?php
-//include 'changepasswordcode.php';
+require_once("dbc.php");
 
 ?>
 
@@ -49,11 +49,33 @@
           </div>
         </div>
         </br>
-        </br>
-        </br>
             <div class="form">
-                <form action="changepasswordcode.php" method="POST">
-                <h3>Change your password here</h3>
+              <?php
+
+              if (isset($_POST['submit'])){
+                $email=mysqli_real_escape_string($db,($_POST['email']));
+                $password=mysqli_real_escape_string($db,($_POST['password']));
+                $newpassword=mysqli_real_escape_string($db,($_POST['newpassword']));
+                
+            
+                $sql = "SELECT * FROM users WHERE email='$email'" or die("Failed to query database".mysql_error());
+                $result = mysqli_query($db, $sql);
+                if(mysqli_num_rows($result) <= 0) {
+                  echo"email is not registered";
+                  
+                }
+                else{
+                    $query= "UPDATE users SET password='$newpassword' WHERE email='$email' AND password='$password'" ;
+                    $output=mysqli_query($db,$query);
+                    echo"password changed";
+                    
+                }
+               
+                
+            }
+              ?>
+                <form method="POST" action="">
+                <h3>Change your Password here</h3>
                 </br>
                 </br>
                 <input name="email" id="email" type="text" placeholder="Email" required>
@@ -61,7 +83,7 @@
                 <input name="newpassword" id="password" type="password" placeholder="New Password" required>
             </br>
             </br>
-                <button type='submit' name="submit">CHANGE PASSWORD</button>
+                <button name="submit">CHANGE PASSWORD</button>
               </form>
             </div>
         </div>
@@ -69,6 +91,8 @@
     </div>
     </br>
     </br>
+    </br>
+
   </body>
   
     <div class="footer-container">
