@@ -60,6 +60,7 @@ a { text-decoration: none; }
     width: 100%;
     aspect-ratio: 4/3;
 }
+h2 { padding: 5px; background-color: #0f0f0f; }
 
 #product-gallery { grid-area: product-gallery; }
 #product-selected-image { grid-area: product-selected-image; }

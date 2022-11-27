@@ -19,7 +19,7 @@
         foreach($sizes as $tmp)
         {
             echo "<button type=\"submit\" class=\"" . $tmp['size'] . "\" name=\"size\" value=\"" . $tmp['size'] . "\"";
-            if(isset($_GET['size']) && $_GET['size'] == $tmp['size'])
+            if(isset($_SESSION['product']['size']) && $_SESSION['product']['size'] == $tmp['size'])
                 echo " style=\"background-color: grey;\"";
             echo ">" . $tmp['size'] . "</button>\n";
         }
@@ -33,12 +33,11 @@
         echo "\t<br><label>Qty:</label><br>";
         echo "\t<input type=\"number\" name=\"quantity\" value=\"0\" min=\"0\">";
         echo "\t<input type=\"hidden\" name=\"pid\" value=\"" . $_SESSION['product']['pid'] . "\">";
-        echo "\t<input type=\"hidden\" name=\"quantity\"";
-        if(isset($_SESSION['product']['quantity']))
-            echo " value=\"" . $_SESSION['product']['quantity'] . "\"";
-        echo ">";
         echo "\t<button type=\"submit\">Add to cart</button>";
         echo "</form>\n";
+
+        // Part 4/4: Date and time listed
+        echo "<br><small><em>(listed " . $_SESSION['product']['date_time'] . ")</em></small>";
     }
     else
         echo "<p><strong>Out-of-stock.<strong></p>";

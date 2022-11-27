@@ -3,55 +3,60 @@ DROP DATABASE IF EXISTS cs2tp;
 CREATE DATABASE cs2tp;
 USE cs2tp;
 
+/* NOTE: Any NOT NULL field is set in register.php */
 CREATE TABLE users (
     uid SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     forename VARCHAR(64),
     surname VARCHAR(64),
-    username VARCHAR(16),
-    email VARCHAR(64),
-    password TINYTEXT,
+    username VARCHAR(16) NOT NULL,
+    email VARCHAR(64) NOT NULL,
+    password TINYTEXT NOT NULL,
+    privileges BOOLEAN DEFAULT FALSE,
+    banned BOOLEAN DEFAULT FALSE,
+    timeout_stamp INT,
+    timeout_duration INT,
     PRIMARY KEY(uid)
 );
 
 CREATE TABLE products (
     pid SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    model VARCHAR(48),
-    name VARCHAR(128),
-    category VARCHAR(32),
+    model VARCHAR(48) NOT NULL,
+    name VARCHAR(128) NOT NULL,
+    category VARCHAR(32) NOT NULL,
     color VARCHAR(32),
-    size CHAR(3),                                       /* S,M,L,XL,XXL,3XL,OS */
-    price DOUBLE,
-    stock INT,
-    views INT,
-    bought_all_time BIGINT,
-    avg_rating DOUBLE,
+    size CHAR(3) NOT NULL,                              /* S,M,L,XL,XXL,3XL,OS */
+    price DOUBLE NOT NULL,
+    stock INT DEFAULT 0,
+    views INT DEFAULT 0,
+    bought_all_time BIGINT DEFAULT 0,
+    avg_rating DOUBLE DEFAULT 0,
     description TEXT,
-    date_time DATETIME,
+    date_time DATETIME DEFAULT NOW(),
     PRIMARY KEY(pid)
 );
 
 CREATE TABLE orders (
     tid SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,      /* base64(SHA-256(base64('$username:$timestamp'))) */
-    uid SMALLINT UNSIGNED,
-    pid SMALLINT UNSIGNED,
-    status VARCHAR(32),                                 /* processing/dispatched/delivered/cancelled/refunded */
-    date_time DATETIME,
+    uid SMALLINT UNSIGNED NOT NULL,
+    pid SMALLINT UNSIGNED NOT NULL,
+    status VARCHAR(32) DEFAULT "processing",            /* processing/dispatched/delivered/cancelled/refunded */
+    date_time DATETIME DEFAULT NOW(),
     PRIMARY KEY(tid)
 );
 
 CREATE TABLE feedback (
     fid SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    model VARCHAR(48),
-    username VARCHAR(16),
+    model VARCHAR(48) NOT NULL,
+    username VARCHAR(16) NOT NULL,
     review LONGTEXT,
-    rating INT,
-    seconds_since_epoch INT,                                           /* '' */
+    rating INT NOT NULL,
+    seconds_since_epoch INT DEFAULT UNIX_TIMESTAMP(CURRENT_TIMESTAMP),
     PRIMARY KEY(fid)
 );
 
 /* SEED USERS TABLE */
-INSERT INTO users (username, email, password)
-VALUES ('admin', 'admin@domain.ac.uk', 'password');         /* NOTE: admin must have uid=1, and does since first entry to AUTO_INCREMENT */
+INSERT INTO users (username, email, password, privileges)
+VALUES ('admin', 'admin@domain.ac.uk', 'password', true);         /* NOTE: admin must have uid=1, and does since first entry to AUTO_INCREMENT */
 
 INSERT INTO users (username, email, password)
 VALUES ('julius', 'julius@domain.com', 'caesar');

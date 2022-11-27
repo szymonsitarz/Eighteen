@@ -5,4 +5,7 @@
     $_SESSION['product']['name'] = $product['name'];
     $_SESSION['product']['price'] = $product['price'];
     $_SESSION['product']['description'] = $product['description'];
+    if(isset($_GET['size']))
+        $_SESSION['product']['size'] = $_GET['size'];
+    $_SESSION['product']['date_time'] = $product['date_time'];
 ?>

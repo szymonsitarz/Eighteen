@@ -1,12 +1,12 @@
 <?php
-    $query = "SELECT orders.uid, users.username, users.email, orders.pid, products.name, products.model, products.size, orders.status, orders.date_time FROM orders INNER JOIN users ON orders.uid = users.uid INNER JOIN products ON orders.pid = products.pid ORDER BY ";
-    
+    $query = "SELECT pid, name, model, size, stock, bought_all_time, views FROM products ORDER BY ";
+
     /* Handling sorting for when a table heading column is clicked. */
-    if(!isset($_GET['orders_sort']))
-        $query .=  "orders.date_time DESC";
+    if(!isset($_GET['statistics_sort']))
+        $query .=  "pid";
     else
     {
-        $_SESSION['admin']['sort_selected'] = $_GET['orders_sort'];
+        $_SESSION['admin']['sort_selected'] = $_GET['statistics_sort'];
 
         // Reset sort state if a different column is chosen for sorting.
         if($_SESSION['admin']['sorted_last'] != $_SESSION['admin']['sort_selected'])
@@ -14,29 +14,27 @@
 
         switch($_SESSION['admin']['sort_selected'])
         {
-            case "uid":
-                $query .=  "orders.uid";
-                break;
-            case "username":
-                $query .=  "users.username";
-                break;
-            case "email":
-                $query .=  "users.email";
-                break;
             case "pid":
-                $query .=  "orders.pid";
-                break;
-            case "model":
-                $query .= "products.model";
+                $query .= "pid";
                 break;
             case "name":
-                $query .= "products.name";
+                $query .=  "name";
                 break;
-            case "status":
-                $query .=  "orders.status";
+            case "model":
+                $query .=  "model";
                 break;
-            case "timestamp":
-                $query .= "orders.date_time";
+            case "size":
+                $query .=  "size";
+                break;
+            case "stock":
+                $query .=  "stock";
+                break;
+            case "sold":
+                $query .=  "bought_all_time";
+                break;
+            case "views":
+                $query .= "views";
+                break;
             default:
                 echo "THROW ERROR";
         }
@@ -51,36 +49,13 @@
     }
 
     $sth = $db->prepare($query);
+    //echo $sth->debugDumpParams();
     $sth->execute();
-    $orders = $sth->fetchAll();
+    $statistics = $sth->fetchAll();
 
     /* Allow sorting by table headings */
     echo "<table><tr>";
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=uid\">User ID";
-    if($_SESSION['admin']['sort_selected'] == "uid")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=username\">Username";
-    if($_SESSION['admin']['sort_selected'] == "username")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=email\">Email";
-    if($_SESSION['admin']['sort_selected'] == "email")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=pid\">Product ID";
+    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=pid\">Product ID";
     if($_SESSION['admin']['sort_selected'] == "pid")
     {
         echo "<img class=\"sort-sym\" src=\"img/";
@@ -88,7 +63,7 @@
         echo "\"></a></th>";
     }
 
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=name\">Product name";
+    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=name\">Product name";
     if($_SESSION['admin']['sort_selected'] == "name")
     {
         echo "<img class=\"sort-sym\" src=\"img/";
@@ -96,7 +71,7 @@
         echo "\"></a></th>";
     }
 
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=model\">Model";
+    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=model\">Model";
     if($_SESSION['admin']['sort_selected'] == "model")
     {
         echo "<img class=\"sort-sym\" src=\"img/";
@@ -104,38 +79,51 @@
         echo "\"></a></th>";
     }
 
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=status\">Order status";
-    if($_SESSION['admin']['sort_selected'] == "status")
+    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=size\">Size";
+    if($_SESSION['admin']['sort_selected'] == "size")
     {
         echo "<img class=\"sort-sym\" src=\"img/";
         echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
         echo "\"></a></th>";
     }
-
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=timestamp\">Timestamp";
-    if($_SESSION['admin']['sort_selected'] == "timestamp")
+    
+    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=stock\">Stock";
+    if($_SESSION['admin']['sort_selected'] == "stock")
     {
         echo "<img class=\"sort-sym\" src=\"img/";
         echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
         echo "\"></a></th>";
     }
-
+    
+    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=sold\">Sold";
+    {
+        echo "<img class=\"sort-sym\" src=\"img/";
+        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
+        echo "\"></a></th>";
+    }
+    
+    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=views\">Views";
+    {
+        echo "<img class=\"sort-sym\" src=\"img/";
+        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
+        echo "\"></a></th>";
+    }
     echo "</tr>";
 
-    /* Display orders in tabular format ordered by timestamp by default */
-    foreach($orders as $tmp)
+    /* Display statistics in tabular format ordered by timestamp by default */
+    foreach($statistics as $tmp)
     {
-            echo "<td>" . $tmp['uid'] . "</td>";
-            echo "<td>" . $tmp['username'] . "</td>";
-            echo "<td>" . $tmp['email'] . "</td>";
+            echo "<tr>";
             echo "<td>" . $tmp['pid'] . "</td>";
             echo "<td>" . $tmp['name'] . "</td>";
             echo "<td><a href=\"/product/product.php?model=" . $tmp['model'] . "&size=" . $tmp['size'] . "\">" . $tmp['model'] . "</a></td>";
-            echo "<td>" . $tmp['status'] . "</td>";
-            echo "<td>" . $tmp['date_time'] . "</td>";
+            echo "<td>" . $tmp['size'] . "</td>";
+            echo "<td>" . ($tmp['stock'] ? $tmp['stock'] : "Out-of-stock") . "</td>";
+            echo "<td>" . $tmp['bought_all_time'] . "</td>";
+            echo "<td>" . $tmp['views'] . "</td>";
         echo "</tr>";
-        
     }
     echo "</table>";
+
 
 ?>

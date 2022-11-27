@@ -58,13 +58,9 @@
                     <h4>Access</h4>
                     <img src="img/access.png" alt="access">
                 </span></a>
-                <a href="admin.php?admin_tab=sales" class="tab"><span>
-                    <h4>Sales</h4>
-                    <img src="img/sales.png" alt="sales">
-                </span></a>
-                <a href="admin.php?admin_tab=config" class="tab"><span>
-                    <h4>Config</h4>
-                    <img src="img/config-1.png" alt="config">
+                <a href="admin.php?admin_tab=statistics" class="tab"><span>
+                    <h4>Statistics</h4>
+                    <img src="img/statistics-2.png" alt="statistics">
                 </span></a>
             </div>
             <div id="row-3-col-2">
@@ -87,13 +83,9 @@
                                 echo "<h3>Access</h3>";
                                 require_once('scripts/access.php');
                                 break;
-                            case "sales":
-                                echo "<h3>Sales</h3>";
-                                require_once('scripts/sales.php');
-                                break;
-                            case "config":
-                                echo "<h3>Config</h3>";
-                                require_once('scripts/config.php');
+                            case "statistics":
+                                echo "<h3>Statistics</h3>";
+                                require_once('scripts/statistics.php');
                                 break;
                             default:
                                 echo "THROW ERROR";

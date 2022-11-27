@@ -1,4 +1,3 @@
-
 <?php
     const SECOND = 1;
     const MINUTE = 60;
@@ -8,32 +7,97 @@
     const MONTH = DAY * (365.25 / 12);
     const YEAR = DAY * 365.25;
 
-    $query = "SELECT uid, username, email, privileges, banned, timeout_stamp, timeout_duration from users";
+    $query = "SELECT uid, username, email, privileges, banned, timeout_stamp, timeout_duration FROM users ORDER BY ";
+
+    /* Handling sorting for when a table heading column is clicked. */
+    if(!isset($_GET['access_sort']))
+        $query .=  "uid";
+    else
+    {
+        $_SESSION['admin']['sort_selected'] = $_GET['access_sort'];
+
+        // Reset sort state if a different column is chosen for sorting.
+        if($_SESSION['admin']['sorted_last'] != $_SESSION['admin']['sort_selected'])
+            $_SESSION['admin']['sort_state'] = 0; // i.e. ASC
+
+        switch($_SESSION['admin']['sort_selected'])
+        {
+            case "uid":
+                $query .= "uid";
+                break;
+            case "username":
+                $query .=  "username";
+                break;
+            case "email":
+                $query .=  "email";
+                break;
+            default:
+                echo "THROW ERROR";
+        }
+
+        $query .= ($_SESSION['admin']['sort_state'] ? " DESC" : " ASC");
+        
+        // Save last column to later determine whether to flip sort state or reset sort state.
+        $_SESSION['admin']['sorted_last'] = $_SESSION['admin']['sort_selected'];
+
+        // Flip sort state by default, reset later if last column is different to the selected column.
+        $_SESSION['admin']['sort_state'] = !$_SESSION['admin']['sort_state'];
+    }
 
     $sth = $db->prepare($query);
     $sth->execute();
-    $orders = $sth->fetchAll();
+    $access = $sth->fetchAll();
 
     /* Allow sorting by table headings */
-    echo "<table>
-            <tr>
-                <th><a href=\"admin.php?admin_tab=access&orders_sort=uid\">User ID</a></th>
-                <th><a href=\"admin.php?admin_tab=access&access_sort=username\">Username</a></th>
-                <th><a href=\"admin.php?admin_tab=access&access_sort=email\">Email</a></th>
-                <th><a href=\"admin.php?admin_tab=access&access_sort=privileges\">Privileges</a></th>
-                <th>Ban/unban</th>
-                <th><a href=\"admin.php?admin_tab=access&access_sort=timeout\">Timeout</a></th>
-            </tr>";
+    echo "<table><tr>";
+    echo "<th><a href=\"admin.php?admin_tab=access&access_sort=uid\">User ID";
+    if($_SESSION['admin']['sort_selected'] == "uid")
+    {
+        echo "<img class=\"sort-sym\" src=\"img/";
+        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
+        echo "\"></a></th>";
+    }
 
-    /* Display orders in tabular format ordered by timestamp by default */
-    foreach($orders as $tmp)
+    echo "<th><a href=\"admin.php?admin_tab=access&access_sort=username\">Username";
+    if($_SESSION['admin']['sort_selected'] == "username")
+    {
+        echo "<img class=\"sort-sym\" src=\"img/";
+        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
+        echo "\"></a></th>";
+    }
+
+    echo "<th><a href=\"admin.php?admin_tab=access&access_sort=email\">Email";
+    if($_SESSION['admin']['sort_selected'] == "email")
+    {
+        echo "<img class=\"sort-sym\" src=\"img/";
+        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
+        echo "\"></a></th>";
+    }
+
+    echo "<th>Privileges</th>";
+    echo "<th>Banned</th>";
+    echo "<th>Timeout</th>";
+    echo "</tr>";
+
+    /* Display accounts in tabular format ordered by timestamp by default */
+    foreach($access as $tmp)
     {
             echo "<tr>";
             echo "<td>" . $tmp['uid'] . "</td>";
             echo "<td>" . $tmp['username'] . "</td>";
             echo "<td>" . $tmp['email'] . "</td>";
-            echo "<td><form method=\"POST\" action=\"scripts/privileges.php\"><button type=\"submit\" name=\"change_privileges\" style=\"background-color:" . ($tmp['privileges'] ? "#00ff00\" value=\"switch-off\">ON" : "#ff0000\" value=\"switch-on\">OFF") . "</button></form></td>";
-            echo "<td><form method=\"POST\" action=\"scripts/banned.php\"><button type=\"submit\" name=\"change_banned\" style=\"background-color:" . ($tmp['banned'] ? "#00ff00\" value=\"switch-off\">ON" : "#ff0000\" value=\"switch-on\">OFF") . "</button></form></td>";            
+            echo "<td>
+                    <form method=\"POST\" action=\"scripts/privileges.php\">
+                        <button type=\"submit\" name=\"change_privileges\" style=\"background-color:" . ($tmp['privileges'] ? "#00ff00\" value=\"switch-off\">ON" : "#ff0000\" value=\"switch-on\">OFF") . "</button>
+                        <input type=\"hidden\" name=\"uid\" value=\"" . $tmp['uid'] . "\">
+                    </form>
+                </td>";
+            echo "<td>
+                    <form method=\"POST\" action=\"scripts/banned.php\">
+                        <button type=\"submit\" name=\"change_banned\" style=\"background-color:" . ($tmp['banned'] ? "#00ff00\" value=\"switch-off\">ON" : "#ff0000\" value=\"switch-on\">OFF") . "</button>
+                        <input type=\"hidden\" name=\"uid\" value=\"" . $tmp['uid'] . "\">
+                    </form>
+                </td>";            
             echo "<td>";
             echo "<form method=\"POST\" action=\"scripts/timeout.php\">";
             if($tmp['timeout_stamp'] == NULL && $tmp['timeout_duration'] == NULL)
@@ -47,7 +111,6 @@
                     echo "<option value=\"year\">year(s)</option>";
                 echo "</select>";
                 echo "<button type=\"submit\" name=\"set_timeout\">Set</button>";
-                echo "<input type=\"hidden\" name=\"uid\" value=\"" . $tmp['uid'] . "\">";
             }
             else {
                 $now = time();
@@ -71,6 +134,7 @@
                 // LOGIN PAGE MUST ALSO GENERATE A TOKEN WITH PRIVILEGES IN IT
                 echo "<button type=\"submit\" name=\"unset_timeout\">Unset</button>";
             }
+            echo "<input type=\"hidden\" name=\"uid\" value=\"" . $tmp['uid'] . "\">";
             echo "</form>";
             echo "</td>";
 

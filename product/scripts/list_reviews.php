@@ -3,10 +3,10 @@
     const HOUR = MINUTE * 60;
     const DAY = HOUR * 24;
     const WEEK = DAY * 7;
+    const MONTH = DAY * (365.25 / 12);
     const YEAR = DAY * 365.25;
-    const MONTH = DAY * (YEAR / 12);
     
-    $query = "SELECT username, review, rating, time FROM feedback WHERE model=:model ORDER BY time DESC";
+    $query = "SELECT username, review, rating, seconds_since_epoch FROM feedback WHERE model=:model ORDER BY seconds_since_epoch DESC";
     $sth = $db->prepare($query);
     $sth->bindParam(':model', $_SESSION['product']['model']);
     $sth->execute();
@@ -22,10 +22,10 @@
             else
                 echo "<hr>";
 
-            // 1/3 Display username
+            // 1/4 Display username
             echo "<h4 class=\"review-username\">" . $tmp['username'] . "</h4>\n";
 
-            // 3/4 Display rating
+            // 2/4 Display rating
             for($j=1;$j <= 5;$j++)
             {
                 echo "<img class=\"star\" src=\"/shared-images/star-";
@@ -36,9 +36,9 @@
             }
             echo "<br>\n";
 
-            // 2/3 Display time since review was written
+            // 3/4 Display time since review was posted
             $now = time();
-            $then = strtotime($tmp['time']);
+            $then = $tmp['seconds_since_epoch'];
             $since = $now - $then;
             echo "<small>";
             if($since > YEAR)
@@ -56,10 +56,10 @@
             else
                 echo "a few seconds ago";
             echo "</small>\n";
-        echo "</div>\n";
-        echo "<div id=\"review-comments\">\n";
+            echo "</div>\n";
+            echo "<div id=\"review-comments\">\n";
 
-            // 4/4 Display review
+            // 4/4 Display review comments
             echo "<blockquote>" . $tmp['review'] . "</blockquote>";
         }
     }

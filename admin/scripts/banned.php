@@ -1,12 +1,14 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/database_connection.php');
     $query = "UPDATE users SET banned=:banned WHERE uid=:uid";
+    $sth = $db->prepare($query);
     if(isset($_POST['change_banned']) && isset($_POST['uid']))
     {    
         $t=1;$f=0;
         if($_POST['change_banned'] == 'switch-off')
+            $sth->bindParam(":banned", $f);
+        else if($_POST['change_banned'] == 'switch-on')
             $sth->bindParam(":banned", $t);
-        else if($_POST['change_privileges'] == 'switch-on')
-            $sth->bindParam(":privileges", $f);
         else
             echo "THROW ERROR";
         $sth->bindParam(":uid", $_POST['uid']);

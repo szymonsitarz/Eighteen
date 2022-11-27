@@ -52,14 +52,14 @@
                         <button type="submit">Search</button>
                     </span>
                         <?php
-                            if(isset($_SESSION['review']['notification']))
+                            if(isset($_SESSION['product']['notification']))
                             {
-                                if($_SESSION['review']['success'])
-                                    echo "<p style=\"background-color:#00ff00;\">";
+                                if($_SESSION['product']['success'])
+                                    echo "<p style=\"color:#00ff00;\"><strong>";
                                 else
-                                    echo "<p style=\"background-color:#ff0000;\">";
-                                echo "<strong>" . $_SESSION['review']['notification'] . "</strong></span>";
-                                unset($_SESSION['review']);
+                                    echo "<p style=\"color:#ff0000;\"><strong>Error: ";
+                                echo $_SESSION['product']['notification'] . "</strong></span>";
+                                unset($_SESSION['product']['notification']);
                             }
                         ?>                    
                 </form>
@@ -86,7 +86,7 @@
                     </div>
                     <img id="product-selected-image" src="/product/img/<?= $_SESSION['product']['name'] . "/" . ((isset($_GET['selected'])) ? $_GET['selected'] : "1") ?>.jpg">
                     <div id="product-attributes">
-                        <h2><strong><?= $_SESSION['product']['name'] ?></strong></h2>
+                        <h1><?= $_SESSION['product']['name'] ?></h1>
                         <a href="#product-list-reviews">
                             <span class="product-feedback-overview">
                                 <?php
@@ -99,7 +99,7 @@
                                         echo "empty.png\">";
                                 }
                                 ?>
-                                <span><?= $product['avg_rating'] ?></span>
+                                <span><?= number_format($product['avg_rating'], 2); ?></span>
                             </span>
                         </a>
                         <a href="#product-write-review">
@@ -121,17 +121,17 @@
                     </div>
                 </div>
                 <div id="product-description">
-                    <h2>Description</h2>
-                    <p><?= $_SESSION['product']['description'] ?></p>
+                        <h2>Description</h2>    
+                        <p><?= $_SESSION['product']['description'] ?></p>
                 </div>
                 <div id="product-list-reviews">
-                    <h2>Reviews</h2>
+                    <h2>Feedback</h2>
                     <?php 
                         require_once('scripts/list_reviews.php');
                     ?>
                 </div>
                 <div id="product-write-review">
-                    <h4>Write your own review</h4>
+                    <h2>Write review</h2>
                     <form method="post" action="scripts/submit_review.php">
                         <label>Rating</label>
                         <input type="text" class="long-field" name="product-review-rating" placeholder="(1-5)"><br>
