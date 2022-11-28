@@ -18,6 +18,14 @@ CREATE TABLE users (
     PRIMARY KEY(uid)
 );
 
+/* NOTE: Products of the same model but different size, must share these fields:
+    1. views
+    2. avg_rating
+    3. description 
+
+    Why? Because each product listing groups together all sizes on a single page, 
+        therefore shares views, avg_rating and description.
+*/
 CREATE TABLE products (
     pid SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     model VARCHAR(48) NOT NULL,
@@ -71,43 +79,43 @@ VALUES ('elon', 'elon@domain.com', 'musk');
 /* >>PRODUCT TYPE #1 */
 SET @model_a := UUID();
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'S',  50.00, 25, 200, 3, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
+VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'S',  50.00, 9, 10, 1, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-11-22 09-31-04");
 
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'M',  50.00, 50, 200, 10, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
+VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'M',  50.00, 10, 10, 0, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-11-27 20-18-32");
 
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'L',  50.00, 50, 200, 15, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
-
-INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', 'XL',  50.00, 30, 200, 5, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
+VALUES (@model_a, 'CASUAL_SWEATSHIRT', 'sweatshirt', 'white', '2XL',  50.00, 10, 10, 1, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-11-27 20-19-55");
 
 /* >>PRODUCT TYPE #2 */
 SET @model_b := UUID();
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_b, 'SUN_T-SHIRT', 't-shirt', 'red', 'S',  17.99, 1000, 50, 300, 2.5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
+VALUES (@model_b, 'SUN_T-SHIRT', 't-shirt', 'red', 'S',  17.99, 20, 15, 1, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-11-27 20-19-10");
 
 /* >>PRODUCT TYPE #3 */
 SET @model_c := UUID();
 INSERT INTO products (model, name, category, color, size, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_c, 'OCEAN_T-SHIRT', 't-shirt', 'blue', 'M',  20.99, 1000, 50, 300, 3.75, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', NOW());
+VALUES (@model_c, 'OCEAN_T-SHIRT', 't-shirt', 'blue', 'M',  20.99, 50, 12, 1, 2.5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-11-25 05-29-11");
 
 /* Seeding orders table */
 INSERT INTO orders (uid, pid, status, date_time)
-VALUES (1, 1, 'delivered', NOW());
+VALUES (2, 1, 'delivered', "2022-11-28 08-00-13");
 
 INSERT INTO orders (uid, pid, status, date_time)
-VALUES (1, 2, 'refunded', NOW());
+VALUES (3, 3, 'refunded', "2022-11-27 11-53-21");
 
 INSERT INTO orders (uid, pid, status, date_time)
-VALUES (2, 2, 'dispatched', NOW());
+VALUES (4, 2, 'dispatched', "2022-11-28 20-20-20");
 
 /* Seeding feedback table */
 INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
-VALUES ('julius', @model_a, "Excellent product.", 5, UNIX_TIMESTAMP(CURRENT_TIMESTAMP));
+VALUES ('julius', @model_a, "Excellent product.", 5, 1669628396);
 
 INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
-VALUES ('genghis', @model_b, "Satisfied customer.", 5, UNIX_TIMESTAMP(CURRENT_TIMESTAMP));
+VALUES ('genghis', @model_a, "Disappointed with the fabric quality...", 1, 1669659396);
 
 INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
-VALUES ('elon', @model_c, "It was okay.", 3, UNIX_TIMESTAMP(CURRENT_TIMESTAMP));
+VALUES ('elon', @model_b, "Satisfied customer. Came as expected and promptly.", 5, 166966939);
+
+INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
+VALUES ('elon', @model_c, "I have high hopes in terms of product quality but I ordered 5 weeks ago and it has still not arrived..", 5, 1669668396);
