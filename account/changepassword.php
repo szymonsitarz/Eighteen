@@ -49,30 +49,37 @@ require_once("dbc.php");
           </div>
         </div>
         </br>
-            <div class="form">
-              <?php
+        <div class="form">
+          <?php
+              $success=0;
+              $_SESSION['auth'] = 1;
+              if(isset($_SESSION['auth']))
+              {
+                if (isset($_POST['submit'])) 
+                {
+                  $query = "SELECT password FROM users WHERE username=:username";
+                  $sth = $db->prepare($query);
+                  $sth->bindParam(":username", $_SESSION['auth']);
+                  $sth->execute();
+                  $row = $sth->fetch(PDO::FETCH_ASSOC);
+                  if($_POST['new-password'] == $_POST['confirm-new-password'])
+                    //if($row['password'] == password_hash($_POST['current-password'], PASSWORD_DEFAULT))
+                    if($row['password'] == $_POST['current-password'])
+                    {
+                      $query= "UPDATE users SET password=:password WHERE username=:username";
+                      $sth = $db->prepare($query);
+                      $sth->bindParam(":password", $_POST['new-password']);
+                      $sth->bindParam(":new-password", $_POST['confirm-new-password']);
+                      $sth->execute();
+                      $success=1;
+                    }
 
-              if (isset($_POST['submit'])){
-                $email=mysqli_real_escape_string($db,($_POST['email']));
-                $password=mysqli_real_escape_string($db,($_POST['password']));
-                $newpassword=mysqli_real_escape_string($db,($_POST['newpassword']));
-                
-            
-                $sql = "SELECT * FROM users WHERE email='$email'" or die("Failed to query database".mysql_error());
-                $result = mysqli_query($db, $sql);
-                if(mysqli_num_rows($result) <= 0) {
-                  echo"email is not registered";
-                  
+                    if(!$success)
+                      echo "incorrect password or new passwords don't match";
+                    else
+                      echo "password changed.";
+                  } 
                 }
-                else{
-                    $query= "UPDATE users SET password='$newpassword' WHERE email='$email' AND password='$password'" ;
-                    $output=mysqli_query($db,$query);
-                    echo"password changed";
-                    
-                }
-               
-                
-            }
               ?>
                 <form method="POST" action="">
                 <h3>Change your Password here</h3>

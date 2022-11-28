@@ -3,41 +3,16 @@ include 'dbc.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$query = "SELECT orders.uid, users.username, users.email, orders.pid, products.name, orders.status, orders.date_time FROM orders INNER JOIN users ON orders.uid = users.uid INNER JOIN products ON orders.pid = products.pid ORDER BY  ";
+$query = "SELECT orders.uid, users.username, orders.pid, orders.status, orders.date_time FROM orders INNER JOIN users ON orders.uid = users.uid INNER JOIN products ON orders.pid = products.pid WHERE users.username=:username ORDER BY orders.date_time";
 
-/* Handling sorting for when a table heading column is clicked. */
-if(!isset($_GET['orders_sort']))
-    $query .=  "orders.date_time DESC";
-else
-{
-    switch($_GET['orders_sort'])
-    {
-        case "uid":
-            $query .=  "orders.uid";
-            break;
-        case "username":
-            $query .=  "users.username";
-            break;
-        case "email":
-            $query .=  "users.email";
-            break;
-        case "pid":
-            $query .=  "orders.pid";
-            break;
-        case "status":
-            $query .=  "orders.status";
-            break;
-        default:
-            echo "THROW ERROR";
-    }
-}
+// REMOVE IN PRODUCTION VERSION
+$_SESSION['auth'] = "admin";
 
 $sth = $db->prepare($query);
+$sth->bindParam(":username", $_SESSION['auth']);
 $sth->execute();
-$orders = $sth->fetch(PDO::FETCH_ASSOC);
-
+$orders = $sth->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,11 +67,16 @@ $orders = $sth->fetch(PDO::FETCH_ASSOC);
         <th>Status</th>
         <th>Date & Time ordered </th>
       </tr>
-      <tr>
-        <td><?=$orders['pid'];?></td>
-        <td><?=$orders['status'];?></td>
-        <td><?=$orders['date_time'];?></td>
-      </tr>
+      <?php
+        foreach($orders as $order)
+        {
+          echo "<tr>";
+          echo "<td>" . $order['pid'] . "</td>";
+          echo "<td>" . $order['status'] . "</td>";
+          echo "<td>" . $order['date_time'] . "</td>";
+          echo "</tr>";
+        }
+      ?>
     </table>
     </div>
   </div>
