@@ -63,17 +63,21 @@ CREATE TABLE feedback (
 );
 
 /* SEED USERS TABLE */
+/* >>password => "password" */
 INSERT INTO users (username, email, password, privileges)
-VALUES ('admin', 'admin@domain.ac.uk', 'password', true);         /* NOTE: admin must have uid=1, and does since first entry to AUTO_INCREMENT */
+VALUES ('admin', 'admin@domain.ac.uk', '$2y$10$zyWUmQmdYxZOStAgctHRw.u7vgnMeunS2DxUEATvh6y/CLIhULzje', true);         /* NOTE: admin must have uid=1, and does since first entry to AUTO_INCREMENT */
 
+/* >>password => "caesar" */
 INSERT INTO users (username, email, password)
-VALUES ('julius', 'julius@domain.com', 'caesar');
+VALUES ('julius', 'julius@domain.com', '$2y$10$vAiVC77oQJn3ylwqiXZH7OihcgxJJjVHLRcWtyhQRkNMpoDlqNbQG');
 
+/* >>password => "khan" */
 INSERT INTO users (username, email, password)
-VALUES ('genghis', 'carlos@domain.com', 'khan');
+VALUES ('genghis', 'carlos@domain.com', '$2y$10$s.74gjCCcMBwWZ2eGQTA.udrVAK9a3a8EpmBQl1IAiSGwnXDmFnMG');
 
+/* >>password => "musk" */
 INSERT INTO users (username, email, password)
-VALUES ('elon', 'elon@domain.com', 'musk');
+VALUES ('elon', 'elon@domain.com', '$2y$10$Yuk2IQ7TlPhI7NruJTZiH.hF/v/Hd337BOaEJG11IU8pd3k1HpDbe');
 
 /* SEED PRODUCT TABLE*/
 /* >>PRODUCT TYPE #1 */

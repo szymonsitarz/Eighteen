@@ -63,8 +63,7 @@ require_once("dbc.php");
                   $sth->execute();
                   $row = $sth->fetch(PDO::FETCH_ASSOC);
                   if($_POST['new-password'] == $_POST['confirm-new-password'])
-                    //if($row['password'] == password_hash($_POST['current-password'], PASSWORD_DEFAULT))
-                    if($row['password'] == $_POST['current-password'])
+                    if(password_verify($_POST['current-password'], $row['password']))
                     {
                       $query= "UPDATE users SET password=:new-password WHERE username=:username";
                       $sth = $db->prepare($query);
