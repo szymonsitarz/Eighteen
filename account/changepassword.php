@@ -51,25 +51,25 @@ require_once("dbc.php");
         </br>
         <div class="form">
           <?php
-              $success=0;
-              $_SESSION['auth'] = 1;
-              if(isset($_SESSION['auth']))
+              $_SESSION['auth']['username'] = "admin";
+              if(isset($_SESSION['auth']['username']))
               {
                 if (isset($_POST['submit'])) 
                 {
+                  $success=0;
                   $query = "SELECT password FROM users WHERE username=:username";
                   $sth = $db->prepare($query);
-                  $sth->bindParam(":username", $_SESSION['auth']);
+                  $sth->bindParam(":username", $_SESSION['auth']['username']);
                   $sth->execute();
                   $row = $sth->fetch(PDO::FETCH_ASSOC);
                   if($_POST['new-password'] == $_POST['confirm-new-password'])
                     //if($row['password'] == password_hash($_POST['current-password'], PASSWORD_DEFAULT))
                     if($row['password'] == $_POST['current-password'])
                     {
-                      $query= "UPDATE users SET password=:password WHERE username=:username";
+                      $query= "UPDATE users SET password=:new-password WHERE username=:username";
                       $sth = $db->prepare($query);
-                      $sth->bindParam(":password", $_POST['new-password']);
-                      $sth->bindParam(":new-password", $_POST['confirm-new-password']);
+                      $sth->bindParam(":new-password", $_POST['new-password']);
+                      $sth->bindParam(":username", $_SESSION['auth']['username']);
                       $sth->execute();
                       $success=1;
                     }
@@ -79,15 +79,15 @@ require_once("dbc.php");
                     else
                       echo "password changed.";
                   } 
-                }
+              }
               ?>
                 <form method="POST" action="">
                 <h3>Change your Password here</h3>
                 </br>
                 </br>
-                <input name="email" id="email" type="text" placeholder="Email" required>
-                <input name="password" id="password" type="password" placeholder="Current Password" required>
-                <input name="newpassword" id="password" type="password" placeholder="New Password" required>
+                <input name="current-password" id="password" type="password" placeholder="Current Password" required>
+                <input name="new-password" id="password" type="password" placeholder="New Password" required>
+                <input name="confirm-new-password" id="password" type="password" placeholder="Confirm New Password" required>
             </br>
             </br>
                 <button name="submit">CHANGE PASSWORD</button>
