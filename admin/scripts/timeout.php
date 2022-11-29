@@ -7,20 +7,18 @@
     const MONTH = DAY * (365.25 / 12);
     const YEAR = DAY * 365.25;
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL); 
     require_once($_SERVER['DOCUMENT_ROOT'] . '/database_connection.php');
 
     if(isset($_POST['uid']))
     {
         if(isset($_POST['set_timeout']) && isset($_POST['timeout_unit']))
         {
+            // Set timeout_unit from POST data
             $now = "UNIX_TIMESTAMP(CURRENT_TIMESTAMP)";
             switch($_POST['timeout_unit'])
             {
                 case "hour":
-                    $duration = HOUR;
+                    $duration = HOUR;   
                     break;
                 case "day":
                     $duration = DAY;
@@ -35,9 +33,12 @@
                     $duration = YEAR;
                     break;
                 default:
-                    echo "THROW ERROR";
+                    http_response_code(404);
+                    include_once($_SERVER['DOCUMENT_ROOT'] . '/error/404.php');
             }
+            // Calculate total timeout value (NOTE: It is *=, not =)
             $duration *= $_POST['coefficient'];
+
             $query = "UPDATE users SET timeout_stamp=UNIX_TIMESTAMP(CURRENT_TIMESTAMP), timeout_duration=:timeout_duration WHERE uid=:uid";
             $sth = $db->prepare($query);
             $sth->bindParam(':timeout_duration', $duration);

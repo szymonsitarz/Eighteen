@@ -62,6 +62,15 @@ CREATE TABLE feedback (
     PRIMARY KEY(fid)
 );
 
+CREATE TABLE contact (
+    cid SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    forename VARCHAR(64),
+    email VARCHAR(64) NOT NULL,  
+    phone varchar(15) NOT NULL,
+    message text NOT NULL,
+    PRIMARY KEY(cid)
+);
+
 /* SEED USERS TABLE */
 /* >>password => "password" */
 INSERT INTO users (username, email, password, privileges)

@@ -2,7 +2,7 @@
 
 include 'dbc.php';
 $pone= $db->prepare("SELECT forename, surname, email FROM users WHERE username=:username"); 
-$pone->bindParam(":username", $_SESSION['auth']['username']);
+$pone->bindParam(":username", $_SESSION['authenticate']['username']);
 $pone->execute(); 
 $result=$pone->fetch(PDO::FETCH_ASSOC);
 
@@ -67,7 +67,7 @@ $result=$pone->fetch(PDO::FETCH_ASSOC);
             </br>
             <div class="username">
                 <p>Username:</p>
-                <p><?=$_SESSION['auth']['username']?></p>
+                <p><?=$_SESSION['authenticate']['username']?></p>
             </div>
             </br>
             <div class="email">

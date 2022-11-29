@@ -1,4 +1,19 @@
-<?php session_start(); ?>
+<?php 
+    session_start();
+    if(!isset($_SESSION['authenticate']['is_admin']))
+    {
+        $_SESSION['info']['notification'] = "Access denied";
+        if($_SESSION['info']['referer'] == "/product/product.php")
+            header('Location: /collections/collections.php');
+        else
+            header('Location: ' . $_SESSION['info']['referer']);
+        exit();
+    }
+    else
+        $_SESSION['info']['notification'] = "Welcome to the admin dashboard.";
+
+    $_SESSION['info']['referer']=$_SERVER['PHP_SELF'];
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,15 +36,15 @@
                 <?php
                     echo "<form action=\"/TEMPORARY_LOGIN.php\" method=\"post\">";
                     echo "<button type=\"submit\" name=\"state\" ";
-                    if(!isset($_SESSION['auth']))
+                    if(!isset($_SESSION['authenticate']['username']))
                         echo " style=\"background-color: #ff0000; font-weight: bold;\" ";
                     echo "value=\"off\">DE-EMULATE AUTH STATE</button>";
                     echo "<button type=\"submit\" name=\"state\" "; 
-                    if(isset($_SESSION['auth']))
+                    if(isset($_SESSION['authenticate']['username']))
                         echo " style=\"background-color: #00ff00; font-weight: bold;\" ";
                     echo "value=\"on\">EMULATE AUTH STATE</button>";
                     echo "</form>";
-                    if(isset($_SESSION['auth']))
+                    if(isset($_SESSION['authenticate']['username']))
                     {
                         //echo "<img src=\"/account.jpg\">";
                         //echo "<img src=\"/cart.jpg\">";
@@ -38,15 +53,7 @@
             </div>
             <div id="row-2">
                     <?php
-                        if(isset($_SESSION['product']['notification']))
-                        {
-                            if($_SESSION['product']['success'])
-                                echo "<p style=\"color:#00ff00;\"><strong>";
-                            else
-                                echo "<p style=\"color:#ff0000;\"><strong>Error: ";
-                            echo $_SESSION['product']['notification'] . "</strong></span>";
-                            unset($_SESSION['product']['notification']);
-                        }
+                       include_once('notification.php');
                     ?>                    
             </div>
             <div id="row-3-col-1">
@@ -60,18 +67,20 @@
                 </span></a>
                 <a href="admin.php?admin_tab=statistics" class="tab"><span>
                     <h4>Statistics</h4>
-                    <img src="img/statistics-2.png" alt="statistics">
+                    <img src="img/statistics.png" alt="statistics">
                 </span></a>
             </div>
             <div id="row-3-col-2">
                 <h2>ADMIN PANEL</h2>
                 <?php
-                    ini_set('display_errors', 1);
-                    ini_set('display_startup_errors', 1);
-                    error_reporting(E_ALL); 
                     require_once($_SERVER['DOCUMENT_ROOT'] . '/database_connection.php');
                     if(!isset($_GET['admin_tab']) || $_GET['admin_tab'] == 'orders') 
                     {
+                        // Ensure sort is not persistent between tabs
+                        $_SESSION['admin']['tab_selected'] = 'orders';
+                        if($_SESSION['admin']['tabbed_last'] != $_SESSION['admin']['tab_selected'])
+                            unset($_SESSION['admin']['sort_selected']);
+
                         echo "<h3>Orders</h3>";
                         require_once('scripts/orders.php');
                     }
@@ -80,17 +89,27 @@
                         switch($_GET['admin_tab'])
                         {
                             case "access":
+                                // Ensure sort is not persistent between tabs
+                                $_SESSION['admin']['tab_selected'] = 'access';
+                                if($_SESSION['admin']['tabbed_last'] != $_SESSION['admin']['tab_selected'])
+                                    unset($_SESSION['admin']['sort_selected']);
                                 echo "<h3>Access</h3>";
                                 require_once('scripts/access.php');
                                 break;
                             case "statistics":
+                                // Ensure sort is not persistent between tabs
+                                $_SESSION['admin']['tab_selected'] = 'statistics';
+                                if($_SESSION['admin']['tabbed_last'] != $_SESSION['admin']['tab_selected'])
+                                    unset($_SESSION['admin']['sort_selected']);
                                 echo "<h3>Statistics</h3>";
                                 require_once('scripts/statistics.php');
                                 break;
                             default:
-                                echo "THROW ERROR";
+                                http_response_code(404);
+                                include_once($_SERVER['DOCUMENT_ROOT'] . '/error/404.php');
                         }
                     }   
+                    $_SESSION['admin']['tabbed_last'] = $_SESSION['admin']['tab_selected'];
                 ?>
             </div>
             <div id="row-4">

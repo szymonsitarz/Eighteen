@@ -37,17 +37,23 @@
                 break;
             case "timestamp":
                 $query .= "orders.date_time";
+                break;
             default:
-                echo "THROW ERROR";
+                http_response_code(404);
+                include_once($_SERVER['DOCUMENT_ROOT'] . '/error/404.php');
         }
 
-        $query .= ($_SESSION['admin']['sort_state'] ? " DESC" : " ASC");
-        
+        // Set sort state and invert sort state on next click (unless a different tab is chosen)
+        if(isset($_SESSION['admin']['sort_state']))
+        {
+            $query .= ($_SESSION['admin']['sort_state'] ? " DESC" : " ASC");
+            $_SESSION['admin']['sort_state'] = !$_SESSION['admin']['sort_state'];
+        }
+
         // Save last column to later determine whether to flip sort state or reset sort state.
         $_SESSION['admin']['sorted_last'] = $_SESSION['admin']['sort_selected'];
 
-        // Flip sort state by default, reset later if last column is different to the selected column.
-        $_SESSION['admin']['sort_state'] = !$_SESSION['admin']['sort_state'];
+        
     }
 
     $sth = $db->prepare($query);
@@ -56,70 +62,26 @@
 
     /* Allow sorting by table headings */
     echo "<table><tr>";
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=uid\">User ID";
-    if($_SESSION['admin']['sort_selected'] == "uid")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
+    $headings = array("User ID", "Username", "Email", "Product ID", "Product name", "Model", "Order status", "Timestamp");
+    $columns = array("uid", "username", "email", "pid", "name", "model", "status", "timestamp");
 
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=username\">Username";
-    if($_SESSION['admin']['sort_selected'] == "username")
+    for($i=0;$i<count($headings);$i++)
     {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
+        echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=" . $columns[$i] . "\">" . $headings[$i];
+        if(isset($_SESSION['admin']['sort_selected']))
+        {
+            if($_SESSION['admin']['sort_selected'] == $columns[$i])
+            {
+                if(isset($_SESSION['admin']['sort_state']))
+                {
+                    echo "<img class=\"sort-sym\" src=\"img/";
+                    echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
+                    echo "\">";
+                }
+            }
+        }
+        echo "</a></th>";
     }
-
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=email\">Email";
-    if($_SESSION['admin']['sort_selected'] == "email")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=pid\">Product ID";
-    if($_SESSION['admin']['sort_selected'] == "pid")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=name\">Product name";
-    if($_SESSION['admin']['sort_selected'] == "name")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=model\">Model";
-    if($_SESSION['admin']['sort_selected'] == "model")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=status\">Order status";
-    if($_SESSION['admin']['sort_selected'] == "status")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=timestamp\">Timestamp";
-    if($_SESSION['admin']['sort_selected'] == "timestamp")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
     echo "</tr>";
 
     /* Display orders in tabular format ordered by timestamp by default */

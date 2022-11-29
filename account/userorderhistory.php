@@ -6,10 +6,10 @@ error_reporting(E_ALL);
 $query = "SELECT orders.uid, users.username, orders.pid, orders.status, orders.date_time FROM orders INNER JOIN users ON orders.uid = users.uid INNER JOIN products ON orders.pid = products.pid WHERE users.username=:username ORDER BY orders.date_time";
 
 // REMOVE IN PRODUCTION VERSION
-$_SESSION['auth'] = "admin";
+$_SESSION['authenticate'] = "admin";
 
 $sth = $db->prepare($query);
-$sth->bindParam(":username", $_SESSION['auth']);
+$sth->bindParam(":username", $_SESSION['authenticate']);
 $sth->execute();
 $orders = $sth->fetchAll();
 ?>

@@ -68,6 +68,9 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 th { background-color: #f2f2f2; }
+th * { color: white; text-decoration: none; background-color: transparent; }
+th a:hover { color: #4bb19b; }
+td a { color: white; text-decoration: none; }
 
 .sort-sym { width: 16px; height: 16px; }
 

@@ -31,17 +31,25 @@
             case "email":
                 $query .=  "email";
                 break;
+            case "privileges":
+                $query .=  "privileges";
+                break;
+            case "banned":
+                $query .=  "banned";
+                break;
             default:
-                echo "THROW ERROR";
+                http_response_code(404);
+                include_once($_SERVER['DOCUMENT_ROOT'] . '/error/404.php');
         }
-
-        $query .= ($_SESSION['admin']['sort_state'] ? " DESC" : " ASC");
+        // Set sort state and invert sort state on next click (unless a different tab is chosen)
+        if(isset($_SESSION['admin']['sort_state']))
+        {
+            $query .= ($_SESSION['admin']['sort_state'] ? " DESC" : " ASC");
+            $_SESSION['admin']['sort_state'] = !$_SESSION['admin']['sort_state'];
+        }
         
         // Save last column to later determine whether to flip sort state or reset sort state.
         $_SESSION['admin']['sorted_last'] = $_SESSION['admin']['sort_selected'];
-
-        // Flip sort state by default, reset later if last column is different to the selected column.
-        $_SESSION['admin']['sort_state'] = !$_SESSION['admin']['sort_state'];
     }
 
     $sth = $db->prepare($query);
@@ -50,32 +58,26 @@
 
     /* Allow sorting by table headings */
     echo "<table><tr>";
-    echo "<th><a href=\"admin.php?admin_tab=access&access_sort=uid\">User ID";
-    if($_SESSION['admin']['sort_selected'] == "uid")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
+    $headings = array("User ID", "Username", "Email", "Privileges", "Banned");
+    $columns = array("uid", "username", "email", "privileges", "banned");
 
-    echo "<th><a href=\"admin.php?admin_tab=access&access_sort=username\">Username";
-    if($_SESSION['admin']['sort_selected'] == "username")
+    for($i=0;$i<count($headings);$i++)
     {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
+        echo "<th><a href=\"admin.php?admin_tab=access&access_sort=" . $columns[$i] . "\">" . $headings[$i];
+        if(isset($_SESSION['admin']['sort_selected']))
+        {
+            if($_SESSION['admin']['sort_selected'] == $columns[$i])
+            {
+                if(isset($_SESSION['admin']['sort_state']))
+                {
+                    echo "<img class=\"sort-sym\" src=\"img/";
+                    echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
+                    echo "\">";
+                }
+            }
+        }
+        echo "</a></th>";
     }
-
-    echo "<th><a href=\"admin.php?admin_tab=access&access_sort=email\">Email";
-    if($_SESSION['admin']['sort_selected'] == "email")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th>Privileges</th>";
-    echo "<th>Banned</th>";
     echo "<th>Timeout</th>";
     echo "</tr>";
 

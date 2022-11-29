@@ -24,7 +24,7 @@
                 $query .=  "model";
                 break;
             case "size":
-                $query .=  "size";
+                $query .= "size";
                 break;
             case "stock":
                 $query .=  "stock";
@@ -36,16 +36,20 @@
                 $query .= "views";
                 break;
             default:
-                echo "THROW ERROR";
+                http_response_code(404);
+                include_once($_SERVER['DOCUMENT_ROOT'] . '/error/404.php');
         }
 
-        $query .= ($_SESSION['admin']['sort_state'] ? " DESC" : " ASC");
+        // Set sort state and invert sort state on next click (unless a different tab is chosen)
+        if(isset($_SESSION['admin']['sort_state']))
+        {
+            $query .= ($_SESSION['admin']['sort_state'] ? " DESC" : " ASC");
+            $_SESSION['admin']['sort_state'] = !$_SESSION['admin']['sort_state'];
+        }
         
         // Save last column to later determine whether to flip sort state or reset sort state.
         $_SESSION['admin']['sorted_last'] = $_SESSION['admin']['sort_selected'];
 
-        // Flip sort state by default, reset later if last column is different to the selected column.
-        $_SESSION['admin']['sort_state'] = !$_SESSION['admin']['sort_state'];
     }
 
     $sth = $db->prepare($query);
@@ -55,58 +59,25 @@
 
     /* Allow sorting by table headings */
     echo "<table><tr>";
-    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=pid\">Product ID";
-    if($_SESSION['admin']['sort_selected'] == "pid")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
+    $headings = array("Product ID", "Product name", "Model", "Size", "Stock", "Sold", "Views");
+    $columns = array("pid", "name", "model", "size", "stock", "sold", "views");
 
-    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=name\">Product name";
-    if($_SESSION['admin']['sort_selected'] == "name")
+    for($i=0;$i<count($headings);$i++)
     {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=model\">Model";
-    if($_SESSION['admin']['sort_selected'] == "model")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-
-    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=size\">Size";
-    if($_SESSION['admin']['sort_selected'] == "size")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-    
-    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=stock\">Stock";
-    if($_SESSION['admin']['sort_selected'] == "stock")
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-    
-    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=sold\">Sold";
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
-    }
-    
-    echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=views\">Views";
-    {
-        echo "<img class=\"sort-sym\" src=\"img/";
-        echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
-        echo "\"></a></th>";
+        echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=" . $columns[$i] . "\">" . $headings[$i];
+        if(isset($_SESSION['admin']['sort_selected']))
+        {
+            if($_SESSION['admin']['sort_selected'] == $columns[$i])
+            {
+                if(isset($_SESSION['admin']['sort_state']))
+                {
+                    echo "<img class=\"sort-sym\" src=\"img/";
+                    echo ($_SESSION['admin']['sort_state'] ? "sorting-arrow-down.png" : "sorting-arrow-up.png");
+                    echo "\">";
+                }
+            }
+        }
+        echo "</a></th>";
     }
     echo "</tr>";
 

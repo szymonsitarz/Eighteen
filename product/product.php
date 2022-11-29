@@ -1,10 +1,15 @@
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    $_SESSION['info']['referer']=$_SERVER['PHP_SELF'];
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Grid</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="product.css?ts=<?=time()?>">
+        <link rel="stylesheet" href="/footer.css?ts=<?=time()?>">
+
     </head>
     <body>
         <div id="container">
@@ -20,16 +25,16 @@
             <div id="row-1-col-3">
                 <?php
                     echo "<form action=\"/TEMPORARY_LOGIN.php\" method=\"post\">";
-                    echo "<button type=\"submit\" name=\"state\"";
-                    if(!isset($_SESSION['auth']))
-                        echo " style=\"background-color: #ff0000; font-weight: bold;\" ";
+                    echo "<button type=\"submit\" name=\"state\" ";
+                    if(!isset($_SESSION['authenticate']['username']))
+                        echo "style=\"background-color: #ff0000; font-weight: bold;\" ";
                     echo "value=\"off\">DE-EMULATE AUTH STATE</button>";
-                    echo "<button type=\"submit\" name=\"state\""; 
-                    if(isset($_SESSION['auth']))
-                        echo " style=\"background-color: #00ff00; font-weight: bold;\" ";
+                    echo "<button type=\"submit\" name=\"state\" "; 
+                    if(isset($_SESSION['authenticate']['username']))
+                        echo "style=\"background-color: #00ff00; font-weight: bold;\" ";
                     echo "value=\"on\">EMULATE AUTH STATE</button>";
                     echo "</form>";
-                    if(isset($_SESSION['auth']))
+                    if(isset($_SESSION['authenticate']['username']))
                     {
                         //echo "<img src=\"/account.jpg\">";
                         //echo "<img src=\"/cart.jpg\">";
@@ -51,24 +56,13 @@
                         <input type="text" name="q">
                         <button type="submit">Search</button>
                     </span>
-                        <?php
-                            if(isset($_SESSION['product']['notification']))
-                            {
-                                if($_SESSION['product']['success'])
-                                    echo "<p style=\"color:#00ff00;\"><strong>";
-                                else
-                                    echo "<p style=\"color:#ff0000;\"><strong>Error: ";
-                                echo $_SESSION['product']['notification'] . "</strong></span>";
-                                unset($_SESSION['product']['notification']);
-                            }
-                        ?>                    
+                    <?php
+                        include_once('notification.php');
+                    ?>                    
                 </form>
             </div>
             <div id="row-3">
                 <?php
-                    ini_set('display_errors', 1);
-                    ini_set('display_startup_errors', 1);
-                    error_reporting(E_ALL); 
                     require_once($_SERVER['DOCUMENT_ROOT'] . '/database_connection.php');
                     require_once('scripts/fetch_product.php');
                     require_once('scripts/save_product.php'); ?>
@@ -147,7 +141,36 @@
                 </div>
             </div>
             <div id="row-4">
-                <p>(footer)</p>
+                <div class="footer-heading footer-1">
+                    <h2>About Us</h2>
+                    <a href="#">Blog</a>
+                    <a href="#">Desmo</a>
+                    <a href="#">Customers</a>
+                    <a href="#">Investors</a>
+                    <a href="#">Terms of Services</a>
+                </div>
+
+                <div class="footer-heading footer-2">
+                    <h2>Contact Us</h2>
+                    <a href="#">Careers</a>
+                    <a href="#">Support</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Sponsorships</a>
+                </div>
+
+                <div class="footer-heading footer-3">
+                    <h2>Social Media </h2>
+                        <a href="#">Instagram</a>
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                </div>
+
+                <div class="footer-email-form">
+                    <h2>Join our newsletter subscription</h2>
+                    <input type="email" placeholder="your email address" id="footer-email">
+                    <input type="submit" value="Sign Up" id="footer-email-btn">
+                </div>
+            
                 <?php require_once('scripts/increment_views.php'); ?>
             </div>
         </div>

@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    $_SESSION['info']['referer']=$_SERVER['PHP_SELF'];
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,15 +24,15 @@
                 <?php
                     echo "<form action=\"/TEMPORARY_LOGIN.php\" method=\"post\">";
                     echo "<button type=\"submit\" name=\"state\"";
-                    if(!isset($_SESSION['auth']))
+                    if(!isset($_SESSION['authenticate']['username']))
                         echo " style=\"background-color: #ff0000; font-weight: bold;\" ";
                     echo "value=\"off\">DE-EMULATE AUTH STATE</button>";
                     echo "<button type=\"submit\" name=\"state\""; 
-                    if(isset($_SESSION['auth']))
+                    if(isset($_SESSION['authenticate']['username']))
                         echo " style=\"background-color: #00ff00; font-weight: bold;\" ";
                     echo "value=\"on\">EMULATE AUTH STATE</button>";
                     echo "</form>";
-                    if(isset($_SESSION['auth']))
+                    if(isset($_SESSION['authenticate']['username']))
                     {
                         //echo "<img src=\"/account.jpg\">";
                         //echo "<img src=\"/cart.jpg\">";
@@ -52,6 +55,9 @@
                         <button type="submit">Search</button>
                     </span>
                 </form>
+                <?php
+                    include_once('notification.php');
+                ?>   
             </div>
             <div id="row-3-col-1">
                 <form method="post" action="">
@@ -112,9 +118,6 @@
                         echo "Products";
 
                     echo "</h2>";
-                    ini_set('display_errors', 1);
-                    ini_set('display_startup_errors', 1);
-                    error_reporting(E_ALL);
                     require_once($_SERVER['DOCUMENT_ROOT'] . '/database_connection.php');
                     require_once('scripts/assemble_query.php');
                     require_once('scripts/display_products.php');

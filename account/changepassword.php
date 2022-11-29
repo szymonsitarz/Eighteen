@@ -51,15 +51,15 @@ require_once("dbc.php");
         </br>
         <div class="form">
           <?php
-              $_SESSION['auth']['username'] = "admin";
-              if(isset($_SESSION['auth']['username']))
+              $_SESSION['authenticate']['username'] = "admin";
+              if(isset($_SESSION['authenticate']['username']))
               {
                 if (isset($_POST['submit'])) 
                 {
                   $success=0;
                   $query = "SELECT password FROM users WHERE username=:username";
                   $sth = $db->prepare($query);
-                  $sth->bindParam(":username", $_SESSION['auth']['username']);
+                  $sth->bindParam(":username", $_SESSION['authenticate']['username']);
                   $sth->execute();
                   $row = $sth->fetch(PDO::FETCH_ASSOC);
                   if($_POST['new-password'] == $_POST['confirm-new-password'])
@@ -68,7 +68,7 @@ require_once("dbc.php");
                       $query= "UPDATE users SET password=:new-password WHERE username=:username";
                       $sth = $db->prepare($query);
                       $sth->bindParam(":new-password", $_POST['new-password']);
-                      $sth->bindParam(":username", $_SESSION['auth']['username']);
+                      $sth->bindParam(":username", $_SESSION['authenticate']['username']);
                       $sth->execute();
                       $success=1;
                     }

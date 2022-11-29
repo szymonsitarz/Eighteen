@@ -10,7 +10,10 @@
         else if($_POST['change_privileges'] == 'switch-on')
             $sth->bindParam(":privileges", $t);
         else
-            echo "THROW ERROR";
+        {
+            http_response_code(500);
+            include_once($_SERVER['DOCUMENT_ROOT'] . '/error/500.php');
+        }
         $sth->bindParam(":uid", $_POST['uid']);
         $sth->execute();
     }
