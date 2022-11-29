@@ -8,13 +8,13 @@
         <title>Grid</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="product.css?ts=<?=time()?>">
-        <link rel="stylesheet" href="/footer.css?ts=<?=time()?>">
+        <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">
 
     </head>
     <body>
         <div id="container">
             <div id="row-1-col-1">
-                <img src="/shared-images/logo-2.png" width="50" height="50">
+                <img src="/shared-files/200219998/logo-2.png" width="50" height="50">
             </div>
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
@@ -24,7 +24,7 @@
             </div>
             <div id="row-1-col-3">
                 <?php
-                    echo "<form action=\"/TEMPORARY_LOGIN.php\" method=\"post\">";
+                    echo "<form action=\"/shared-files/200219998/TEMPORARY_LOGIN.php\" method=\"post\">";
                     echo "<button type=\"submit\" name=\"state\" ";
                     if(!isset($_SESSION['authenticate']['username']))
                         echo "style=\"background-color: #ff0000; font-weight: bold;\" ";
@@ -63,7 +63,7 @@
             </div>
             <div id="row-3">
                 <?php
-                    require_once($_SERVER['DOCUMENT_ROOT'] . '/database_connection.php');
+                    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
                     require_once('scripts/fetch_product.php');
                     require_once('scripts/save_product.php'); ?>
                 <div id="product-stage">
@@ -86,7 +86,7 @@
                                 <?php
                                 for($j=1;$j <= 5;$j++)
                                 {
-                                    echo "<img class=\"star\" src=\"/shared-images/star-";
+                                    echo "<img class=\"star\" src=\"/shared-files/200219998/star-";
                                     if($j <= $product['avg_rating'])
                                         echo "full.png\">";
                                     else

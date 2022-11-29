@@ -24,7 +24,7 @@
     <body>
         <div id="container">
             <div id="row-1-col-1">
-                <img src="/shared-images/logo-2.png" width="50" height="50" alt="logo">
+                <img src="/shared-files/200219998/logo-2.png" width="50" height="50" alt="logo">
             </div>
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
@@ -34,7 +34,7 @@
             </div>
             <div id="row-1-col-3">
                 <?php
-                    echo "<form action=\"/TEMPORARY_LOGIN.php\" method=\"post\">";
+                    echo "<form action=\"/shared-files/200219998/TEMPORARY_LOGIN.php\" method=\"post\">";
                     echo "<button type=\"submit\" name=\"state\" ";
                     if(!isset($_SESSION['authenticate']['username']))
                         echo " style=\"background-color: #ff0000; font-weight: bold;\" ";
@@ -73,7 +73,7 @@
             <div id="row-3-col-2">
                 <h2>ADMIN PANEL</h2>
                 <?php
-                    require_once($_SERVER['DOCUMENT_ROOT'] . '/database_connection.php');
+                    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
                     if(!isset($_GET['admin_tab']) || $_GET['admin_tab'] == 'orders') 
                     {
                         // Ensure sort is not persistent between tabs
@@ -113,7 +113,6 @@
                 ?>
             </div>
             <div id="row-4">
-                <p>(footer)</p>
             </div>
         </div>
     </body>

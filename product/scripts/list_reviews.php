@@ -28,7 +28,7 @@
             // 2/4 Display rating
             for($j=1;$j <= 5;$j++)
             {
-                echo "<img class=\"star\" src=\"/shared-images/star-";
+                echo "<img class=\"star\" src=\"/shared-files/200219998/star-";
                 if($j <= $tmp['rating'])
                     echo "full.png\">";
                 else
