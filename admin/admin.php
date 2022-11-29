@@ -3,10 +3,7 @@
     if(!isset($_SESSION['authenticate']['is_admin']))
     {
         $_SESSION['info']['notification'] = "Access denied";
-        if($_SESSION['info']['referer'] == "/product/product.php")
-            header('Location: /collections/collections.php');
-        else
-            header('Location: ' . $_SESSION['info']['referer']);
+        header('Location: /collections/collections.php');
         exit();
     }
     else
@@ -54,7 +51,7 @@
             </div>
             <div id="row-2">
                     <?php
-                       include_once('notification.php');
+                       include_once($_SERVER['DOCUMENT_ROOT'] . 'notification.php');
                     ?>                    
             </div>
             <div id="row-3-col-1">

@@ -57,7 +57,7 @@
                     </span>
                 </form>
                 <?php
-                    include_once('notification.php');
+                    include_once($_SERVER['DOCUMENT_ROOT'] . 'notification.php');
                 ?>   
             </div>
             <div id="row-3-col-1">

@@ -57,7 +57,7 @@
                         <button type="submit">Search</button>
                     </span>
                     <?php
-                        include_once('notification.php');
+                        include_once($_SERVER['DOCUMENT_ROOT'] . 'notification.php');
                     ?>                    
                 </form>
             </div>
@@ -110,8 +110,6 @@
                         <?php 
                             require_once('scripts/check_stock.php');
                         ?>
-                        
-                        
                     </div>
                 </div>
                 <div id="product-description">
