@@ -15,7 +15,7 @@
         echo "\t\t\t\t\t\t\t<h4>£" . $tmp['price'] . "</h4>\n";
         for($j=1;$j <= 5;$j++)
         {
-            echo "<img class=\"star\" src=\"/shared-images/star-";
+            echo "<img class=\"star\" src=\"/shared-files/200219998/star-";
             if($j <= $tmp['avg_rating'])
                 echo "full.png\">";
             else

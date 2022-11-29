@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
   }
   
   body {
@@ -64,22 +65,54 @@
   }
   
   .main {
-    /*background: black;*/
     position: relative;
     height: 90vh;
     width: 100%;
   }
 
-  
-  .main-right img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    animation: animation 5s forwards;
-    animation-delay: 1s;
-    opacity: 0;
-  
+  .bg-color{
+    background-color: black;
   }
+
+  .orderhistory-container{
+      font-size: 18px;
+      width:550px;
+      height: 40%;
+      box-shadow: 5px 5px #4bb19b;
+      background: white;
+      padding: 20px;
+      margin: 70px auto;
+      text-align: center;
+    }
+
+  .orderhistory-heading{
+    font-family: sans-serif;
+    font-size: 25px;
+  }
+  
+
+  #orderhistorytable {
+    font-family: sans-serif;
+    color: black;
+    border-collapse: collapse;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #orderhistorytable td, #orderhistorytable th {
+    border: 1px solid whitesmoke;
+    padding: 8px;
+  }
+
+  #orderhistorytable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4bb19b;
+    color: white;
+  }
+
   
   .social-media {
     position: absolute;
@@ -118,14 +151,6 @@
     color: #4bb19b;
   }
   
-  .banner {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
   
   .f-text h1 {
     text-align: center;
@@ -150,64 +175,22 @@
     background: #4bb19b;
   }
 
-
-  .heading{
-    color: black;
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    padding: 15px;
-
-  }
-
   .bg-colour{
     background-color: black;
   }
-
-
-  .form {
-    display: flex;
-    justify-content: center;
-    background: white;
-    height: 500px;
-    width: 370px;
-    margin: 50px auto 100px;
-    padding: 70px;
-    text-align: center;
-    box-shadow: 5px 5px #4bb19b;
-  }
-
-  .form input {
-    font-family: sans-serif;
-    outline: 0;
-    background: whitesmoke;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 20px;
-    font-size: 14px;
-  }
-
-  .form button {
-    font-family: sans-serif;
-    outline: 0;
-    background: #4bb19b ;
-    width: 20vh;
-    border: 0;
-    border-radius: 20px;
-    padding: 12px;
-    color: white;
-    font-size: 11px;
-    cursor: pointer;
-  }
-
   .footer-container{
     background-color: grey;
+    margin: 30px auto 0;
     padding: 2rem 4rem 0;
-    font-family: sans-serif;
-  }
   
-  .footer{
+    }
+  
+    .orderhistorylink{
+      color: #4bb19b;
+      cursor: pointer;
+    }
+  
+    .footer{
     width: 90%;
     height:30vh;
     background-color: grey;
@@ -216,34 +199,35 @@
     justify-content: center;
     flex-wrap: wrap;
     margin: 0 auto;
-  }
+    
+    }
   
-  .footer-heading{
+    .footer-heading{
     display: flex;
     flex-direction: column;
     margin-right: 4rem;
-  }
+    }
   
-  .footer-heading h2{
+    .footer-heading h2{
     margin-bottom: 2rem;
-  }
+    }
   
-  .footer-heading a{
+    .footer-heading a{
     color: white;
     text-decoration: none;
     margin-bottom: 0.5rem;
-  }
+    }
   
-  .footer-heading a:hover{
+    .footer-heading a:hover{
     color: #4bb19b;
     transition: 0.3s ease-out;
-  }
+    }
   
-  .footer-email-form h2{
+    .footer-email-form h2{
     margin-bottom: 2rem;
-  }
+    }
   
-  #footer-email{
+    #footer-email{
     width: 300px;
     height: 40px;
     border-radius: 4px;
@@ -253,13 +237,13 @@
     font-size: 1rem;
     margin-bottom:1rem;
   
-  }
+    }
   
-  #footer-email::placeholder{
+    #footer-email::placeholder{
     color: grey;
-  }
+    }
   
-  #footer-email-btn{
+    #footer-email-btn{
     width: 100px;
     height: 40px;
     border-radius: 4px;
@@ -269,41 +253,41 @@
     color: white;
     font-size: 1rem;
   
-  }
+    }
   
-  #footer-email-btn:hover{
+    #footer-email-btn:hover{
     cursor:pointer;
     background-color:lightgray;
     transition: all 0.4s ease-out;
-  }
+    }
   
-  @media screen and(max-width:1150px) {
+    @media screen and(max-width:1150px) {
     .footer{
       height:50vh;
     }
     .footer-email-form{
       margin-top: 4rem;
     }
-  }
+    }
   
-  @media screen and(max-width:280px) {
+    @media screen and(max-width:280px) {
     .footer{
       padding-top: 2rem;
     }
-  }
-  @media screen and(max-width:1150px) {
+    }
+    @media screen and(max-width:1150px) {
     .footer{
       height: 50vh;
     }
     .footer-email-form{
       margin-top: 4rem;
     }
-  }
+    }
   
-  #container {
+    #container {
     display: flex;
     justify-content: space-between; 
-  }
-  .item {
+    }
+    .item {
     display: block;
-  }
+    }

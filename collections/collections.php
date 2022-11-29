@@ -1,15 +1,19 @@
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    $_SESSION['info']['referer']=$_SERVER['PHP_SELF'];
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Grid</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="collections.css?ts=<?=time()?>">
+        <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">
     </head>
     <body>
         <div id="container">
             <div id="row-1-col-1">
-                <img src="/shared-images/logo-2.png" width=50px height=50px>
+                <img src="/shared-files/200219998/logo-2.png" width=50px height=50px>
             </div>
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
@@ -19,17 +23,17 @@
             </div>
             <div id="row-1-col-3">
                 <?php
-                    echo "<form action=\"/TEMPORARY_LOGIN.php\" method=\"post\">";
+                    echo "<form action=\"/shared-files/200219998/TEMPORARY_LOGIN.php\" method=\"post\">";
                     echo "<button type=\"submit\" name=\"state\"";
-                    if(!isset($_SESSION['auth']))
+                    if(!isset($_SESSION['authenticate']['username']))
                         echo " style=\"background-color: #ff0000; font-weight: bold;\" ";
                     echo "value=\"off\">DE-EMULATE AUTH STATE</button>";
                     echo "<button type=\"submit\" name=\"state\""; 
-                    if(isset($_SESSION['auth']))
+                    if(isset($_SESSION['authenticate']['username']))
                         echo " style=\"background-color: #00ff00; font-weight: bold;\" ";
                     echo "value=\"on\">EMULATE AUTH STATE</button>";
                     echo "</form>";
-                    if(isset($_SESSION['auth']))
+                    if(isset($_SESSION['authenticate']['username']))
                     {
                         //echo "<img src=\"/account.jpg\">";
                         //echo "<img src=\"/cart.jpg\">";
@@ -52,6 +56,9 @@
                         <button type="submit">Search</button>
                     </span>
                 </form>
+                <?php
+                    include_once('notification.php');
+                ?>   
             </div>
             <div id="row-3-col-1">
                 <form method="post" action="">
@@ -112,16 +119,41 @@
                         echo "Products";
 
                     echo "</h2>";
-                    ini_set('display_errors', 1);
-                    ini_set('display_startup_errors', 1);
-                    error_reporting(E_ALL);
-                    require_once($_SERVER['DOCUMENT_ROOT'] . '/database_connection.php');
+                    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
                     require_once('scripts/assemble_query.php');
                     require_once('scripts/display_products.php');
                 ?>
             </div>
             <div id="row-4">
-                <p>(footer)</p>
+                <div class="footer-heading footer-1">
+                    <h2>About Us</h2>
+                    <a href="#">Blog</a>
+                    <a href="#">Desmo</a>
+                    <a href="#">Customers</a>
+                    <a href="#">Investors</a>
+                    <a href="#">Terms of Services</a>
+                </div>
+
+                <div class="footer-heading footer-2">
+                    <h2>Contact Us</h2>
+                    <a href="#">Careers</a>
+                    <a href="#">Support</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Sponsorships</a>
+                </div>
+
+                <div class="footer-heading footer-3">
+                    <h2>Social Media </h2>
+                        <a href="#">Instagram</a>
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                </div>
+
+                <div class="footer-email-form">
+                    <h2>Join our newsletter subscription</h2>
+                    <input type="email" placeholder="your email address" id="footer-email">
+                    <input type="submit" value="Sign Up" id="footer-email-btn">
+                </div>            
             </div>
         </div>
     </body>

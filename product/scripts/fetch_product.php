@@ -1,5 +1,5 @@
 <?php
-    $query = "SELECT pid,model,name,price,avg_rating,stock,bought_all_time,description FROM products WHERE model=:model";
+    $query = "SELECT pid,model,name,price,avg_rating,stock,bought_all_time,description,date_time FROM products WHERE model=:model";
     $sth = $db->prepare($query);
     $sth->bindParam(':model', $_GET['model']);
     $sth->execute();

@@ -1,15 +1,20 @@
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    $_SESSION['info']['referer']=$_SERVER['PHP_SELF'];
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Grid</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="product.css?ts=<?=time()?>">
+        <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">
+
     </head>
     <body>
         <div id="container">
             <div id="row-1-col-1">
-                <img src="/shared-images/logo-2.png" width="50" height="50">
+                <img src="/shared-files/200219998/logo-2.png" width="50" height="50">
             </div>
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
@@ -19,17 +24,17 @@
             </div>
             <div id="row-1-col-3">
                 <?php
-                    echo "<form action=\"/TEMPORARY_LOGIN.php\" method=\"post\">";
-                    echo "<button type=\"submit\" name=\"state\"";
-                    if(!isset($_SESSION['auth']))
-                        echo " style=\"background-color: #ff0000; font-weight: bold;\" ";
+                    echo "<form action=\"/shared-files/200219998/TEMPORARY_LOGIN.php\" method=\"post\">";
+                    echo "<button type=\"submit\" name=\"state\" ";
+                    if(!isset($_SESSION['authenticate']['username']))
+                        echo "style=\"background-color: #ff0000; font-weight: bold;\" ";
                     echo "value=\"off\">DE-EMULATE AUTH STATE</button>";
-                    echo "<button type=\"submit\" name=\"state\""; 
-                    if(isset($_SESSION['auth']))
-                        echo " style=\"background-color: #00ff00; font-weight: bold;\" ";
+                    echo "<button type=\"submit\" name=\"state\" "; 
+                    if(isset($_SESSION['authenticate']['username']))
+                        echo "style=\"background-color: #00ff00; font-weight: bold;\" ";
                     echo "value=\"on\">EMULATE AUTH STATE</button>";
                     echo "</form>";
-                    if(isset($_SESSION['auth']))
+                    if(isset($_SESSION['authenticate']['username']))
                     {
                         //echo "<img src=\"/account.jpg\">";
                         //echo "<img src=\"/cart.jpg\">";
@@ -51,25 +56,14 @@
                         <input type="text" name="q">
                         <button type="submit">Search</button>
                     </span>
-                        <?php
-                            if(isset($_SESSION['review']['notification']))
-                            {
-                                if($_SESSION['review']['success'])
-                                    echo "<p style=\"background-color:#00ff00;\">";
-                                else
-                                    echo "<p style=\"background-color:#ff0000;\">";
-                                echo "<strong>" . $_SESSION['review']['notification'] . "</strong></span>";
-                                unset($_SESSION['review']);
-                            }
-                        ?>                    
+                    <?php
+                        include_once('notification.php');
+                    ?>                    
                 </form>
             </div>
             <div id="row-3">
                 <?php
-                    ini_set('display_errors', 1);
-                    ini_set('display_startup_errors', 1);
-                    error_reporting(E_ALL); 
-                    require_once($_SERVER['DOCUMENT_ROOT'] . '/database_connection.php');
+                    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
                     require_once('scripts/fetch_product.php');
                     require_once('scripts/save_product.php'); ?>
                 <div id="product-stage">
@@ -86,20 +80,20 @@
                     </div>
                     <img id="product-selected-image" src="/product/img/<?= $_SESSION['product']['name'] . "/" . ((isset($_GET['selected'])) ? $_GET['selected'] : "1") ?>.jpg">
                     <div id="product-attributes">
-                        <h2><strong><?= $_SESSION['product']['name'] ?></strong></h2>
+                        <h1><?= $_SESSION['product']['name'] ?></h1>
                         <a href="#product-list-reviews">
                             <span class="product-feedback-overview">
                                 <?php
                                 for($j=1;$j <= 5;$j++)
                                 {
-                                    echo "<img class=\"star\" src=\"/shared-images/star-";
+                                    echo "<img class=\"star\" src=\"/shared-files/200219998/star-";
                                     if($j <= $product['avg_rating'])
                                         echo "full.png\">";
                                     else
                                         echo "empty.png\">";
                                 }
                                 ?>
-                                <span><?= $product['avg_rating'] ?></span>
+                                <span><?= number_format($product['avg_rating'], 2); ?></span>
                             </span>
                         </a>
                         <a href="#product-write-review">
@@ -121,17 +115,17 @@
                     </div>
                 </div>
                 <div id="product-description">
-                    <h2>Description</h2>
-                    <p><?= $_SESSION['product']['description'] ?></p>
+                        <h2>Description</h2>    
+                        <p><?= $_SESSION['product']['description'] ?></p>
                 </div>
                 <div id="product-list-reviews">
-                    <h2>Reviews</h2>
+                    <h2>Feedback</h2>
                     <?php 
                         require_once('scripts/list_reviews.php');
                     ?>
                 </div>
                 <div id="product-write-review">
-                    <h4>Write your own review</h4>
+                    <h2>Write review</h2>
                     <form method="post" action="scripts/submit_review.php">
                         <label>Rating</label>
                         <input type="text" class="long-field" name="product-review-rating" placeholder="(1-5)"><br>
@@ -147,7 +141,36 @@
                 </div>
             </div>
             <div id="row-4">
-                <p>(footer)</p>
+                <div class="footer-heading footer-1">
+                    <h2>About Us</h2>
+                    <a href="#">Blog</a>
+                    <a href="#">Desmo</a>
+                    <a href="#">Customers</a>
+                    <a href="#">Investors</a>
+                    <a href="#">Terms of Services</a>
+                </div>
+
+                <div class="footer-heading footer-2">
+                    <h2>Contact Us</h2>
+                    <a href="#">Careers</a>
+                    <a href="#">Support</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Sponsorships</a>
+                </div>
+
+                <div class="footer-heading footer-3">
+                    <h2>Social Media </h2>
+                        <a href="#">Instagram</a>
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                </div>
+
+                <div class="footer-email-form">
+                    <h2>Join our newsletter subscription</h2>
+                    <input type="email" placeholder="your email address" id="footer-email">
+                    <input type="submit" value="Sign Up" id="footer-email-btn">
+                </div>
+            
                 <?php require_once('scripts/increment_views.php'); ?>
             </div>
         </div>

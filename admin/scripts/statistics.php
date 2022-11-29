@@ -1,12 +1,12 @@
 <?php
-    $query = "SELECT orders.uid, users.username, users.email, orders.pid, products.name, products.model, products.size, orders.status, orders.date_time FROM orders INNER JOIN users ON orders.uid = users.uid INNER JOIN products ON orders.pid = products.pid ORDER BY ";
-    
+    $query = "SELECT pid, name, model, size, stock, bought_all_time, views FROM products ORDER BY ";
+
     /* Handling sorting for when a table heading column is clicked. */
-    if(!isset($_GET['orders_sort']))
-        $query .=  "orders.date_time DESC";
+    if(!isset($_GET['statistics_sort']))
+        $query .=  "pid";
     else
     {
-        $_SESSION['admin']['sort_selected'] = $_GET['orders_sort'];
+        $_SESSION['admin']['sort_selected'] = $_GET['statistics_sort'];
 
         // Reset sort state if a different column is chosen for sorting.
         if($_SESSION['admin']['sorted_last'] != $_SESSION['admin']['sort_selected'])
@@ -14,29 +14,26 @@
 
         switch($_SESSION['admin']['sort_selected'])
         {
-            case "uid":
-                $query .=  "orders.uid";
-                break;
-            case "username":
-                $query .=  "users.username";
-                break;
-            case "email":
-                $query .=  "users.email";
-                break;
             case "pid":
-                $query .=  "orders.pid";
-                break;
-            case "model":
-                $query .= "products.model";
+                $query .= "pid";
                 break;
             case "name":
-                $query .= "products.name";
+                $query .=  "name";
                 break;
-            case "status":
-                $query .=  "orders.status";
+            case "model":
+                $query .=  "model";
                 break;
-            case "timestamp":
-                $query .= "orders.date_time";
+            case "size":
+                $query .= "size";
+                break;
+            case "stock":
+                $query .=  "stock";
+                break;
+            case "sold":
+                $query .=  "bought_all_time";
+                break;
+            case "views":
+                $query .= "views";
                 break;
             default:
                 http_response_code(404);
@@ -49,25 +46,25 @@
             $query .= ($_SESSION['admin']['sort_state'] ? " DESC" : " ASC");
             $_SESSION['admin']['sort_state'] = !$_SESSION['admin']['sort_state'];
         }
-
+        
         // Save last column to later determine whether to flip sort state or reset sort state.
         $_SESSION['admin']['sorted_last'] = $_SESSION['admin']['sort_selected'];
 
-        
     }
 
     $sth = $db->prepare($query);
+    //echo $sth->debugDumpParams();
     $sth->execute();
-    $orders = $sth->fetchAll();
+    $statistics = $sth->fetchAll();
 
     /* Allow sorting by table headings */
     echo "<table><tr>";
-    $headings = array("User ID", "Username", "Email", "Product ID", "Product name", "Model", "Order status", "Timestamp");
-    $columns = array("uid", "username", "email", "pid", "name", "model", "status", "timestamp");
+    $headings = array("Product ID", "Product name", "Model", "Size", "Stock", "Sold", "Views");
+    $columns = array("pid", "name", "model", "size", "stock", "sold", "views");
 
     for($i=0;$i<count($headings);$i++)
     {
-        echo "<th><a href=\"admin.php?admin_tab=orders&orders_sort=" . $columns[$i] . "\">" . $headings[$i];
+        echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=" . $columns[$i] . "\">" . $headings[$i];
         if(isset($_SESSION['admin']['sort_selected']))
         {
             if($_SESSION['admin']['sort_selected'] == $columns[$i])
@@ -84,20 +81,20 @@
     }
     echo "</tr>";
 
-    /* Display orders in tabular format ordered by timestamp by default */
-    foreach($orders as $tmp)
+    /* Display statistics in tabular format ordered by timestamp by default */
+    foreach($statistics as $tmp)
     {
-            echo "<td>" . $tmp['uid'] . "</td>";
-            echo "<td>" . $tmp['username'] . "</td>";
-            echo "<td>" . $tmp['email'] . "</td>";
+            echo "<tr>";
             echo "<td>" . $tmp['pid'] . "</td>";
             echo "<td>" . $tmp['name'] . "</td>";
             echo "<td><a href=\"/product/product.php?model=" . $tmp['model'] . "&size=" . $tmp['size'] . "\">" . $tmp['model'] . "</a></td>";
-            echo "<td>" . $tmp['status'] . "</td>";
-            echo "<td>" . $tmp['date_time'] . "</td>";
+            echo "<td>" . $tmp['size'] . "</td>";
+            echo "<td>" . ($tmp['stock'] ? $tmp['stock'] : "Out-of-stock") . "</td>";
+            echo "<td>" . $tmp['bought_all_time'] . "</td>";
+            echo "<td>" . $tmp['views'] . "</td>";
         echo "</tr>";
-        
     }
     echo "</table>";
+
 
 ?>

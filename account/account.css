@@ -74,17 +74,6 @@
     height: 100%;
     width: 65%;
   }
-
-  
-  .main-right img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    animation: animation 5s forwards;
-    animation-delay: 1s;
-    opacity: 0;
-  
-  }
   
   .social-media {
     position: absolute;
@@ -123,15 +112,6 @@
   
   .s-btn:hover {
     color: #4bb19b;
-  }
-  
-  .banner {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
   
   .f-text h1 {
@@ -174,7 +154,7 @@
   
   .details-container{
     font-size: 18px;
-    width:500px;
+    width:400px;
     height: 500px;
     box-shadow: 5px 5px #4bb19b;
     background: white;
@@ -184,7 +164,7 @@
   }
 
   .chng-password{
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .chng-password-link{
@@ -194,9 +174,14 @@
 
   .footer-container{
   background-color: grey;
+  margin: 30px auto 0;
   padding: 2rem 4rem 0;
 
-  
+  }
+
+  .orderhistorylink{
+    color: #4bb19b;
+    cursor: pointer;
   }
 
   .footer{

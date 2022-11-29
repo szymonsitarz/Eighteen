@@ -111,7 +111,8 @@
                 $query .= " ORDER BY avg_rating DESC";
                 break;
             default:
-                echo "THROW ERROR";
+                http_response_code(404);
+                include_once($_SERVER['DOCUMENT_ROOT'] . '/error/404.php');  
         }
     }
 

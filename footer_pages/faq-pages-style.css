@@ -1,0 +1,137 @@
+/* Whole page CSS */
+*  {
+
+    background-color: black;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    outline: 0;
+} 
+
+
+/* Main Container */
+.main-container {
+
+  max-width: 700px;
+  margin: 0 auto;
+
+}
+  
+/* Main Container alignment */
+.main-container .container {
+  align-content: center;
+  
+}
+
+
+/* H2 in main container custom color*/
+
+  
+.main-container h2 {
+
+  font-size: 30px;
+  color: white;
+  padding-left: 25%;
+    
+}
+
+
+/* "+" sign color */
+
+.question p {
+
+  color:#4bb19b;
+ 
+}
+
+/* space on side for button */
+#button-space {
+  padding-left: 40%;
+}
+
+/* space around heading  */
+#heading-space{
+
+  padding: 3% 0% 0% 40%;
+  font-style: italic;
+
+}
+
+/* custom properties for h3 in heading  */
+#heading-space h3{
+  color: white;
+  font-weight: 200;
+  font-size:x-large
+}
+
+
+/* button properties */
+.button{
+  color: white;
+  margin-top: 15px;
+  padding: 10px 20px 10px 20px ;
+  font-size: medium;
+  background: #4bb19b;
+
+}
+
+
+
+  
+.main-container .question {
+  display: flex;
+  color: white;
+  position: relative;
+  cursor: pointer;
+}
+  
+.main-container .question .add,
+.main-container .question .remove {
+  position: absolute;
+  right: 0;
+  padding: 0 30px;
+  font-size: 20px;
+  font-weight: normal;
+  transform: translateY(-9px);
+  opacity: 0;
+  transition: all 600ms;
+}
+
+
+.main-container .question:hover{
+  color:#4bb19b;
+  box-shadow: 0 4px 8px -3px rgba(0, 0, 0, 0.3);
+    
+}
+  
+.main-container .question .add.active,
+.main-container .question .remove.active {
+  transform: translateY(0);
+  padding: 0px;
+  opacity: 1;
+
+}
+  
+.main-container .question h3 {
+  font-size: 20px;
+  padding: 0 32px;
+}
+
+
+  
+.main-container .answer {
+  padding: 0 32px;
+  background:black;
+  line-height: 2;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 500ms;
+  color: white;
+  font-weight: 250;
+}
+  
+.main-container .answer.active {
+  max-height: 500px;
+  color: white;
+  
+}
+

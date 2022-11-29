@@ -1,5 +1,5 @@
 <?php
-//include 'changepasswordcode.php';
+require_once("dbc.php");
 
 ?>
 
@@ -49,19 +49,47 @@
           </div>
         </div>
         </br>
-        </br>
-        </br>
-            <div class="form">
-                <form action="changepasswordcode.php" method="POST">
-                <h3>Change your password here</h3>
+        <div class="form">
+          <?php
+              $_SESSION['authenticate']['username'] = "admin";
+              if(isset($_SESSION['authenticate']['username']))
+              {
+                if (isset($_POST['submit'])) 
+                {
+                  $success=0;
+                  $query = "SELECT password FROM users WHERE username=:username";
+                  $sth = $db->prepare($query);
+                  $sth->bindParam(":username", $_SESSION['authenticate']['username']);
+                  $sth->execute();
+                  $row = $sth->fetch(PDO::FETCH_ASSOC);
+                  if($_POST['new-password'] == $_POST['confirm-new-password'])
+                    if(password_verify($_POST['current-password'], $row['password']))
+                    {
+                      $query= "UPDATE users SET password=:new-password WHERE username=:username";
+                      $sth = $db->prepare($query);
+                      $sth->bindParam(":new-password", $_POST['new-password']);
+                      $sth->bindParam(":username", $_SESSION['authenticate']['username']);
+                      $sth->execute();
+                      $success=1;
+                    }
+
+                    if(!$success)
+                      echo "incorrect password or new passwords don't match";
+                    else
+                      echo "password changed.";
+                  } 
+              }
+              ?>
+                <form method="POST" action="">
+                <h3>Change your Password here</h3>
                 </br>
                 </br>
-                <input name="email" id="email" type="text" placeholder="Email" required>
-                <input name="password" id="password" type="password" placeholder="Current Password" required>
-                <input name="newpassword" id="password" type="password" placeholder="New Password" required>
+                <input name="current-password" id="password" type="password" placeholder="Current Password" required>
+                <input name="new-password" id="password" type="password" placeholder="New Password" required>
+                <input name="confirm-new-password" id="password" type="password" placeholder="Confirm New Password" required>
             </br>
             </br>
-                <button type='submit' name="submit">CHANGE PASSWORD</button>
+                <button name="submit">CHANGE PASSWORD</button>
               </form>
             </div>
         </div>
@@ -69,6 +97,8 @@
     </div>
     </br>
     </br>
+    </br>
+
   </body>
   
     <div class="footer-container">

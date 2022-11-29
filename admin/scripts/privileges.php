@@ -1,17 +1,21 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
     $query = "UPDATE users SET privileges=:privileges WHERE uid=:uid";
-    echo "Running.";
+    $sth = $db->prepare($query);
     if(isset($_POST['change_privileges']) && isset($_POST['uid']))
     {    
-        $t=1;$f=0; echo $_POST['change_privileges'];
+        $t=1;$f=0;
         if($_POST['change_privileges'] == 'switch-off')
             $sth->bindParam(":privileges", $f);
         else if($_POST['change_privileges'] == 'switch-on')
             $sth->bindParam(":privileges", $t);
         else
-            echo "THROW ERROR";
+        {
+            http_response_code(500);
+            include_once($_SERVER['DOCUMENT_ROOT'] . '/error/500.php');
+        }
         $sth->bindParam(":uid", $_POST['uid']);
         $sth->execute();
     }
-    //header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

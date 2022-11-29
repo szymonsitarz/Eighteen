@@ -1,16 +1,10 @@
 <?php
-/* session_start();
-require("functions.php");
 
-if (isset($_SESSION['username'])) {   
-    header("Location: index.php"); 
-}
-*/
 include 'dbc.php';
-$pone= $db->prepare("SELECT * From users WHERE id='1'"); 
+$pone= $db->prepare("SELECT forename, surname, email FROM users WHERE username=:username"); 
+$pone->bindParam(":username", $_SESSION['authenticate']['username']);
 $pone->execute(); 
 $result=$pone->fetch(PDO::FETCH_ASSOC);
-
 
 ?>
 <!DOCTYPE html>
@@ -58,23 +52,22 @@ $result=$pone->fetch(PDO::FETCH_ASSOC);
     </br>
         <div class="details-container">
             </br>
-            </br>
             <p class="heading">Account Details</p>
             
             </br>
             <div class="first-name">
                 <p>First Name:</p>
-                <p><?=$result['firstname'];?></p>
+                <p><?=$result['forename'];?></p>
             </div>
             </br>
             <div class="last-name">
                 <p>Last Name:</p>
-                <p><?=$result['lastname'];?></p>
+                <p><?=$result['surname'];?></p>
             </div>
             </br>
             <div class="username">
                 <p>Username:</p>
-                <p><?=$result['username'];?></p>
+                <p><?=$_SESSION['authenticate']['username']?></p>
             </div>
             </br>
             <div class="email">
@@ -82,6 +75,10 @@ $result=$pone->fetch(PDO::FETCH_ASSOC);
                 <p><?=$result['email'];?></p>
             </div>
             </br>
+            <div class= "orderhistory">
+                <p>Previous Orders:</p>
+                <a href="userorderhistory.php" class="orderhistorylink">View order history</a>
+            </div>
             </br>
             </br>
             <div class="chng-password">
@@ -92,6 +89,7 @@ $result=$pone->fetch(PDO::FETCH_ASSOC);
     </div>
     </br>
     </br>
+    
   </body>
   <div class="footer-container">
     <div class="footer">

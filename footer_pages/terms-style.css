@@ -1,0 +1,150 @@
+
+
+/* Genral for all pages */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: sans-serif;
+}
+
+/* Body Specific */
+body{
+  background: black;
+  font-size: 12px;
+  color: black;
+}
+
+/* Just to align whole box */
+.box-align{
+  display: flex;
+  align-items: center ;
+  justify-content: center;
+  border: 10px;
+  border-color: #4bb19b;
+}
+
+/* Just for side different color box properties */
+.sidebar{
+  min-height: 100vh;
+  padding: 0 20px;
+}
+
+/* To manage overflow */
+.sidebar-wrap{
+
+  display: flex;
+  background: white;
+  overflow: hidden;
+  width: 800px;
+  max-width: 100%;
+  height: 600px;
+  border-radius: 3px;
+
+}
+
+/* For sidebar and viewing in list */
+.sidebar-wrap .sidebar-list{
+  width: 200px;
+  height: 100%;
+  background: #4bb19b;
+
+}
+
+/* To calculate the width and controlling the padding so the content doesn't overflow */
+.sidebar-wrap .main-content{
+  width: calc(100% - 200px);
+  padding: 0 10px 0 20px;
+  height: 100%;
+}
+
+/* For side line affect */
+
+.sidebar-wrap .main-content .main-top,
+.sidebar-wrap .main-content .main-foot{
+  color: black;
+  height: 68px;
+  padding: 24px 0;
+
+}
+
+/* Just to align all in center */
+.sidebar-wrap .main-content .main-top{
+  text-align: center;
+}
+
+/* Main content heigh calculation to control overflow */
+/* Overflow auto to make it more responsive */
+.sidebar-wrap .main-content .main-body{
+  height: calc(100% - 140px);
+  overflow: auto;
+}
+
+/* To control the sidepar alignment */
+.sidebar-wrap .sidebar-list ul{
+  text-align: right;
+  padding: 70px 20px;
+}
+
+/* To cotrol the transition and hoover affect */
+
+.sidebar-wrap .sidebar-list ul li{
+  padding: 10px 0;
+  position: relative;
+  margin-bottom: 3px;
+  font-weight: bold;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+
+/* Befor function to control it's first child */
+.sidebar-wrap .sidebar-list ul li:before{
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -20px;
+  width: 2px;
+  height: 100%;
+  background:black;
+  transition: all 0.5s ease;
+  opacity: 0;
+
+}
+
+
+/* Hoover affect */
+.sidebar-wrap .sidebar-list ul li.active,
+.sidebar-wrap .sidebar-list ul li:hover{
+  color: black;
+}
+
+/* Before of Hoover */
+
+.sidebar-wrap .sidebar-list ul li.active:before{
+  opacity: 1;
+}
+
+
+/*  particular H3 of each Div */
+.sidebar-wrap .main-content .main-body .sidebar-item h3{
+  padding-top: 10px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+/* particualar p of each div */
+
+.sidebar-wrap .main-content .main-body .sidebar-item p{
+  margin-bottom: 20px;
+}
+
+
+/* to control sidebar items in block */
+.sidebar-wrap .main-content .main-body .sidebar-item.active{
+  display: block !important;
+}
+
+
+
