@@ -57,10 +57,11 @@
               <textarea id="cmessage" name="cmessage" placeholder="Write your message here" required></textarea>
           
             <br>
-            <input type="submit" value="Submit">
+            <input type="submit" name="submit" value="Submit">
 
-                            </div>   
-                            </div> 
+          </div>   
+        </div> 
+        
                             <div id= "contactinfo">
                               <h1> Aston University <br><br>•<br><br> Birmingham, England <br><br>•<br><br> 0121 204 3000 <br><br>•<br><br> eighteenstore@gmail.com</h1>
 </div>

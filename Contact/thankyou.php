@@ -1,4 +1,28 @@
 <?php session_start(); ?>
+<?php
+          ini_set('display_errors', 1);
+          ini_set('display_startup_errors', 1);
+          error_reporting(E_ALL);
+          echo "Value of POST SUBMIT: " . $_POST['submit'];
+          if(isset($_POST['submit']))
+          {
+            require_once('database_connection.php');
+            /*
+            $query = "SELECT uid from users";
+            $sth = $db->prepare($query);
+            $sth->execute();
+            $first_row = $sth->fetch(PDO::FETCH_ASSOC); echo $first_row['uid']; */
+            
+            echo "Look at POST: <br>" . $_POST['cname'];
+            $query = "INSERT INTO contact (forename, email, phone, message) VALUES (:forename, :email, :phone, :message)";
+            $sth = $db->prepare($query);
+            $sth->bindParam(":forename", $_POST['cname']);
+            $sth->bindParam(":email", $_POST['cemail']);
+            $sth->bindParam(":phone", $_POST['cnumber']);
+            $sth->bindParam(":message", $_POST['cmessage']);
+            $sth->execute();
+          }
+?>
 <html>
     <link rel="stylesheet" href="contact.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
