@@ -1,4 +1,10 @@
 <?php
+    /*
+    $dbname     = "u_200219998_22";
+    $servername = "localhost";
+    $username   = "u-200219998";
+    $password   = "eQkPde3XGHj3Rxr";
+    */
     $dbname     = "cs2tp";
     $servername = "localhost";
     $username   = "root";
