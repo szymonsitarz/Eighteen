@@ -21,13 +21,27 @@ $orders = $sth->fetchAll();
 <link rel="stylesheet" href="userorderhistory.css">
 <link rel="stylesheet" href="https://fonts.google.com/specimen/Roboto+Condensed">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
+<script>
+$(function(){
+$("#header").load("/header/header.html"); 
+});
+
+$(function(){
+$("#footer").load("/footer/footer.html"); 
+});
+
+</script> 
+<div id ="header"></div>
+
 
 </head>
 <body>
   
   
   <div class="bg-colour">
-    <nav>
+    <!--<nav>
         <div class="logo 1">
          <img src="eighteen.png" alt="eighteen" width="80" height="90"
          div class="main-right">
@@ -47,7 +61,7 @@ $orders = $sth->fetchAll();
             <a href="#" class="btn-nav-i"><i class="fa fa-heart"></i></a>
            
         </div>  
-    </nav>
+    </nav>-->
     <div class="main">
         <div class="social-media">
         <a href="#" class="s-btn"><i class="fa fa-facebook-f"></i></a>
@@ -82,7 +96,7 @@ $orders = $sth->fetchAll();
   </div>
   </div>
   </body>
-  <div class="footer-container">
+  <!--<div class="footer-container">
     <div class="footer">
       <div class="footer-heading footer-1">
         <h2>About Us</h2>
@@ -113,5 +127,6 @@ $orders = $sth->fetchAll();
         <input type="submit" value="Sign Up" id="footer-email-btn">
       </div>
     </div>
-  </div>
+  </div>-->
+  <div id ="footer"></div>
 </html>
