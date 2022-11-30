@@ -4,20 +4,34 @@
   <title>FAQ</title>
   <link rel="stylesheet" type="text/css" href="faq-style.css">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+    <script>
+    $(function(){
+    $("#header1").load("/header/header.html"); 
+    });
+
+    $(function(){
+    $("#footer2").load("/footer/footer.html"); 
+    });
+
+    </script> 
+    <div id ="header1"></div>
+
 </head>
 
 
 <body>
 
     <!--  Main Titles -->
-    <h2>How Can We Help?</h2>
+    <h2 id=" heading">How Can We Help?</h2>
 
-       <!-- Button -->
+       <!-- Button
        <div id="button-space">
         <a href="/home/home.html">
          <button class="button" > ← Back</button>
         </a>
-    </div>
+    </div> -->
 
 
     <!-- Container to contain all div -->
@@ -74,11 +88,6 @@
     </a>
     
  </div>
-
-
-
-
-
-
 </body>
+<div id ="footer2"></div>
 </html>

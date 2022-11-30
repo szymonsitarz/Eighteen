@@ -142,7 +142,7 @@ header {
     box-sizing: border-box;
 }
 .teams:hover{
-    background: gray;
+    background:#4bb19b;
     border-radius: 12px;
 
 }

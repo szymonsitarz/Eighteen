@@ -1,6 +1,6 @@
 * {
-    padding: 0px;
-    margin: 0;
+    /* padding: 0px;
+    margin: 0; */
     box-sizing: border-box;
     font-family: sans-serif;
   
@@ -11,7 +11,7 @@ header {
   width: 100%;
   height: auto;
   background: black;
-  border-bottom: solid 5px #4bb19b ;
+
   
 }
 
