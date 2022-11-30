@@ -8,4 +8,5 @@
         echo $_SESSION['info']['notification'] . "</strong></span>";
         unset($_SESSION['info']['notification']);
     }
+    $_SESSION['info']['success'] = true;
 ?>        

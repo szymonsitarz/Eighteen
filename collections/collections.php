@@ -12,6 +12,12 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="collections.css?ts=<?=time()?>">
         <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                <script>
+                    $(function(){
+                    $("#footer").load("/footer/footer.html"); 
+                    });
+        </script> 
     </head>
     <body>
         <div id="container">
@@ -26,20 +32,16 @@
             </div>
             <div id="row-1-col-3">
                 <?php
-                    echo "<form action=\"/shared-files/200219998/TEMPORARY_LOGIN.php\" method=\"post\">";
-                    echo "<button type=\"submit\" name=\"state\"";
-                    if(!isset($_SESSION['authenticate']['username']))
-                        echo " style=\"background-color: #ff0000; font-weight: bold;\" ";
-                    echo "value=\"off\">DE-EMULATE AUTH STATE</button>";
-                    echo "<button type=\"submit\" name=\"state\""; 
-                    if(isset($_SESSION['authenticate']['username']))
-                        echo " style=\"background-color: #00ff00; font-weight: bold;\" ";
-                    echo "value=\"on\">EMULATE AUTH STATE</button>";
-                    echo "</form>";
+                    echo "<a href=\"/cart/cart.php\">Cart   </a><br>";
                     if(isset($_SESSION['authenticate']['username']))
                     {
-                        //echo "<img src=\"/account.jpg\">";
-                        //echo "<img src=\"/cart.jpg\">";
+                        echo "<a href=\"/authenticate/login.php\">Login   </a>";
+                        echo "<a href=\"/authenticate/register.php\">Register</a>";
+                    }
+                    else
+                    {
+                        echo "<a href=\"/account/accountinfo.php\">Account    </a>";
+                        echo "<a href=\"/authenticate/logout.php\">Logout</a>";
                     }
                 ?>
             </div>
@@ -140,35 +142,7 @@
                 ?>
             </div>
             <div id="row-4">
-                <div class="footer-heading footer-1">
-                    <h2>About Us</h2>
-                    <a href="#">Blog</a>
-                    <a href="#">Desmo</a>
-                    <a href="#">Customers</a>
-                    <a href="#">Investors</a>
-                    <a href="#">Terms of Services</a>
-                </div>
-
-                <div class="footer-heading footer-2">
-                    <h2>Contact Us</h2>
-                    <a href="#">Careers</a>
-                    <a href="#">Support</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Sponsorships</a>
-                </div>
-
-                <div class="footer-heading footer-3">
-                    <h2>Social Media </h2>
-                        <a href="#">Instagram</a>
-                        <a href="#">Facebook</a>
-                        <a href="#">Twitter</a>
-                </div>
-
-                <div class="footer-email-form">
-                    <h2>Join our newsletter subscription</h2>
-                    <input type="email" placeholder="your email address" id="footer-email">
-                    <input type="submit" value="Sign Up" id="footer-email-btn">
-                </div>            
+                <div id="footer"></div>
             </div>
         </div>
     </body>

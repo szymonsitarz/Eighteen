@@ -29,20 +29,15 @@
             </div>
             <div id="row-1-col-3">
                 <?php
-                    echo "<form action=\"/shared-files/200219998/TEMPORARY_LOGIN.php\" method=\"post\">";
-                    echo "<button type=\"submit\" name=\"state\" ";
-                    if(!isset($_SESSION['authenticate']['username']))
-                        echo " style=\"background-color: #ff0000; font-weight: bold;\" ";
-                    echo "value=\"off\">DE-EMULATE AUTH STATE</button>";
-                    echo "<button type=\"submit\" name=\"state\" "; 
-                    if(isset($_SESSION['authenticate']['username']))
-                        echo " style=\"background-color: #00ff00; font-weight: bold;\" ";
-                    echo "value=\"on\">EMULATE AUTH STATE</button>";
-                    echo "</form>";
                     if(isset($_SESSION['authenticate']['username']))
                     {
-                        //echo "<img src=\"/account.jpg\">";
-                        //echo "<img src=\"/cart.jpg\">";
+                        echo "<a href=\"/authenticate/login.php\">Login   </a>";
+                        echo "<a href=\"/authenticate/register.php\">Register</a>";
+                    }
+                    else
+                    {
+                        echo "<a href=\"/account/accountinfo.php\">Account    </a>";
+                        echo "<a href=\"/authenticate/logout.php\">Logout</a>";
                     }
                 ?>
             </div>

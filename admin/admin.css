@@ -47,6 +47,11 @@ a { text-decoration: none; background-color: none; }
     padding: 0 8em;
 }
 #row-1-col-2 > h1 { display: inline-block; }
+#row-1-col-3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 #row-3-col-1 {
     display: flex;
