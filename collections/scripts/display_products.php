@@ -10,7 +10,7 @@
     {
         echo "\t\t\t\t\t<a href=\"/product/product.php?model=" . $tmp['model'] . "&selected=1\">\n";
         echo "\t\t\t\t\t\t<span class=\"item-view\">\n";
-        echo "\t\t\t\t\t\t\t<img src=\"/product/img/" . $tmp['name'] . "/1.jpg\">\n";
+        echo "\t\t\t\t\t\t\t<img src=\"/product/img/" . $tmp['name'] . "/1.png\">\n";
         echo "\t\t\t\t\t\t\t<h3>" . $tmp['name'] . "</h3>\n";
         echo "\t\t\t\t\t\t\t<h4>£" . $tmp['price'] . "</h4>\n";
         for($j=1;$j <= 5;$j++)

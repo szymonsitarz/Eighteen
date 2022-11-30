@@ -1,6 +1,9 @@
 <?php 
     session_start(); 
     $_SESSION['info']['referer']=$_SERVER['PHP_SELF'];
+    if(isset($_POST['submit']))
+        if($_POST['submit'] != 'Apply filters')
+            unset($_POST);
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +21,7 @@
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
                 <a href="/collections/collections.php"><h1>COLLECTIONS</h1></a>
-                <a href="/contact/contact.html"><h1>CONTACT</h1></a>
+                <a href="/contact/contact.php"><h1>CONTACT</h1></a>
                 <a href="/about-us/about-us.html"><h1>ABOUT US</h1></a>
             </div>
             <div id="row-1-col-3">
@@ -57,7 +60,7 @@
                     </span>
                 </form>
                 <?php
-                    include_once($_SERVER['DOCUMENT_ROOT'] . 'notification.php');
+                    include_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/notification.php');
                 ?>   
             </div>
             <div id="row-3-col-1">
@@ -65,25 +68,36 @@
                     <div id="categories">
                         <h3>Category</h3>
                         <?php
-                            $categories = array('sweatshirt', 'hoodie', 'jacket', 't-shirt'); 
+                            $categories = array('accessories', 'hoodies', 'jackets', 'shorts', 'sportswear', 'tops', 'trousers'); 
                             foreach($categories as $category)
                             {
-                                echo '<label>' . ucfirst($category) . 's</label>';
+                                echo '<label>' . ucfirst($category) . '</label>';
                                 echo "<input type=\"checkbox\" name=\"category['" . $category . "']\" value=\"" . $category . "\"" . (isset($_POST['category']['\'' . $category . '\'']) ? "checked" : "") . "></br>";
+                            }
+                        ?>
+                    </div>
+                    <div id="genders">
+                        <h3>Gender</h3>
+                        <?php
+                            $genders = array('male', 'female'); 
+                            foreach($genders as $gender)
+                            {
+                                echo '<label>' . ucfirst($gender) . '</label>';
+                                echo "<input type=\"checkbox\" name=\"gender['" . $gender . "']\" value=\"" . $gender . "\"" . (isset($_POST['gender']['\'' . $gender . '\'']) ? "checked" : "") . "></br>";
                             }
                         ?>
                     </div>
                     <div id="price-range">
                         <h3>Price</h3>
-                        <label for="lower">From</label>
-                        <input type="number" id="lower" name="lower" value="<?php if(isset($_POST['lower'])) echo $_POST['lower']; else echo "0"?>" min="0" max="10000"></br>
-                        <label for="upper">To</label>
-                        <input type="number" id="upper" name="upper" value="<?php if(isset($_POST['upper'])) echo $_POST['upper']; else echo "10000"?>" min="0" max="10000"></br>
+                        <label for="lower">From</label><br>
+                        <input type="number" id="lower" name="lower" value="<?php if(isset($_POST['lower'])) echo $_POST['lower']; else echo "0"?>" min="0" max="10000"><br>
+                        <label for="upper">To</label><br>
+                        <input type="number" id="upper" name="upper" value="<?php if(isset($_POST['upper'])) echo $_POST['upper']; else echo "10000"?>" min="0" max="10000"><br>
                     </div>
                     <div id="color">
                         <h3>Color</h3>
                         <?php
-                            $colors = array('black', 'white', 'grey'); 
+                            $colors = array('black', 'white'); 
                             foreach($colors as $color)
                             {
                                 echo '<label>' . ucfirst($color) . '</label>';
@@ -92,6 +106,7 @@
                         ?>
                     </div>
                     <input type="submit" value="Apply filters">
+                    <input type="submit" value="Reset filters">
                 </form>
             </div>
             <div id="row-3-col-2">

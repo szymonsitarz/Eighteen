@@ -2,14 +2,11 @@
     session_start();
     if(!isset($_SESSION['authenticate']['is_admin']))
     {
+        $_SESSION['info']['success'] = false;
         $_SESSION['info']['notification'] = "Access denied";
         header('Location: /collections/collections.php');
         exit();
     }
-    else
-        $_SESSION['info']['notification'] = "Welcome to the admin dashboard.";
-
-    $_SESSION['info']['referer']=$_SERVER['PHP_SELF'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +24,7 @@
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
                 <a href="/collections/collections.php"><h1>COLLECTIONS</h1></a>
-                <a href="/contact/contact.html"><h1>CONTACT</h1></a>
+                <a href="/contact/contact.php"><h1>CONTACT</h1></a>
                 <a href="/about-us/about-us.html"><h1>ABOUT US</h1></a>
             </div>
             <div id="row-1-col-3">
@@ -51,7 +48,7 @@
             </div>
             <div id="row-2">
                     <?php
-                       include_once($_SERVER['DOCUMENT_ROOT'] . 'notification.php');
+                       include_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/notification.php');
                     ?>                    
             </div>
             <div id="row-3-col-1">
@@ -59,13 +56,13 @@
                     <h4>Orders</h4>
                     <img src="img/orders.png" alt="orders">
                 </span></a>
-                <a href="admin.php?admin_tab=access" class="tab"><span>
-                    <h4>Access</h4>
-                    <img src="img/access.png" alt="access">
+                <a href="admin.php?admin_tab=users" class="tab"><span>
+                    <h4>Users</h4>
+                    <img src="img/users.png" alt="users">
                 </span></a>
-                <a href="admin.php?admin_tab=statistics" class="tab"><span>
-                    <h4>Statistics</h4>
-                    <img src="img/statistics.png" alt="statistics">
+                <a href="admin.php?admin_tab=products" class="tab"><span>
+                    <h4>Products</h4>
+                    <img src="img/products.png" alt="products">
                 </span></a>
             </div>
             <div id="row-3-col-2">
@@ -86,25 +83,25 @@
                     {
                         switch($_GET['admin_tab'])
                         {
-                            case "access":
+                            case "users":
                                 // Ensure sort is not persistent between tabs
-                                $_SESSION['admin']['tab_selected'] = 'access';
+                                $_SESSION['admin']['tab_selected'] = 'users';
                                 if($_SESSION['admin']['tabbed_last'] != $_SESSION['admin']['tab_selected'])
                                     unset($_SESSION['admin']['sort_selected']);
-                                echo "<h3>Access</h3>";
-                                require_once('scripts/access.php');
+                                echo "<h3>Users</h3>";
+                                require_once('scripts/users.php');
                                 break;
-                            case "statistics":
+                            case "products":
                                 // Ensure sort is not persistent between tabs
-                                $_SESSION['admin']['tab_selected'] = 'statistics';
+                                $_SESSION['admin']['tab_selected'] = 'products';
                                 if($_SESSION['admin']['tabbed_last'] != $_SESSION['admin']['tab_selected'])
                                     unset($_SESSION['admin']['sort_selected']);
-                                echo "<h3>Statistics</h3>";
-                                require_once('scripts/statistics.php');
+                                echo "<h3>Products</h3>";
+                                require_once('scripts/products.php');
                                 break;
                             default:
                                 http_response_code(404);
-                                include_once($_SERVER['DOCUMENT_ROOT'] . '/error/404.php');
+                                include_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/error/404.php');
                         }
                     }   
                     $_SESSION['admin']['tabbed_last'] = $_SESSION['admin']['tab_selected'];

@@ -2,11 +2,11 @@
     $query = "SELECT pid, name, model, size, stock, bought_all_time, views FROM products ORDER BY ";
 
     /* Handling sorting for when a table heading column is clicked. */
-    if(!isset($_GET['statistics_sort']))
+    if(!isset($_GET['products_sort']))
         $query .=  "pid";
     else
     {
-        $_SESSION['admin']['sort_selected'] = $_GET['statistics_sort'];
+        $_SESSION['admin']['sort_selected'] = $_GET['products_sort'];
 
         // Reset sort state if a different column is chosen for sorting.
         if($_SESSION['admin']['sorted_last'] != $_SESSION['admin']['sort_selected'])
@@ -37,7 +37,7 @@
                 break;
             default:
                 http_response_code(404);
-                include_once($_SERVER['DOCUMENT_ROOT'] . '/error/404.php');
+                include_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/error/404.php');
         }
 
         // Set sort state and invert sort state on next click (unless a different tab is chosen)
@@ -55,7 +55,7 @@
     $sth = $db->prepare($query);
     //echo $sth->debugDumpParams();
     $sth->execute();
-    $statistics = $sth->fetchAll();
+    $products = $sth->fetchAll();
 
     /* Allow sorting by table headings */
     echo "<table><tr>";
@@ -64,7 +64,7 @@
 
     for($i=0;$i<count($headings);$i++)
     {
-        echo "<th><a href=\"admin.php?admin_tab=statistics&statistics_sort=" . $columns[$i] . "\">" . $headings[$i];
+        echo "<th><a href=\"admin.php?admin_tab=products&products_sort=" . $columns[$i] . "\">" . $headings[$i];
         if(isset($_SESSION['admin']['sort_selected']))
         {
             if($_SESSION['admin']['sort_selected'] == $columns[$i])
@@ -81,8 +81,8 @@
     }
     echo "</tr>";
 
-    /* Display statistics in tabular format ordered by timestamp by default */
-    foreach($statistics as $tmp)
+    /* Display products in tabular format ordered by timestamp by default */
+    foreach($products as $tmp)
     {
             echo "<tr>";
             echo "<td>" . $tmp['pid'] . "</td>";
