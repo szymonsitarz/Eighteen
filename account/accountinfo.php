@@ -14,12 +14,24 @@ $result=$pone->fetch(PDO::FETCH_ASSOC);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="account.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
+<script>
+$(function(){
+$("#header1").load("/header/header.html"); 
+});
 
+$(function(){
+$("#footer").load("/footer/footer.html"); 
+});
+
+</script> 
+<div id ="header1"></div>
 </head>
 <body>
     <div class="bg-colour">
     
-        <nav>
+        <!--<nav>
             <div class="logo 1">
              <img src="eighteen.png" alt="eighteen" width="80" height="90"
              div class="main-right">
@@ -39,7 +51,7 @@ $result=$pone->fetch(PDO::FETCH_ASSOC);
                 <a href="#" class="btn-nav-i"><i class="fa fa-heart"></i></a>
                
             </div>  
-        </nav>
+        </nav>-->
         <div class="main">
         
             <div class="social-media">
@@ -91,7 +103,7 @@ $result=$pone->fetch(PDO::FETCH_ASSOC);
     </br>
     
   </body>
-  <div class="footer-container">
+  <!--<div class="footer-container">
     <div class="footer">
       <div class="footer-heading footer-1">
         <h2>About Us</h2>
@@ -122,6 +134,7 @@ $result=$pone->fetch(PDO::FETCH_ASSOC);
         <input type="submit" value="Sign Up" id="footer-email-btn">
       </div>
     </div>
-  </div>
+  </div>-->
+  <div id ="footer"></div>
 </html>
 
