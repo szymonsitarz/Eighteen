@@ -76,7 +76,7 @@
 
 
 
-  
+  /* flex done */
 .main-container .question {
   display: flex;
   color: white;
@@ -84,6 +84,7 @@
   cursor: pointer;
 }
   
+  /* for add and remove */
 .main-container .question .add,
 .main-container .question .remove {
   position: absolute;
@@ -97,12 +98,15 @@
 }
 
 
+ /* for hoover */
 .main-container .question:hover{
   color:#4bb19b;
   box-shadow: 0 4px 8px -3px rgba(0, 0, 0, 0.3);
     
 }
   
+
+/* for stay active */
 .main-container .question .add.active,
 .main-container .question .remove.active {
   transform: translateY(0);
@@ -110,6 +114,9 @@
   opacity: 1;
 
 }
+
+
+/* for h3 */
   
 .main-container .question h3 {
   font-size: 20px;
