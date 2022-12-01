@@ -12,14 +12,20 @@ if(isset($_POST['submit'])){
     $row->execute();
     if($result=$row->fetch(PDO::FETCH_ASSOC)){
 		if(password_verify($password,$result['password'])){
-		$_SESSION['authenticate']['username']=$result['username'];
-		if($result['privileges']){
+		$_SESSION['auth']=$result['username'];
+		//echo $_SESSION['auth'];
+		if($result['privileges']==1){
 			$_SESSION['is_admin']=1;
 		}
-
-        header("Location: /home/home.html");
-		}else{echo "<script>alert('Woops! Password was wrong . Try again')</script>";}
-    }else{echo "<script>alert('Woops! Email was Wrong. Try again')</script>";}
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/further_auth.php');
+		if($authorised){
+			header("Location: /home/home.php");}
+		else{
+			$authorised=false; $errorm="You are either banned or timmed out!";
+		}
+		}else{$errorm= "<script>alert('Woops! Password was wrong . Try again')</script>";}
+    }else{ $errorm= "<script>alert('Woops! Email was Wrong. Try again')</script>";}
+	echo $errorm;
 }
 
 ?>
