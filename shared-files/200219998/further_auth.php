@@ -1,12 +1,12 @@
 <?php
 /*
     NOTE: Code probably looks like this in login.php:
-        ...
-        password_verify(...);
-        ...
+        .
+        password_verify(.);
+        .
         require_once('further_auth.php');
         if($authorised)
-            ... (do some stuff like set $_SESSION['auth'] elements)
+            . (do some stuff like set $_SESSION['auth'] elements)
         header('Location: /collections/collections.php'); 
 */
 require_once('db.php');

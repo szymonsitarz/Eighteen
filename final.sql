@@ -228,7 +228,7 @@ VALUES (5, 18, 'refunded', "2022-10-24 20-20-20");
 INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
 VALUES ('julius', @model_a, "Excellent product.", 5, 1666698294);
 INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
-VALUES ('genghis', @model_a, "Shattered expectations.. really.", 1, 1666784694);
+VALUES ('genghis', @model_a, "Shattered expectations really.", 1, 1666784694);
 
 /*>>T-SHIRT FEEDBACK */
 INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)

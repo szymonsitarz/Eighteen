@@ -1,6 +1,6 @@
 # Eighteen
 
-# Routing table for server config like ...
+# Routing table for server config like .
 
     FILE PATH                           URL (e.g. hosting-service=localhost or cs2410-web01pvm.aston.ac.uk)
     home/home.php                       hosting-service/
