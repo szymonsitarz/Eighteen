@@ -2,7 +2,7 @@
     session_start();
 
     // Only authorise access to users with privileges flag set in users table.
-    if(!isset($_SESSION['authenticate']['is_admin']))
+    if(!isset($_SESSION['auth']))
     {
         $_SESSION['info']['success'] = false;
         $_SESSION['info']['notification'] = "Access denied";
@@ -36,17 +36,17 @@
                 authentication state (i.e. functional navigation links) -->
             <div id="row-1-col-3">
                 <?php
-                    if(!isset($_SESSION['authenticate']['username']))
+                    if(!isset($_SESSION['auth']))
                     {
-                        echo "<a href=\"/authentication/login.php\">Login</a>";
-                        echo "<a href=\"/authentication/register.php\">Register</a>";
+                        echo "<a href=\"/auth/login.php\">Login</a>";
+                        echo "<a href=\"/auth/register.php\">Register</a>";
                     }
                     else
                     {
                         $size=40;
                         echo "<a href=\"/account/accountinfo.php\"><img src=\"/shared-files/200219998/account.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
                         echo "<a href=\"/cart/cart.php\"><img src=\"/shared-files/200219998/cart.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
-                        echo "<a href=\"/authentication/logout.php\">Logout</a>";
+                        echo "<a href=\"/auth/logout.php\">Logout</a>";
                     }
                 ?>
             </div>

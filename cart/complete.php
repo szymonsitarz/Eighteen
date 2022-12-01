@@ -6,11 +6,10 @@
         3. INCREMENT bought_all_time for pid in products table
 */
     session_start();
-
-    $_SESSION['authenticate']['username'] = "admin";
-    if(isset($_SESSION['authenticate']['username']))
+    $_SESSION['auth'] = "admin";
+    if(isset($_SESSION['auth']))
     {
-        require_once($_SERVER['DOCUMENT_ROOT'] . "scripts/getuid.php");
+        require_once("scripts/getuid.php");
         require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
         foreach($_SESSION['cart'] as $key => $quantity)
             for($i=0;$i<$quantity;$i++)

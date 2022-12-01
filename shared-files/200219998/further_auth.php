@@ -6,7 +6,7 @@
         ...
         require_once('further_auth.php');
         if($authorised)
-            ... (do some stuff like set $_SESSION['authenticate'] elements)
+            ... (do some stuff like set $_SESSION['auth'] elements)
         header('Location: /collections/collections.php'); 
 */
 require_once('db.php');
@@ -53,6 +53,6 @@ else
         $_SESSION['info']['notification'] = "This account is locked out until " . date("Y-m-d H:i:s", substr(($row['timeout_stamp']+$row['timeout_duration']), 0, 10)) . ".";
 }
 
-/* Continue with authentication, setting $_SESSION['authentication']['username'] if and only 
+/* Continue with authentication, setting $_SESSION['auth'] if and only 
     if $authorised=true, otherwise handle as a failed login */
 ?>
