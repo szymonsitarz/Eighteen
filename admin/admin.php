@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Grid</title>
+        <title>Admin dashboard</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="admin.css?ts=<?=time()?>">
         <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">

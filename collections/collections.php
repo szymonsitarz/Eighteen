@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Grid</title>
+        <title>Collections</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="collections.css?ts=<?=time()?>">
         <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">

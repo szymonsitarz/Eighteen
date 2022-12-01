@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Grid</title>
+        <title>Product</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="product.css?ts=<?=time()?>">
         <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">

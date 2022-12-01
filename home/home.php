@@ -81,7 +81,7 @@
             BE 18.
           </h1>
         </div>
-        <a href="/product/product.php" class="btn">SHOP NOW</a>
+        <a href="/collections/collections.php" class="btn">SHOP NOW</a>
 
       </br>
     </div>
