@@ -2,11 +2,11 @@
 <html>
 <?php
 
-include '/shared-files/200219998/database_connection.php';
+require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 session_start();
 
 if (isset($_SESSION['username'])) {
-    header("Location: /home/home.html.php");
+    header("Location: /home/home.html");
 }
 
 if(isset($_POST['submit'])){

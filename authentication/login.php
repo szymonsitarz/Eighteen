@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-include '/shared-files/200219998/database_connection.php';
+require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 session_start();
 
 if(isset($_POST['submit'])){
@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
 			$_SESSION['is_admin']=1;
 		}
 
-        header("Location: /home/home.html.php");
+        header("Location: /home/home.html");
 		}else{echo "<script>alert('Woops! Password was wrong . Try again')</script>";}
     }else{echo "<script>alert('Woops! Email was Wrong. Try again')</script>";}
 }
