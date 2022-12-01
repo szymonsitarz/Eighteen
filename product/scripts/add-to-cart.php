@@ -4,7 +4,7 @@
     */
     session_start();
     $_SESSION['info']['success'] = false;
-    if(!isset($_SESSION['auth']))
+    if(isset($_SESSION['auth']))
     {
         if($_POST['quantity'] <= 0)
             $_SESSION['info']['notification'] = "No action was made.";
