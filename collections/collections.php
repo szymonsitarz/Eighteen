@@ -44,10 +44,10 @@
                     <span id="sorting">
                         <label for="sort">Sort By</label>
                         <select name="sort" value>
-                            <option value="relevance" <?php if($_GET['sort'] == 'relevance') echo "selected"; ?>>Relevance</option>
-                            <option value="low-to-high" <?php if($_GET['sort'] == 'low-to-high') echo "selected"; ?>>Price (Low-to-High)</option>
-                            <option value="high-to-low" <?php if($_GET['sort'] == 'high-to-low') echo "selected"; ?>>Price (High-to-Low)</option>
-                            <option value="rating" <?php if($_GET['sort'] == 'rating') echo "selected"; ?>>Rating</option>
+                            <option value="relevance" <?php if(isset($_GET['sort']) && $_GET['sort'] == 'relevance') echo "selected"; ?>>Relevance</option>
+                            <option value="low-to-high" <?php if(isset($_GET['sort']) && $_GET['sort'] == 'low-to-high') echo "selected"; ?>>Price (Low-to-High)</option>
+                            <option value="high-to-low" <?php if(isset($_GET['sort']) && $_GET['sort'] == 'high-to-low') echo "selected"; ?>>Price (High-to-Low)</option>
+                            <option value="rating" <?php if(isset($_GET['sort']) && $_GET['sort'] == 'rating') echo "selected"; ?>>Rating</option>
                         </select>
                     </span>
                     <span id="search-bar">
