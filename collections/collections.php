@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Collections</title>
+        <title>Grid</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="collections.css?ts=<?=time()?>">
         <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">
@@ -18,7 +18,7 @@
                 <img src="/shared-files/200219998/logo.png" width=50px height=50px>
             </div>
             <div id="row-1-col-2">
-                <a href="/home/home.php"><h1>HOME</h1></a>
+                <a href="/home/home.html"><h1>HOME</h1></a>
                 <a href="/collections/collections.php"><h1>COLLECTIONS</h1></a>
                 <a href="/contact/contact.php"><h1>CONTACT</h1></a>
                 <a href="/about-us/about-us.html"><h1>ABOUT US</h1></a>
@@ -80,6 +80,17 @@
                             {
                                 echo '<label>' . ucfirst($gender) . '</label>';
                                 echo "<input type=\"checkbox\" name=\"gender['" . $gender . "']\" value=\"" . $gender . "\"" . (isset($_POST['gender']['\'' . $gender . '\'']) ? "checked" : "") . "></br>";
+                            }
+                        ?>
+                    </div>
+                    <div id="sizes">
+                        <h3>Size</h3>
+                        <?php
+                            $sizes = array('S', 'M', 'L', 'XL', 'XXL', '2XL', '3XL'); 
+                            foreach($sizes as $size)
+                            {
+                                echo '<label>' . ucfirst($size) . '</label>';
+                                echo "<input type=\"checkbox\" name=\"size['" . $size. "']\" value=\"" . $size . "\"" . (isset($_POST['size']['\'' . $size . '\'']) ? "checked" : "") . "></br>";
                             }
                         ?>
                     </div>
