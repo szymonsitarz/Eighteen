@@ -19,14 +19,26 @@
               <li class="each-li"><a href="/home/home.php" class="link">HOME</a></li>
               <li class="each-li"><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
               <li class="each-li"><a href="/contact/contact.php" class="link">CONTACT US</a></li>
-              <li class="each-li"><a href="/about-us/about-us.html" class="link">ABOUT US</a></li>
+              <li class="each-li"><a href="/about-us/about-us.php" class="link">ABOUT US</a></li>
               
           </ul>
       
           <div class="navigation-buttons">
 
-              <a href="/cart/cart.php" class="button-navigation-i"><i class="fa fa-shopping-cart"></i></a>
-              <a href="/200219998/TEMPORARY_LOGIN.php" class="button-navigation-i"><i class="fa fa-user"></i></a>
+              <a href="/account/accountinfo.php" class="button-navigation-i"><i class="fa fa-user"></i></a>
+              <?php
+                    if(!isset($_SESSION['auth']))
+                    {?>
+                    <a href="/cart/cart.php" class="button-navigation-i"><i class="fa fa-shopping-cart"></i></a>
+                        <a href="/auth/login.php" class="button-navigation-i">Login</a>
+                        <a href="/auth/register.php" class="button-navigation-i">Register</a><?php
+                    }
+                    else
+                    {
+                        $size=40;?>
+                        <a href="/auth/logout.php" class="button-navigation-i">Logout</a><?php
+                    }
+                ?>
           </div>
       </nav>
     </header>
