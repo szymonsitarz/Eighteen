@@ -37,11 +37,11 @@
         $sth->execute();
 
         // Update avg_record from products table
-        $query = "SELECT avg_rating FROM products WHERE model=:model GROUP BY model";
+        $query = "SELECT avg_rating FROM products WHERE model=:model LIMIT 1";
         $sth = $db->prepare($query);
         $sth->bindParam(':model', $_SESSION['product']['model']);
         $sth->execute();
-        $current_average = $sth->fetchColumn();
+        $current_average = $sth->fetch();
 
         $query = "SELECT 1 FROM feedback WHERE model=:model";
         $sth = $db->prepare($query);

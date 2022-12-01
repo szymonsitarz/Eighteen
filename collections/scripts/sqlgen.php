@@ -1,5 +1,5 @@
 <?php
-    $query = "SELECT name,model,price,avg_rating FROM products" ;
+    $query = "SELECT name,model,price,avg_rating,size FROM products" ;
 
     // Set greater than zero if there are conditions for WHERE clause.
     $filters = count($_POST) + (!empty($_GET['q']) ? 1 : 0);
@@ -102,7 +102,7 @@
         and colors are not separate listings in the collections view - despite
         each product being listed with its own color and size separately in the
         products table. */
-    $query .= " GROUP BY model";
+    //$query .= " GROUP BY model";
 
     // Parse query data for sorting function of search engine.
     if(!isset($_GET['sort']) || $_GET['sort'] == "relevance") {}

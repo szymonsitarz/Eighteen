@@ -9,7 +9,7 @@
         echo "<a href=\"/product/product.php?model=" . $tmp['model'] . "&selected=1\">\n";
         echo "<span class=\"listing\">\n";
         echo "<img src=\"/product/img/" . $tmp['name'] . "/1.png\">\n";
-        echo "<h3>" . $tmp['name'] . "</h3>\n";
+        echo "<h3>" . $tmp['name'] . " (" . $tmp['size'] . ")</h3>\n";
         echo "<h4>£" . $tmp['price'] . "</h4>\n";
         for($j=1;$j <= 5;$j++)
         {
