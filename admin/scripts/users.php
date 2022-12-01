@@ -131,9 +131,11 @@
                     echo intval($since / MINUTE) . " minute(s)";
                 else
                     echo $since . "a few seconds";
-                // LOGIN PAGE MUST CHECK TIMEOUT AND SET TWO FILEDS TO NULL IF $since < 10 * SECOND
+
+                // LOGIN PAGE MUST CHECK TIMEOUT AND SET TWO FIELDS TO NULL IF $since < 10 * SECOND
                 // LOGIN PAGE MUST ALSO CHECK IF BANNED
                 // LOGIN PAGE MUST ALSO GENERATE A TOKEN WITH PRIVILEGES IN IT
+                
                 echo "<button type=\"submit\" name=\"unset_timeout\">Unset</button>";
             }
             echo "<input type=\"hidden\" name=\"uid\" value=\"" . $tmp['uid'] . "\">";

@@ -12,8 +12,6 @@
             unset($_SESSION['authenticate']['username']);
         }
 
-    if(!empty($_SERVER['HTTP_REFERER']))
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-    else
-        header('Location: ' . $_SESSION['info']['referer']);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+
 ?>

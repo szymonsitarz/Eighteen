@@ -102,7 +102,7 @@
         and colors are not separate listings in the collections view - despite
         each product being listed with its own color and size separately in the
         products table. */
-    $query .= " GROUP BY model;";
+    $query .= " GROUP BY model";
 
     // Parse query data for sorting function of search engine.
     if(!isset($_GET['sort']) || $_GET['sort'] == "relevance") {}
@@ -111,13 +111,13 @@
         switch($_GET['sort'])
         {
             case "best_selling":
-                $query .= "ORDER BY bought_all_time DESC";
+                $query .= " ORDER BY bought_all_time DESC";
                 break;
             case "latest":
-                $query .= "ORDER BY date_time DESC";
+                $query .= " ORDER BY date_time DESC";
                 break;
             case "trending":
-                $query .= "ORDER BY bought_all_time DESC, views DESC, avg_rating DESC";
+                $query .= " ORDER BY bought_all_time DESC, views DESC, avg_rating DESC";
                 break;
             case "low-to-high":
                 $query .= " ORDER BY price";
@@ -136,7 +136,7 @@
 
     // Finally, building and execute parameterized query
     $sth = $db->prepare($query);
-    
+
     if(!empty($_GET['q']))
     {
         for($i=0;$i<$n;$i++)
