@@ -7,6 +7,6 @@ foreach($_SESSION as $tem){
     unset($tem);
 }
 
-header("Location: /home/home.html.php");
+header("Location: /home/home.php.php");
 
 ?>

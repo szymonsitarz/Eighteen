@@ -10,13 +10,13 @@
     <header class="main-header">
       <nav class = "navigation-bar">
           <div class="logooo 1">
-              <a href="/home/home.html">
+              <a href="/home/home.php">
             <img src="/shared-files/logo.png" alt="" width="80" height="90" div class="fully-right">
            </div>
           </a>
           
           <ul class="main-list-items">
-              <li class="each-li"><a href="/home/home.html" class="link">HOME</a></li>
+              <li class="each-li"><a href="/home/home.php" class="link">HOME</a></li>
               <li class="each-li"><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
               <li class="each-li"><a href="/contact/contact.php" class="link">CONTACT US</a></li>
               <li class="each-li"><a href="/about-us/about-us.html" class="link">ABOUT US</a></li>

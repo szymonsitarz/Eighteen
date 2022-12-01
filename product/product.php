@@ -16,7 +16,7 @@
                 <img src="/shared-files/200219998/logo.png" width="50" height="50">
             </div>
             <div id="row-1-col-2">
-                <a href="/home/home.html"><h1>HOME</h1></a>
+                <a href="/home/home.php"><h1>HOME</h1></a>
                 <a href="/collections/collections.php"><h1>COLLECTIONS</h1></a>
                 <a href="/contact/contact.php"><h1>CONTACT</h1></a>
                 <a href="/about-us/about-us.html"><h1>ABOUT US</h1></a>

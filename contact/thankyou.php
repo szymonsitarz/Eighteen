@@ -40,7 +40,7 @@
             </div>
             </div>
             <ul class="list-items">
-                <li><a href="/home/home.html" class="link">HOME</a></li>
+                <li><a href="/home/home.php" class="link">HOME</a></li>
                 <li><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
                 <li><a href="/contact/contact.php" class="link">CONTACT US</a></li>
                 <li><a href="#" class="link">ABOUT US</a></li>

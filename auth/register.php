@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 session_start();
 
 if(isset($_SESSION['username'])) {
-    header("Location: /home/home.html");
+    header("Location: /home/home.php");
 }
 
 if(isset($_POST['submit'])){
@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
     $row->bindParam(5,$hashedpass, PDO::PARAM_STR);
    $result= $row->execute();
    if( $result){
-     header("Location: /home/home.html");
+     header("Location: /home/home.php");
     }else{echo "<script>alert('Something went wrong. Try again')</script>";}
     }else{echo "<script>alert('Woops! Email already exist. Try again')</script>";}
 }else{echo "<script>alert('Woops! Password does not match. Try again')</script>";}
