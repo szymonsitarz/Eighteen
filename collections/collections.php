@@ -25,17 +25,17 @@
             </div>
             <div id="row-1-col-3">
                 <?php
-                    if(!isset($_SESSION['authenticate']['username']))
+                    if(!isset($_SESSION['auth']))
                     {
-                        echo "<a href=\"/authentication/login.php\">Login</a>";
-                        echo "<a href=\"/authentication/register.php\">Register</a>";
+                        echo "<a href=\"/auth/login.php\">Login</a>";
+                        echo "<a href=\"/auth/register.php\">Register</a>";
                     }
                     else
                     {
                         $size=40;
                         echo "<a href=\"/account/accountinfo.php\"><img src=\"/shared-files/200219998/account.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
                         echo "<a href=\"/cart/cart.php\"><img src=\"/shared-files/200219998/cart.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
-                        echo "<a href=\"/authentication/logout.php\">Logout</a>";
+                        echo "<a href=\"/auth/logout.php\">Logout</a>";
                     }
                 ?>
             </div>
@@ -113,12 +113,15 @@
                     /* If no parameter set or invalid parameter, set heading to Products, otherwise to the value 
                         of the valid parameter */
                     $match=false;
-                    foreach($array as $comparer)
-                        if($_GET['sort'] === $comparer)
-                        {
-                            $match=true;
-                            break;
-                        }
+                    if(isset($_GET['sort']))
+                    {
+                        foreach($array as $comparer)
+                            if($_GET['sort'] === $comparer)
+                            {
+                                $match=true;
+                                break;
+                            }
+                    }
                     if(isset($_GET['sort']) && $match)
                         echo "<em>" . ucfirst($_GET['sort']) . "</em>";
                     else

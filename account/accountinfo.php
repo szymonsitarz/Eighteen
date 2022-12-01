@@ -1,11 +1,10 @@
 <?php
-
-include 'dbc.php';
-$pone= $db->prepare("SELECT forename, surname, email FROM users WHERE username=:username"); 
-$pone->bindParam(":username", $_SESSION['authenticate']['username']);
-$pone->execute(); 
-$result=$pone->fetch(PDO::FETCH_ASSOC);
-
+    session_start();
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
+    $sth= $db->prepare("SELECT forename, surname, email FROM users WHERE username=:username"); 
+    $sth->bindParam(':username', $_SESSION['auth']);
+    $sth->execute(); 
+    $result=$sth->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +78,7 @@ $("#footer").load("/footer/footer.html");
             </br>
             <div class="username">
                 <p>Username:</p>
-                <p><?=$_SESSION['authenticate']['username']?></p>
+                <p><?=$_SESSION['auth']?></p>
             </div>
             </br>
             <div class="email">

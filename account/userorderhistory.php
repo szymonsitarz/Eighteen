@@ -1,17 +1,13 @@
 <?php
-include 'dbc.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-$query = "SELECT orders.uid, users.username, orders.pid, orders.status, orders.date_time FROM orders INNER JOIN users ON orders.uid = users.uid INNER JOIN products ON orders.pid = products.pid WHERE users.username=:username ORDER BY orders.date_time";
+  session_start();
+  require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 
-// REMOVE IN PRODUCTION VERSION
-$_SESSION['authenticate'] = "admin";
+  $query = "SELECT orders.uid, users.username, orders.pid, orders.status, orders.date_time FROM orders INNER JOIN users ON orders.uid = users.uid INNER JOIN products ON orders.pid = products.pid WHERE users.username=:username ORDER BY orders.date_time";
 
-$sth = $db->prepare($query);
-$sth->bindParam(":username", $_SESSION['authenticate']);
-$sth->execute();
-$orders = $sth->fetchAll();
+  $sth = $db->prepare($query);
+  $sth->bindParam(":username", $_SESSION['auth']);
+  $sth->execute();
+  $orders = $sth->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">

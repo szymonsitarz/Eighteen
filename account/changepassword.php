@@ -1,6 +1,6 @@
 <?php
-require_once("dbc.php");
-
+session_start();
+require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 ?>
 
 <!DOCTYPE html>
@@ -62,15 +62,15 @@ $("#footer").load("/footer/footer.html");
         </br>
         <div class="form">
           <?php
-              $_SESSION['authenticate']['username'] = "admin";
-              if(isset($_SESSION['authenticate']['username']))
+              $_SESSION['auth'] = "admin";
+              if(isset($_SESSION['auth'))
               {
                 if (isset($_POST['submit'])) 
                 {
                   $success=0;
                   $query = "SELECT password FROM users WHERE username=:username";
                   $sth = $db->prepare($query);
-                  $sth->bindParam(":username", $_SESSION['authenticate']['username']);
+                  $sth->bindParam(":username", $_SESSION['auth']);
                   $sth->execute();
                   $row = $sth->fetch(PDO::FETCH_ASSOC);
                   if($_POST['new-password'] == $_POST['confirm-new-password'])
@@ -79,7 +79,7 @@ $("#footer").load("/footer/footer.html");
                       $query= "UPDATE users SET password=:new-password WHERE username=:username";
                       $sth = $db->prepare($query);
                       $sth->bindParam(":new-password", $_POST['new-password']);
-                      $sth->bindParam(":username", $_SESSION['authenticate']['username']);
+                      $sth->bindParam(":username", $_SESSION['auth']);
                       $sth->execute();
                       $success=1;
                     }
