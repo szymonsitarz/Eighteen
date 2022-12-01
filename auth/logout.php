@@ -8,5 +8,5 @@
 
     $_SESSION['info']['success'] = true;
     $_SESSION['info']['notification'] = "You are now logged out.";
-    header('Location: /collections/collections.php'); 
+    header('Location: /home/home.php'); 
 ?>

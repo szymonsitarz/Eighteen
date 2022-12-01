@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <?php session_start()?>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,20 +34,19 @@
       
           <div class="navigation-buttons">
 
-              <a href="/cart/cart.php" class="button-navigation-i"><i class="fa fa-shopping-cart"></i></a>
-              <a href="/200219998/TEMPORARY_LOGIN.php" class="button-navigation-i"><i class="fa fa-user"></i></a>
+              <a href="/account/accountinfo.php" class="button-navigation-i"><i class="fa fa-user"></i></a>
               <?php
                     if(!isset($_SESSION['auth']))
                     {?>
-                        <a href="/auth/login.php" class="button-navigation-i">Login</a>;
-                        <a href="/auth/register.php" class="button-navigation-i">Register</a>;<?php
+                   
+                        <a href="/auth/login.php" class="button-navigation-i">Login</a>
+                        <a href="/auth/register.php" class="button-navigation-i">Register</a><?php
                     }
                     else
                     {
                         $size=40;?>
-                        <a href="/account/accountinfo.php"><img src="/shared-files/200219998/account.png\" width="{$size}px\" height="{$size}px\"></a>;
-                        <a href="/cart/cart.php"><img src="/shared-files/200219998/cart.png\" width="{$size}px\" height="{$size}px\"></a>;
-                        <a href="/auth/logout.php">Logout</a>;<?php
+                        <a href="/cart/cart.php" class="button-navigation-i"><i class="fa fa-shopping-cart"></i></a>
+                        <a href="/auth/logout.php" class="button-navigation-i">Logout</a><?php
                     }
                 ?>
           </div>
