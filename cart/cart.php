@@ -27,18 +27,16 @@
 
             
             <ul class="list-items">
-                <li><a href="#" class="link">HOME</a></li>
+                <li><a href="/home/home.php" class="link">HOME</a></li>
                 <li><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
-                <li><a href="#" class="link">CONTACT US</a></li>
-                <li><a href="#" class="link">ABOUT US</a></li>
+                <li><a href="/contact/contact.php" class="link">CONTACT US</a></li>
+                <li><a href="/about-us/about-us.php" class="link">ABOUT US</a></li>
                 
             </ul>
         
             <div class="nav-btns">
-                <a href="#" class="btn-nav-i"><i class="fa fa-search"></i></a>
-                <a href="#" class="btn-nav-i"><i class="fa fa-shopping-cart"></i></a>
-                <a href="#" class="btn-nav-i"><i class="fa fa-user"></i></a>
-                <a href="#" class="btn-nav-i"><i class="fa fa-heart"></i></a>
+                <a href="/cart/cart.php" class="btn-nav-i"><i class="fa fa-shopping-cart"></i></a>
+                <a href="/account/accountinfo.php" class="btn-nav-i"><i class="fa fa-user"></i></a>
                
             </div>
         </nav>
