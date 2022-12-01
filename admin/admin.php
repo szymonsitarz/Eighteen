@@ -23,7 +23,7 @@
             <!-- Row #1 consists of header -->
             <!-- Col #1 of Row #1 consists of logo -->
             <div id="row-1-col-1">
-                <img src="/shared-files/200219998/logo.png" width="50" height="50" alt="logo">
+                <img src="/shared-files/logo.png" width="50" height="50" alt="logo">
             </div>
             <!-- Col #2 of Row #1 consists of Home, Collections, Contact & About Us (i.e. business navigation links) -->
             <div id="row-1-col-2">

@@ -15,7 +15,7 @@
     <body>
         <div id="container">
             <div id="row-1-col-1">
-                <img src="/shared-files/200219998/logo.png" width=50px height=50px>
+                <img src="/shared-files/logo.png" width=50px height=50px>
             </div>
             <div id="row-1-col-2">
                 <a href="/home/home.php"><h1>HOME</h1></a>
