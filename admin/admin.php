@@ -85,7 +85,7 @@
                         set it to orders by default */
                     $match=false;
                     foreach($array as $comparer)
-                        if($_GET['admin_tab'] === $comparer)
+                        if(isset($_GET['admin_tab']) && $_GET['admin_tab'] === $comparer)
                         {
                             $match=true;
                             break;
