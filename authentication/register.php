@@ -5,7 +5,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 session_start();
 
-if (isset($_SESSION['username'])) {
+if(isset($_SESSION['username'])) {
     header("Location: /home/home.html");
 }
 
@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
     if(!$hresult=$hee->fetch(PDO::FETCH_ASSOC)){
     $hashedpass = password_hash($password,PASSWORD_DEFAULT);
     $row= $db->prepare("INSERT INTO users(forename, surname, username, email, password) 
-    VALUES (?,?,?,?)");
+    VALUES (?,?,?,?,?)");
     $row->bindParam(1, $fname, PDO::PARAM_STR);
     $row->bindParam(2, $lname, PDO::PARAM_STR);
     $row->bindParam(3, $username, PDO::PARAM_STR);
@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
     $row->bindParam(5,$hashedpass, PDO::PARAM_STR);
    $result= $row->execute();
    if( $result){
-     header("Location: welcome.php");
+     header("Location: /home/home.html");
     }else{echo "<script>alert('Something went wrong. Try again')</script>";}
     }else{echo "<script>alert('Woops! Email already exist. Try again')</script>";}
 }else{echo "<script>alert('Woops! Password does not match. Try again')</script>";}
@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
 </head>
 <body class="body">
 	<div class="container">
-		<form action="login.php" method="POST" class="login-email">
+		<form action="register.php" method="POST" class="login-email">
 			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
             <div class="input-group">
 				<input type="text" placeholder="First Name" name="fname" required>
