@@ -33,7 +33,7 @@
                     else
                     {
                         $size=40;
-                        echo "<a href=\"/cart/accountinfo.php\"><img src=\"/shared-files/200219998/account.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
+                        echo "<a href=\"/account/accountinfo.php\"><img src=\"/shared-files/200219998/account.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
                         echo "<a href=\"/cart/cart.php\"><img src=\"/shared-files/200219998/cart.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
                         echo "<a href=\"/authentication/logout.php\">Logout</a>";
                     }
