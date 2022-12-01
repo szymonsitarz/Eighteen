@@ -30,7 +30,7 @@
                 <a href="/home/home.php"><h1>HOME</h1></a>
                 <a href="/collections/collections.php"><h1>COLLECTIONS</h1></a>
                 <a href="/contact/contact.php"><h1>CONTACT</h1></a>
-                <a href="/about-us/about-us.html"><h1>ABOUT US</h1></a>
+                <a href="/about-us/about-us.php"><h1>ABOUT US</h1></a>
             </div>
             <!-- Col #3 of Row #1 consists of Login, Register or alternatively Account, Logout, Cart - depending on 
                 authentication state (i.e. functional navigation links) -->

@@ -8,6 +8,7 @@
     {
         if($_POST['quantity'] <= 0)
             $_SESSION['info']['notification'] = "No action was made.";
+        else if(
         else
         {
             $_SESSION['cart'][$_POST['pid']] = $_POST['quantity'];

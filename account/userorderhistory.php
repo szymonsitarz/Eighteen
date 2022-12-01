@@ -47,7 +47,7 @@ $("#footer").load("/footer/footer.html");
             <li><a href="/home/home.php" class="link">HOME</a></li>
             <li><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
             <li><a href="/contact/contact.php" class="link">CONTACT US</a></li>
-            <li><a href="/about-us/about-us.html" class="link">ABOUT US</a></li>
+            <li><a href="/about-us/about-us.php" class="link">ABOUT US</a></li>
             
         </ul>
         <div class="nav-btns">
