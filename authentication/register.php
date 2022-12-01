@@ -2,8 +2,7 @@
 <html>
 <?php
 
-include 'database_connection.php';
-
+include '/shared-files/200219998/database_connection.php';
 session_start();
 
 if (isset($_SESSION['username'])) {

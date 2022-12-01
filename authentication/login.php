@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-include 'database_connection.php';
-
+include '/shared-files/200219998/database_connection.php';
 session_start();
 
 if(isset($_POST['submit'])){
@@ -33,10 +32,6 @@ if(isset($_POST['submit'])){
 <body class="body">
 	<div class="container">
 		<form action="login.php" method="POST" class="login-email">
-		<table>
-		
-		<tr style="text-align:right "><td></td><td ><a  href="welcome.php" class="hover">Home</a></td></tr>
-</table>
 			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
 			<div class="input-group">
 				<input type="text" placeholder="Username" name="username"  required>
