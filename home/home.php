@@ -17,16 +17,17 @@
     <header class="main-header">
       <nav class = "navigation-bar">
           <div class="logooo 1">
-              <a href="/home/home.php">
+              <a href="/home/home.html">
             <img src="/shared-files/logo.png" alt="" width="80" height="90" div class="fully-right">
            </div>
           </a>
           
           <ul class="main-list-items">
-              <li class="each-li"><a href="/home/home.php" class="link">HOME</a></li>
+              <li class="each-li"><a href="/home/home.html" class="link">HOME</a></li>
               <li class="each-li"><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
               <li class="each-li"><a href="/contact/contact.php" class="link">CONTACT US</a></li>
               <li class="each-li"><a href="/about-us/about-us.html" class="link">ABOUT US</a></li>
+             
               
           </ul>
       
@@ -34,6 +35,20 @@
 
               <a href="/cart/cart.php" class="button-navigation-i"><i class="fa fa-shopping-cart"></i></a>
               <a href="/200219998/TEMPORARY_LOGIN.php" class="button-navigation-i"><i class="fa fa-user"></i></a>
+              <?php
+                    if(!isset($_SESSION['auth']))
+                    {?>
+                        <a href="/auth/login.php" class="button-navigation-i">Login</a>;
+                        <a href="/auth/register.php" class="button-navigation-i">Register</a>;<?php
+                    }
+                    else
+                    {
+                        $size=40;?>
+                        <a href="/account/accountinfo.php"><img src="/shared-files/200219998/account.png\" width="{$size}px\" height="{$size}px\"></a>;
+                        <a href="/cart/cart.php"><img src="/shared-files/200219998/cart.png\" width="{$size}px\" height="{$size}px\"></a>;
+                        <a href="/auth/logout.php">Logout</a>;<?php
+                    }
+                ?>
           </div>
       </nav>
     </header>
@@ -46,7 +61,7 @@
     div class="main-right">
   </div>
   <ul class="list-items">
-      <li><a href="/home/home.php" class="link">HOME</a></li>
+      <li><a href="/home/home.html" class="link">HOME</a></li>
       <li><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
       <li><a href="/contact/contact.php" class="link">CONTACT US</a></li>
       <li><a href="#" class="link">ABOUT US</a></li>
@@ -81,7 +96,7 @@
             BE 18.
           </h1>
         </div>
-        <a href="/collections/collections.php" class="btn">SHOP NOW</a>
+        <a href="/product/product.php" class="btn">SHOP NOW</a>
 
       </br>
     </div>
