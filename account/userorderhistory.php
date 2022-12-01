@@ -1,17 +1,13 @@
 <?php
-include 'dbc.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-$query = "SELECT orders.uid, users.username, orders.pid, orders.status, orders.date_time FROM orders INNER JOIN users ON orders.uid = users.uid INNER JOIN products ON orders.pid = products.pid WHERE users.username=:username ORDER BY orders.date_time";
+  session_start();
+  require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 
-// REMOVE IN PRODUCTION VERSION
-$_SESSION['authenticate'] = "admin";
+  $query = "SELECT orders.uid, users.username, orders.pid, orders.status, orders.date_time FROM orders INNER JOIN users ON orders.uid = users.uid INNER JOIN products ON orders.pid = products.pid WHERE users.username=:username ORDER BY orders.date_time";
 
-$sth = $db->prepare($query);
-$sth->bindParam(":username", $_SESSION['authenticate']);
-$sth->execute();
-$orders = $sth->fetchAll();
+  $sth = $db->prepare($query);
+  $sth->bindParam(":username", $_SESSION['auth']);
+  $sth->execute();
+  $orders = $sth->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,23 +17,37 @@ $orders = $sth->fetchAll();
 <link rel="stylesheet" href="userorderhistory.css">
 <link rel="stylesheet" href="https://fonts.google.com/specimen/Roboto+Condensed">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
+<script>
+$(function(){
+$("#header").load("/header/header.html"); 
+});
+
+$(function(){
+$("#footer").load("/footer/footer.html"); 
+});
+
+</script> 
+<div id ="header"></div>
+
 
 </head>
 <body>
   
   
   <div class="bg-colour">
-    <nav>
+    <!--<nav>
         <div class="logo 1">
          <img src="eighteen.png" alt="eighteen" width="80" height="90"
          div class="main-right">
        
         </div>
         <ul class="list-items">
-            <li><a href="#" class="link">HOME</a></li>
-            <li><a href="#" class="link">COLLECTIONS</a></li>
-            <li><a href="#" class="link">CONTACT US</a></li>
-            <li><a href="#" class="link">ABOUT US</a></li>
+            <li><a href="/home/home.html" class="link">HOME</a></li>
+            <li><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
+            <li><a href="/contact/contact.php" class="link">CONTACT US</a></li>
+            <li><a href="/about-us/about-us.html" class="link">ABOUT US</a></li>
             
         </ul>
         <div class="nav-btns">
@@ -47,7 +57,7 @@ $orders = $sth->fetchAll();
             <a href="#" class="btn-nav-i"><i class="fa fa-heart"></i></a>
            
         </div>  
-    </nav>
+    </nav>-->
     <div class="main">
         <div class="social-media">
         <a href="#" class="s-btn"><i class="fa fa-facebook-f"></i></a>
@@ -82,7 +92,7 @@ $orders = $sth->fetchAll();
   </div>
   </div>
   </body>
-  <div class="footer-container">
+  <!--<div class="footer-container">
     <div class="footer">
       <div class="footer-heading footer-1">
         <h2>About Us</h2>
@@ -113,5 +123,6 @@ $orders = $sth->fetchAll();
         <input type="submit" value="Sign Up" id="footer-email-btn">
       </div>
     </div>
-  </div>
+  </div>-->
+  <div id ="footer"></div>
 </html>

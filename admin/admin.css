@@ -10,10 +10,6 @@ div { padding: 5px; }
 #row-3-col-2 { grid-area: row-3-col-2; }
 #row-4 { grid-area: row-4; }
 
-#container > * { 
-    overflow: hidden; 
-}
-
 #container {
     /* background-color: black;
     color: white; */
@@ -34,16 +30,25 @@ div { padding: 5px; }
     background-color: black;
     color: white; 
     font-family: sans-serif;
+    font-size: 99%;
 }
-a { text-decoration: none; background-color: none; }
+h1 { font-size: 20px; }
+a { 
+    color: white;
+    text-decoration: none; 
+}
 
 /* Style grid items */
 #row-1-col-1 > img { width: 100%; height: auto; }
-#row-1-col-2 {
+#row-1-col-2, #row-1-col-3 {
     display: flex; 
     justify-content: space-between; 
     align-items: center;
-    padding: 0 8em;
+}
+#row-1-col-2 { padding: 0 8em; }
+#row-1-col-3 {
+    padding: 0; 
+    padding-right: 10px; 
 }
 #row-1-col-2 > h1 { display: inline-block; }
 
@@ -67,10 +72,16 @@ table { border-spacing: 5px; table-layout: auto; width: 100%; }
 th, td {
     border-bottom: 1px solid #ddd;
 }
-th { background-color: #f2f2f2; }
-th * { color: white; text-decoration: none; background-color: transparent; }
-th a:hover { color: #4bb19b; }
-td a { color: white; text-decoration: none; }
+th { 
+    background-color: #f2f2f2; 
+    color: black; 
+}
+th a,img {
+    color: black;
+    text-decoration: none; 
+    background-color: transparent;
+}
+th a:hover, td a:hover { color: #4bb19b; }
 
 .sort-sym { width: 16px; height: 16px; }
 

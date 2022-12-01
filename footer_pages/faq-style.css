@@ -1,6 +1,6 @@
 /* CSS for Whole page */
 
-*{
+*:not{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -11,7 +11,18 @@
 
 
 /* h2 heading specific  */
-h2{
+#heading{
+   
+    color: white;
+    font-size: xx-large;
+    text-align: center;
+    width: 95%;
+    margin: auto;
+    margin-top: 50px;
+
+}
+
+#button-space{
    
     color: white;
     font-size: xx-large;
