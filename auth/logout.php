@@ -1,12 +1,12 @@
-
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
+    session_start();
+    if(isset($_SESSION['auth']))
+        unset($_SESSION['auth']);
 
-$_SESSION = array();
-unset($_SESSION);
-session_unset();
-session_destroy();
+    if(isset($_SESSION['is_admin']))
+        unset($_SESSION['is_admin']);
 
-header("Location: /home/home.php.php");
-
+    $_SESSION['info']['success'] = true;
+    $_SESSION['info']['notification'] = "You are now logged out.";
+    header('Location: /collections/collections.php'); 
 ?>
