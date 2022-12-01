@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
 			$authorised=false; $errorm="You are either banned or timmed out!";
 		}
 		}else{$errorm= "<script>alert('Woops! Password was wrong . Try again')</script>";}
-    }else{ $errorm= "<script>alert('Woops! Email was Wrong. Try again')</script>";}
+    }else{ $errorm= "<script>alert('Woops! Username was Wrong. Try again')</script>";}
 	echo $errorm;
 }
 
