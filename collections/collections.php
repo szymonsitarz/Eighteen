@@ -1,4 +1,7 @@
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
     session_start(); 
     if(isset($_POST['submit']))
         if($_POST['submit'] != 'Apply filters')
@@ -75,7 +78,7 @@
                     <div id="genders">
                         <h3>Gender</h3>
                         <?php
-                            $genders = array('male', 'female'); 
+                            $genders = array('M', 'F'); 
                             foreach($genders as $gender)
                             {
                                 echo '<label>' . ucfirst($gender) . '</label>';

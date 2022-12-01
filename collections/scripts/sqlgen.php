@@ -65,6 +65,24 @@
             $query .= " OR gender = 'U')";
             $match = 1;
         }
+        if(isset($_POST['size']))
+        {
+            if($match == 1) $query .= " AND";
+            $query .= " ( size = :s0";
+            $s=0;
+            if(count($_POST['size']) > 1)
+            {
+                foreach($_POST['size'] as $tmp)
+                {
+                    if($s != 0)
+                        $query .= " OR size = :s" . $s;
+                    $s++;
+                }
+                $s--;
+            } 
+            $query .= " OR size = 'OS')";
+            $match = 1;
+        }
 
         if(isset($_POST['lower']))
         {
@@ -170,6 +188,18 @@
             }
         }
     }
+    if(isset($_POST['size']))
+    {
+        $x=0;
+        foreach($sizes as $size)
+        {
+            if(isset($_POST['size']['\'' . $size. '\'']))
+            {
+                $bind = ':s' . $x++;
+                $sth->bindParam($bind, $_POST['size']['\'' . $size. '\'']);
+            }
+        }
+    }
     if(isset($_POST['lower']))
         $sth->bindParam(':lower', $_POST['lower']);
     if(isset($_POST['upper']))
@@ -187,4 +217,5 @@
         }
     }
     $sth->execute();
+    $sth->debugDumpParams();
 ?>
