@@ -10,23 +10,34 @@ require_once("dbc.php");
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="changepassword.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
+<script>
+$(function(){
+$("#header").load("/header/header.html"); 
+});
+
+$(function(){
+$("#footer").load("/footer/footer.html"); 
+});
+
+</script> 
+<div id ="header"></div>
 
 </head>
 <body>
     <div class="bg-colour">
-        
-
-        <nav>
+       <!-- <nav>
             <div class="logo 1">
              <img src="eighteen.png" alt="eighteen" width="80" height="90"
              div class="main-right">
            
             </div>
             <ul class="list-items">
-                <li><a href="#" class="link">HOME</a></li>
-                <li><a href="#" class="link">COLLECTIONS</a></li>
-                <li><a href="#" class="link">CONTACT US</a></li>
-                <li><a href="#" class="link">ABOUT US</a></li>
+                <li><a href="/home/home.html" class="link">HOME</a></li>
+                <li><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
+                <li><a href="/contact/contact.php" class="link">CONTACT US</a></li>
+                <li><a href="/about-us/about-us.html" class="link">ABOUT US</a></li>
                 
             </ul>
             <div class="nav-btns">
@@ -36,7 +47,7 @@ require_once("dbc.php");
                 <a href="#" class="btn-nav-i"><i class="fa fa-heart"></i></a>
                
             </div>
-        </nav>
+        </nav>-->
         
 
         <div class="main">
@@ -100,8 +111,9 @@ require_once("dbc.php");
     </br>
 
   </body>
+  <div id ="footer"></div>
   
-    <div class="footer-container">
+    <!--<div class="footer-container">
         <div class="footer">
             <div class="footer-heading footer-1">
                 <h2>About Us</h2>
@@ -132,5 +144,6 @@ require_once("dbc.php");
         <input type="submit" value="Sign Up" id="footer-email-btn">
       </div>
     </div>
-  </div>
+  </div>-->
+
 </html>

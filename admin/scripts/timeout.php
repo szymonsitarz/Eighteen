@@ -34,7 +34,7 @@
                     break;
                 default:
                     http_response_code(404);
-                    include_once($_SERVER['DOCUMENT_ROOT'] . '/error/404.php');
+                    include_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/error/404.php');
             }
             // Calculate total timeout value (NOTE: It is *=, not =)
             $duration *= $_POST['coefficient'];

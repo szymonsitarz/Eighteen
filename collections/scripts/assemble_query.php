@@ -47,6 +47,24 @@
             $query .= " )";
             $match = 1;
         }
+        if(isset($_POST['gender']))
+        {
+            if($match == 1) $query .= " AND";
+            $query .= " ( gender = :g0";
+            $g=0;
+            if(count($_POST['gender']) > 1)
+            {
+                foreach($_POST['gender'] as $tmp)
+                {
+                    if($g != 0)
+                        $query .= " OR gender = :g" . $g;
+                    $g++;
+                }
+                $g--;
+            } 
+            $query .= " OR gender = 'U')";
+            $match = 1;
+        }
 
         if(isset($_POST['lower']))
         {
@@ -112,7 +130,7 @@
                 break;
             default:
                 http_response_code(404);
-                include_once($_SERVER['DOCUMENT_ROOT'] . '/error/404.php');  
+                include_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/error/404.php');  
         }
     }
 
@@ -137,6 +155,18 @@
             {
                 $bind = ':j' . $x++;
                 $sth->bindParam($bind, $_POST['category']['\'' . $category . '\'']);
+            }
+        }
+    }
+    if(isset($_POST['gender']))
+    {
+        $x=0;
+        foreach($genders as $gender)
+        {
+            if(isset($_POST['gender']['\'' . $gender . '\'']))
+            {
+                $bind = ':g' . $x++;
+                $sth->bindParam($bind, $_POST['gender']['\'' . $gender . '\'']);
             }
         }
     }

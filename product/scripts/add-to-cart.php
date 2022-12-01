@@ -4,14 +4,13 @@
     */
     session_start();
     $_SESSION['info']['success'] = false;
-    if(isset($_SESSION['authenticate']['username']))
+    if(!isset($_SESSION['authenticate']['username']))
     {
         if($_POST['quantity'] <= 0)
             $_SESSION['info']['notification'] = "No action was made.";
         else
         {
-            // THIS IS AN ASSUMPTION OF $_SESSION VARIABLE STRUCTURE
-            $_SESSION['cart']["'" . $_POST['pid'] . "'"] = $_POST['quantity'];
+            $_SESSION['cart'][$_POST['pid']] = $_POST['quantity'];
            
             $_SESSION['info']['success'] = true;
             $_SESSION['info']['notification'] = "Added " . $_POST['quantity'] . " item(s) to cart.";

@@ -6,6 +6,20 @@
 </head>
 <body>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
+<script>
+$(function(){
+$("#header1").load("/header/header.html"); 
+});
+
+$(function(){
+$("#footer2").load("/footer/footer.html"); 
+});
+
+</script> 
+<div id ="header1"></div>
+
   <!-- Main Sidebar -->
 <div class="sidebar box-align">
    <div class="sidebar-wrap">
@@ -88,8 +102,7 @@
        </div>
    </div>
 </div>
-
 <script type="text/javascript" src="terms-script.js"></script>
-
 </body>
+<div id ="footer2"></div>
 </html>

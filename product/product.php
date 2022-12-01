@@ -19,25 +19,20 @@
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
                 <a href="/collections/collections.php"><h1>COLLECTIONS</h1></a>
-                <a href="/contact/contact.html"><h1>CONTACT</h1></a>
+                <a href="/contact/contact.php"><h1>CONTACT</h1></a>
                 <a href="/about-us/about-us.html"><h1>ABOUT US</h1></a>
             </div>
             <div id="row-1-col-3">
                 <?php
-                    echo "<form action=\"/shared-files/200219998/TEMPORARY_LOGIN.php\" method=\"post\">";
-                    echo "<button type=\"submit\" name=\"state\" ";
                     if(!isset($_SESSION['authenticate']['username']))
-                        echo "style=\"background-color: #ff0000; font-weight: bold;\" ";
-                    echo "value=\"off\">DE-EMULATE AUTH STATE</button>";
-                    echo "<button type=\"submit\" name=\"state\" "; 
-                    if(isset($_SESSION['authenticate']['username']))
-                        echo "style=\"background-color: #00ff00; font-weight: bold;\" ";
-                    echo "value=\"on\">EMULATE AUTH STATE</button>";
-                    echo "</form>";
-                    if(isset($_SESSION['authenticate']['username']))
                     {
-                        //echo "<img src=\"/account.jpg\">";
-                        //echo "<img src=\"/cart.jpg\">";
+                        echo "<a href=\"/authenticate/login.php\">Login   </a>";
+                        echo "<a href=\"/authenticate/register.php\">Register</a>";
+                    }
+                    else
+                    {
+                        echo "<a href=\"/account/accountinfo.php\">Account    </a>";
+                        echo "<a href=\"/authenticate/logout.php\">Logout</a>";
                     }
                 ?>
             </div>
@@ -57,7 +52,7 @@
                         <button type="submit">Search</button>
                     </span>
                     <?php
-                        include_once($_SERVER['DOCUMENT_ROOT'] . 'notification.php');
+                        include_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/notification.php');
                     ?>                    
                 </form>
             </div>
@@ -74,11 +69,11 @@
                             $n = count($images);
                             for($i=1;$i<=$n && $i <= 4;$i++)
                             {
-                                echo "<a href=\"/product/product.php?model=" . $_SESSION['product']['model'] . "&selected=" . $i . "\"><img src=\"/product/img/" . $_SESSION['product']['name'] . "/" . $i . ".jpg\"></a>"; 
+                                echo "<a href=\"/product/product.php?model=" . $_SESSION['product']['model'] . "&selected=" . $i . "\"><img src=\"/product/img/" . $_SESSION['product']['name'] . "/" . $i . ".png\"></a>"; 
                             }
                         ?>
                     </div>
-                    <img id="product-selected-image" src="/product/img/<?= $_SESSION['product']['name'] . "/" . ((isset($_GET['selected'])) ? $_GET['selected'] : "1") ?>.jpg">
+                    <img id="product-selected-image" src="/product/img/<?= $_SESSION['product']['name'] . "/" . ((isset($_GET['selected'])) ? $_GET['selected'] : "1") ?>.png">
                     <div id="product-attributes">
                         <h1><?= $_SESSION['product']['name'] ?></h1>
                         <a href="#product-list-reviews">
@@ -97,17 +92,22 @@
                             </span>
                         </a>
                         <a href="#product-write-review">
-                            <span><?php 
-                                echo "<u>(";
-                                $query = "SELECT 1 FROM feedback WHERE model=:model";
-                                $sth = $db->prepare($query);
-                                $sth->bindParam(':model', $_SESSION['product']['model']);
-                                $sth->execute();
-                                $n = $sth->rowCount();
-                                echo $n . ")</u>";
-                            ?></span>
+                            
+                            <span><u><?php
+                                if($product['avg_rating'] == 0) 
+                                    echo "Be the first to review!"; 
+                                else 
+                                {
+                                    $query = "SELECT 1 FROM feedback WHERE model=:model";
+                                    $sth = $db->prepare($query);
+                                    $sth->bindParam(':model', $_SESSION['product']['model']);
+                                    $sth->execute();
+                                    $n = "(" . $sth->rowCount();
+                                    echo $n . ")";
+                                }
+                            ?></u></span>
                         </a>
-                        <?php 
+                        <?php  
                             require_once('scripts/check_stock.php');
                         ?>
                     </div>

@@ -1,0 +1,273 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+  }
+  
+  header { 
+    width: 110%;
+    height: 200vh;
+    background: black;
+  }
+  
+  nav {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 22%;
+    padding-left: 30px;
+    color: white;
+  }
+  .list-items {
+    display: flex;
+    list-style: none;
+    width: 50%;
+    justify-content: space-around;
+  }
+  
+  .link {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 13px;
+    transition: 0.4s;
+  }
+  
+  .link:hover {
+    color: #4bb19b;
+  }
+  
+  .nav-btns {
+    width: 15%;
+    font-size: 20px;
+  }
+  
+  .btn-nav-i {
+    color: white;
+    float: right;
+    padding-right: 20px;
+    transition: 0.4s;
+  }
+  
+  .btn-nav-i:hover {
+    color:#4bb19b;
+  }
+  
+  
+  .main {
+    background: black;
+    position: relative;
+    height: 60vh;
+    width: 90%;
+  }
+  .main-left {
+    position: absolute;
+    top: 0;
+    height: 150%;
+    width: 65%;
+  }
+
+.social-media {
+  position: absolute;
+  height: 80%;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+
+}
+.social-media::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 30%;
+  background: white;
+  top: 20px;
+}
+.social-media::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 30%;
+  background: white;
+  bottom: 20px;
+}
+
+.s-btn {
+  color: white;
+  margin-top: 20px;
+  transition: 0.4s;
+  font-size: 20px;
+}
+
+.s-btn:hover {
+  color: #4bb19b;
+}
+
+.banner {
+  height: 80%;
+  width: 100%;
+  margin: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-text h1 {
+  text-align: center;
+  font-size: 4rem;
+  letter-spacing: 0.5rem;
+  color: white;
+}
+.f-text span {
+  color: #4bb19b;
+}
+
+.btn {
+  margin-top: 20px;
+  text-decoration: none;
+  color: white;
+  border: solid 1px white;
+  padding: 20px 40px;
+  transition: 0.4s;
+}
+
+.btn:hover {
+  background: #4bb19b;
+
+}
+.BESTSELLING1 {
+  box-shadow: 0 8px 10px 0 white;
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: sans-serif;
+  border: none;
+  background-color:black;
+}
+.BESTSELLING{
+  color: white;
+  font-size: 40px;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+
+}
+.BESTSELLING1 button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: black;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.BESTSELLING1 button:hover {
+  opacity: 0.7;
+}
+
+.f-text2 h1 {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+.TRENDING1 {
+  box-shadow: 0 8px 10px 0 white;
+  max-width: 300px;
+  margin: auto;
+  text-align:center;
+  font-family: sans-serif;;
+  border: none;
+  background-color:black;
+}
+.TRENDING{
+  color: white;
+  font-size: 40px;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+
+}
+.TRENDING1 button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: black;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.TRENDING1 button:hover {
+  opacity: 0.7;
+}
+
+.f-text3 h1 {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-family:sans-serif;;
+}
+
+.NEWIN1 {
+  box-shadow: 0 8px 10px 0 white;
+  max-width: 300px;
+  margin: auto;
+  text-align:center;
+  font-family: sans-serif;
+  border: none;
+  background-color:black;
+}
+.NEWIN{
+  color: white;
+  font-size: 40px;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+
+}
+.NEWIN1 button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: black;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.NEWIN1 button:hover {
+  opacity: 0.7;
+}
+
+.f-text4 h1 {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-family: sans-serif;;
+}
