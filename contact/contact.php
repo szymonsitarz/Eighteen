@@ -1,38 +1,41 @@
 <?php session_start(); ?>
 <html>
     <link rel="stylesheet" href="contact.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.google.com/knowledge/glossary/sans_serif">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
+</head>
+<body>
     <header>
         <nav>
             <div class="logo 1">
-             <img src="logo-white.png" alt="eighteen" width="90" height="90"
+              <img src="/shared-files/logo.png" alt="" width="80" height="90"
              div class="main-right">
-           
+             </div>
             </div>
 
             </div>
             <ul class="list-items">
-                <li><a href="#" class="link">HOME</a></li>
-                <li><a href="#" class="link">COLLECTIONS</a></li>
-                <li><a href="#" class="link">CONTACT US</a></li>
+                <li><a href="/home/home.html" class="link">HOME</a></li>
+                <li><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
+                <li><a href="/contact/contact.php" class="link">CONTACT US</a></li>
                 <li><a href="#" class="link">ABOUT US</a></li>
                 
             </ul>
         
             <div class="nav-btns">
-                <a href="#" class="btn-nav-i"><i class="fa fa-search"></i></a>
+
                 <a href="#" class="btn-nav-i"><i class="fa fa-shopping-cart"></i></a>
-                <a href="#" class="btn-nav-i"><i class="fa fa-user"></i></a>
                 <a href="#" class="btn-nav-i"><i class="fa fa-heart"></i></a>
-               
+                <a href="#" class="btn-nav-i"><i class="fa fa-user"></i></a>
             </div>
         </nav>
-        <div class="main">
-        <div class="main-right"></div>
-
-      </div>
     </header>
+    </body>
+    <div class="backgroundmain"></div> 
+    <br><br><br><br>
     <div id = "formheading">
       <h1> Contact Form <h1>
 </div>
@@ -62,42 +65,54 @@
           </div>   
         </div> 
         
-                            <div id= "contactinfo">
-                              <h1> Aston University <br><br>•<br><br> Birmingham, England <br><br>•<br><br> 0121 204 3000 <br><br>•<br><br> eighteenstore@gmail.com</h1>
-</div>
-                            <div class="footer-container">
-    <div class="footer">
-      <div class="footer-heading footer-1">
-        <h2>About Us</h2>
-<a href="#">Blog</a>
-<a href="#">Desmo</a>
-<a href="#">Customers</a>
-<a href="#">Investors</a>
-<a href="#">Terms of Services</a>
-      </div>
 
-        <div class="footer-heading footer-2">
-          <h2>Contact Us</h2>
-  <a href="#">Careers</a>
-  <a href="#">Support</a>
-  <a href="#">Contact</a>
-  <a href="#">Sponsorships</a>
+     <div id = "contactinfoaston">
+        Aston University </div>
+     <div id = "contactinfolocation">
+        Birmingham, England </div>
+     <div id = "contactinfonumber"> 
+        0121 204 3000 </div> 
+     <div id = "contactinfoemail"> 
+        eighteenstore@gmail.com </div>
+
+       <br><br><br><br>
+
+       <div class="maincontainer">
+
+<div class="footer-container">
+    <div class="footer">
+        <div class="footer-heading footer-1">
+        <h2>Terms & Conditions</h2>
+            <a href="/footer_pages/privacy-policy.html">Privacy Policy</a>
+            <a href="/footer_pages/return-policy.html">Return Policy</a>
+            <a href="/footer_pages/Terms.html">Terms & Conditions</a>
         </div>
 
-  <div class="footer-heading footer-3">
-        <h2>Social Media </h2>
-<a href="#">Instagram</a>
-<a href="#">Facebook</a>
-<a href="#">Twitter</a>
-      </div>
+        <div class="footer-heading footer-2">
+            <h2>Customer Service</h2>
+            <a href="/contact/contact.php">Contact Us</a>
+            <a href="/footer_pages/faq.html">FAQ's</a>
+        </div>
+            
+        <div class="footer-heading footer-3">
+            <h2>Information</h2>
+            <a href="/footer_pages/delivery-faq.html">Delivery Information</a>
+            <a href="/footer_pages/genral-faq.html">Genral Information</a>
+            <a href="/footer_pages/payments-faq.html">Payments Information</a>
+            <a href="/footer_pages/products-faq.html">Products Information</a>
+            <a href="/footer_pages/Vouchers-faq.html">Vouchers Information</a>
+            <a href="/footer_pages/returns-faq.html">Returns Information</a>
+        </div>
 
-      <div class="footer-email-form">
+        <div class="footer-email-form">
         <h2>Join our newsletter subscription</h2>
         <input type="email" placeholder="your email address" id="footer-email">
         <input type="submit" value="Sign Up" id="footer-email-btn">
-      </div>
+        </div>
     </div>
-  </div>
+
+</div>
+</div>
   <div class="vl"></div> 
     </body>
 
