@@ -1,13 +1,13 @@
 * {
-    /* padding: 0px;
-    margin: 0; */
+    padding: 0px;
+    margin: 0;
     box-sizing: border-box;
     font-family: sans-serif;
   
 }
 
 
-header { 
+.main-header { 
   width: 100%;
   height: auto;
   background: black;
@@ -15,7 +15,7 @@ header {
   
 }
 
-nav {
+.navigation-bar {
   display: flex;
   width: 100%;
   height: 10vh;
@@ -25,13 +25,13 @@ nav {
   
 }
 
-.logo {
+.logooo {
   width: 22%;
   padding-left: 30px;
   color: white;
 
 }
-.list-items {
+.main-list-items {
   display: flex;
   list-style: none;
   width: 50%;
@@ -39,7 +39,7 @@ nav {
   color: white;
 }
 
-li{
+.each-li{
   padding-bottom: 5px;
 }
 
@@ -55,40 +55,40 @@ li{
   color: #4bb19b;
 }
 
-.nav-btns {
+.navigation-buttons {
   width: 15%;
   font-size: 20px;
 
 }
 
-.btn-nav-i {
+.button-navigation-i {
   color: white;
   float: right;
   padding-right: 20px;
   transition: 0.4s;
 }
 
-.btn-nav-i:hover {
+.button-navigation-i:hover {
   color:#4bb19b;
 }
 
 @media (max-width: 800px) {
-  nav {
+  .navigation-bar {
     flex-direction: column;
   }
 
-  .list-items {
+  .main-list-items {
     flex-direction: row;
     align-items:stretch;
     width: fit-content;
     margin-bottom: 15px;
 
   }
-  li{
+  .each-li{
     padding: 10px;
   }
 
-  .nav-btns{
+  .navigation-buttons{
     align-items:stretch;
     width: fit-content;
     margin-bottom: 15px;
