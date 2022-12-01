@@ -136,13 +136,13 @@ VALUES (@model_d, 'BOMBER_JACKET', 'jackets', 'white', 'L',  'U', 31.99, 15, 4, 
 
 SET @model_e := UUID();
 INSERT INTO products (model, name, category, color, size, gender, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_e, 'TRACKSUIT_BOTTOMS', 'trousers', 'white', 'S',  'U', 24.99, 24, 38, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-09-01 05-30-01");
+VALUES (@model_e, 'JOGGERS', 'trousers', 'white', 'S',  'U', 24.99, 24, 38, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-09-01 05-30-01");
 
 INSERT INTO products (model, name, category, color, size, gender, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_e, 'TRACKSUIT_BOTTOMS', 'trousers', 'white', 'M',  'U', 24.99, 23, 38, 2, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-09-01 05-30-01");
+VALUES (@model_e, 'JOGGERS', 'trousers', 'white', 'M',  'U', 24.99, 23, 38, 2, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-09-01 05-30-01");
 
 INSERT INTO products (model, name, category, color, size, gender, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_e, 'TRACKSUIT_BOTTOMS', 'trousers', 'white', 'L', 'U', 24.99, 24, 38, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-09-01 05-30-01");
+VALUES (@model_e, 'JOGGERS', 'trousers', 'white', 'L', 'U', 24.99, 24, 38, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-09-01 05-30-01");
 
 SET @model_f := UUID();
 INSERT INTO products (model, name, category, color, size, gender, price, stock, views, bought_all_time, avg_rating, description, date_time)
@@ -170,14 +170,14 @@ VALUES (@model_h, 'LEGGINGS', 'sportswear', 'black', 'M', 'F',  12.99, 10, 18, 0
 
 SET @model_i := UUID();
 INSERT INTO products (model, name, category, color, size, gender, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_i, 'SHORT_SHORTS', 'shorts', 'white', 'XS',  'F', 8.99, 5, 2, 0, 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-09-01 05-30-01");
+VALUES (@model_i, 'GYM_SHORTS', 'shorts', 'white', 'XS',  'F', 8.99, 5, 2, 0, 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-09-01 05-30-01");
 
 INSERT INTO products (model, name, category, color, size, gender, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_i, 'SHORT_SHORTS', 'shorts', 'white', 'S',  'F', 8.99, 5, 2, 0, 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-09-01 05-30-01");
+VALUES (@model_i, 'GYM_SHORTS', 'shorts', 'white', 'S',  'F', 8.99, 5, 2, 0, 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-09-01 05-30-01");
 
 SET @model_j := UUID();
 INSERT INTO products (model, name, category, color, size, gender, price, stock, views, bought_all_time, avg_rating, description, date_time)
-VALUES (@model_j, 'SCARF', 'accessories', 'black', 'OS', 'U', 150.00, 1, 97, 0, 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-11-11 05-30-02");
+VALUES (@model_j, 'SILK_SCARF', 'accessories', 'black', 'OS', 'U', 150.00, 1, 97, 0, 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', "2022-11-11 05-30-02");
 
 /* Seeding orders table */
 /*>>HOODIE ORDERS */
@@ -191,7 +191,7 @@ VALUES (3, 2, 'refunded', "2022-09-08 14-23-21");
 INSERT INTO orders (uid, pid, status, date_time)
 VALUES (4, 5, 'delivered', "2022-09-12 11-53-21");
 
-/*>>TRACKIES ORDERS */
+/*>>JOGGERS ORDERS */
 INSERT INTO orders (uid, pid, status, date_time)
 VALUES (5, 10, 'delivered', "2022-09-16 22-05-01");
 
@@ -234,7 +234,7 @@ VALUES ('genghis', @model_a, "Shattered expectations really.", 1, 1666784694);
 INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
 VALUES ('elon', @model_b, "Pretty cool.", 5, 1666871094);
 
-/*>>TRACKIES FEEDBACK */
+/*>>JOGGERS FEEDBACK */
 INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
 VALUES ('napoleon', @model_e, "Satisfied customer.", 5, 1666957494);
 INSERT INTO feedback (username, model, review, rating, seconds_since_epoch)
