@@ -16,6 +16,7 @@
         <title>Admin dashboard</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="admin.css?ts=<?=time()?>">
+        <link rel="stylesheet" href="/footer/footer.css">
         <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">
     </head>
     <body>
@@ -23,14 +24,14 @@
             <!-- Row #1 consists of header -->
             <!-- Col #1 of Row #1 consists of logo -->
             <div id="row-1-col-1">
-                <img src="/shared-files/200219998/logo.png" width="50" height="50" alt="logo">
+                <img src="/shared-files/logo.png" width="50" height="50" alt="logo">
             </div>
             <!-- Col #2 of Row #1 consists of Home, Collections, Contact & About Us (i.e. business navigation links) -->
             <div id="row-1-col-2">
                 <a href="/home/home.php"><h1>HOME</h1></a>
                 <a href="/collections/collections.php"><h1>COLLECTIONS</h1></a>
                 <a href="/contact/contact.php"><h1>CONTACT</h1></a>
-                <a href="/about-us/about-us.html"><h1>ABOUT US</h1></a>
+                <a href="/about-us/about-us.php"><h1>ABOUT US</h1></a>
             </div>
             <!-- Col #3 of Row #1 consists of Login, Register or alternatively Account, Logout, Cart - depending on 
                 authentication state (i.e. functional navigation links) -->
@@ -108,7 +109,46 @@
                     $_SESSION['admin']['tabbed_last'] = $_SESSION['admin']['tab_selected'];
                 ?>
             </div>
-            <div id="row-4">
+
+                
+            <div class="end-footer">
+
+            <div class="main-footer-container">
+                <div class="inside-footer">
+                    <div class="footer-heading1 foooter-1">
+                    <h2>Terms & Conditions</h2>
+                        <a href="/footer_pages/privacy-policy.html">Privacy Policy</a>
+                        <a href="/footer_pages/return-policy.html">Return Policy</a>
+                        <a href="/footer_pages/Terms.html">Terms & Conditions</a>
+                    </div>
+
+                    <div class="footer-heading1 foooter-2">
+                        <h2>Customer Service</h2>
+                        <a href="/contact/contact.php">Contact Us</a>
+                        <a href="/footer_pages/faq.html">FAQ's</a>
+                    </div>
+                        
+                    <div class="footer-heading1 foooter-3">
+                        <h2>Information</h2>
+                        <a href="/footer_pages/delivery-faq.html">Delivery Information</a>
+                        <a href="/footer_pages/genral-faq.html">Genral Information</a>
+                        <a href="/footer_pages/payments-faq.html">Payments Information</a>
+                        <a href="/footer_pages/products-faq.html">Products Information</a>
+                        <a href="/footer_pages/Vouchers-faq.html">Vouchers Information</a>
+                        <a href="/footer_pages/returns-faq.html">Returns Information</a>
+                    </div>
+
+                    <div class="footer-email-form1">
+                    <h2>Join our newsletter subscription</h2>
+                    <input type="email" placeholder="your email address" id="footer-email1">
+                    <input type="submit" value="Sign Up" id="footer-email-btn1">
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+            <!-- <div id="row-4">
                 <div class="footer-heading footer-1">
                     <h2>About Us</h2>
                     <a href="#">Blog</a>
@@ -139,6 +179,6 @@
                     <input type="submit" value="Sign Up" id="footer-email-btn">
                 </div>
             </div>
-        </div>
+        </div> -->
     </body>
 </html>

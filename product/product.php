@@ -7,19 +7,20 @@
         <title>Product</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="product.css?ts=<?=time()?>">
+        <link rel="stylesheet" href="/footer/footer.css">
         <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">
 
     </head>
     <body>
         <div id="container">
             <div id="row-1-col-1">
-                <img src="/shared-files/200219998/logo.png" width="50" height="50">
+                <img src="/shared-files/logo.png" width="50" height="50">
             </div>
             <div id="row-1-col-2">
                 <a href="/home/home.php"><h1>HOME</h1></a>
                 <a href="/collections/collections.php"><h1>COLLECTIONS</h1></a>
                 <a href="/contact/contact.php"><h1>CONTACT</h1></a>
-                <a href="/about-us/about-us.html"><h1>ABOUT US</h1></a>
+                <a href="/about-us/about-us.php"><h1>ABOUT US</h1></a>
             </div>
             <div id="row-1-col-3">
                 <?php
@@ -134,39 +135,44 @@
                     </form>
                 </div>
             </div>
-            <div id="row-4">
-                <div class="footer-heading footer-1">
-                    <h2>About Us</h2>
-                    <a href="#">Blog</a>
-                    <a href="#">Desmo</a>
-                    <a href="#">Customers</a>
-                    <a href="#">Investors</a>
-                    <a href="#">Terms of Services</a>
-                </div>
+                
+            <div class="end-footer">
 
-                <div class="footer-heading footer-2">
-                    <h2>Contact Us</h2>
-                    <a href="#">Careers</a>
-                    <a href="#">Support</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Sponsorships</a>
-                </div>
+            <div class="main-footer-container">
+                <div class="inside-footer">
+                    <div class="footer-heading1 foooter-1">
+                    <h2>Terms & Conditions</h2>
+                        <a href="/footer_pages/privacy-policy.html">Privacy Policy</a>
+                        <a href="/footer_pages/return-policy.html">Return Policy</a>
+                        <a href="/footer_pages/Terms.html">Terms & Conditions</a>
+                    </div>
 
-                <div class="footer-heading footer-3">
-                    <h2>Social Media </h2>
-                        <a href="#">Instagram</a>
-                        <a href="#">Facebook</a>
-                        <a href="#">Twitter</a>
-                </div>
+                    <div class="footer-heading1 foooter-2">
+                        <h2>Customer Service</h2>
+                        <a href="/contact/contact.php">Contact Us</a>
+                        <a href="/footer_pages/faq.html">FAQ's</a>
+                    </div>
+                        
+                    <div class="footer-heading1 foooter-3">
+                        <h2>Information</h2>
+                        <a href="/footer_pages/delivery-faq.html">Delivery Information</a>
+                        <a href="/footer_pages/genral-faq.html">Genral Information</a>
+                        <a href="/footer_pages/payments-faq.html">Payments Information</a>
+                        <a href="/footer_pages/products-faq.html">Products Information</a>
+                        <a href="/footer_pages/Vouchers-faq.html">Vouchers Information</a>
+                        <a href="/footer_pages/returns-faq.html">Returns Information</a>
+                    </div>
 
-                <div class="footer-email-form">
+                    <div class="footer-email-form1">
                     <h2>Join our newsletter subscription</h2>
-                    <input type="email" placeholder="your email address" id="footer-email">
-                    <input type="submit" value="Sign Up" id="footer-email-btn">
+                    <input type="email" placeholder="your email address" id="footer-email1">
+                    <input type="submit" value="Sign Up" id="footer-email-btn1">
+                    </div>
                 </div>
-            
-                <?php require_once('scripts/inc_views.php'); ?>
-            </div>
-        </div>
+
+</div>
+</div>
+
+
     </body>
 </html>

@@ -6,23 +6,52 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="/header/header.css">
+<link rel="stylesheet" href="/footer/footer.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="changepassword.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-</script>
-<script>
-$(function(){
-$("#header").load("/header/header.html"); 
-});
 
-$(function(){
-$("#footer").load("/footer/footer.html"); 
-});
+<div class="top-header">
+    <header class="main-header">
+      <nav class = "navigation-bar">
+          <div class="logooo 1">
+              <a href="/home/home.php">
+            <img src="/shared-files/logo.png" alt="" width="80" height="90" div class="fully-right">
+           </div>
+          </a>
+          
+          <ul class="main-list-items">
+              <li class="each-li"><a href="/home/home.php" class="link">HOME</a></li>
+              <li class="each-li"><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
+              <li class="each-li"><a href="/contact/contact.php" class="link">CONTACT US</a></li>
+              <li class="each-li"><a href="/about-us/about-us.php" class="link">ABOUT US</a></li>
+             
+              
+          </ul>
+      
+          <div class="navigation-buttons">
 
-</script> 
-<div id ="header"></div>
+              <a href="/account/accountinfo.php" class="button-navigation-i"><i class="fa fa-user"></i></a>
+              <?php
+                    if(!isset($_SESSION['auth']))
+                    {?>
+                   
+                        <a href="/auth/login.php" class="button-navigation-i">Login</a>
+                        <a href="/auth/register.php" class="button-navigation-i">Register</a><?php
+                    }
+                    else
+                    {
+                        $size=40;?>
+                        <a href="/cart/cart.php" class="button-navigation-i"><i class="fa fa-shopping-cart"></i></a>
+                        <a href="/auth/logout.php" class="button-navigation-i">Logout</a><?php
+                    }
+                ?>
+          </div>
+      </nav>
+    </header>
+  </div>
 
 </head>
 <body>
@@ -37,7 +66,7 @@ $("#footer").load("/footer/footer.html");
                 <li><a href="/home/home.php" class="link">HOME</a></li>
                 <li><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
                 <li><a href="/contact/contact.php" class="link">CONTACT US</a></li>
-                <li><a href="/about-us/about-us.html" class="link">ABOUT US</a></li>
+                <li><a href="/about-us/about-us.php" class="link">ABOUT US</a></li>
                 
             </ul>
             <div class="nav-btns">
@@ -109,9 +138,44 @@ $("#footer").load("/footer/footer.html");
     </br>
     </br>
     </br>
+    <div class="end-footer">
 
+  <div class="main-footer-container">
+      <div class="inside-footer">
+          <div class="footer-heading1 foooter-1">
+          <h2>Terms & Conditions</h2>
+              <a href="/footer_pages/privacy-policy.html">Privacy Policy</a>
+              <a href="/footer_pages/return-policy.html">Return Policy</a>
+              <a href="/footer_pages/Terms.html">Terms & Conditions</a>
+          </div>
+
+          <div class="footer-heading1 foooter-2">
+              <h2>Customer Service</h2>
+              <a href="/contact/contact.php">Contact Us</a>
+              <a href="/footer_pages/faq.html">FAQ's</a>
+          </div>
+              
+          <div class="footer-heading1 foooter-3">
+              <h2>Information</h2>
+              <a href="/footer_pages/delivery-faq.html">Delivery Information</a>
+              <a href="/footer_pages/genral-faq.html">Genral Information</a>
+              <a href="/footer_pages/payments-faq.html">Payments Information</a>
+              <a href="/footer_pages/products-faq.html">Products Information</a>
+              <a href="/footer_pages/Vouchers-faq.html">Vouchers Information</a>
+              <a href="/footer_pages/returns-faq.html">Returns Information</a>
+          </div>
+
+          <div class="footer-email-form1">
+          <h2>Join our newsletter subscription</h2>
+          <input type="email" placeholder="your email address" id="footer-email1">
+          <input type="submit" value="Sign Up" id="footer-email-btn1">
+          </div>
+      </div>
+
+  </div>
+  </div>
   </body>
-  <div id ="footer"></div>
+
   
     <!--<div class="footer-container">
         <div class="footer">
