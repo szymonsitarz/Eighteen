@@ -1,6 +1,5 @@
 <?php 
     session_start(); 
-    $_SESSION['info']['referer']=$_SERVER['PHP_SELF'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +13,7 @@
     <body>
         <div id="container">
             <div id="row-1-col-1">
-                <img src="/shared-files/200219998/logo-2.png" width="50" height="50">
+                <img src="/shared-files/200219998/logo.png" width="50" height="50">
             </div>
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
@@ -26,13 +25,15 @@
                 <?php
                     if(!isset($_SESSION['authenticate']['username']))
                     {
-                        echo "<a href=\"/authenticate/login.php\">Login   </a>";
-                        echo "<a href=\"/authenticate/register.php\">Register</a>";
+                        echo "<a href=\"/authentication/login.php\">Login</a>";
+                        echo "<a href=\"/authentication/register.php\">Register</a>";
                     }
                     else
                     {
-                        echo "<a href=\"/account/accountinfo.php\">Account    </a>";
-                        echo "<a href=\"/authenticate/logout.php\">Logout</a>";
+                        $size=40;
+                        echo "<a href=\"/cart/accountinfo.php\"><img src=\"/shared-files/200219998/account.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
+                        echo "<a href=\"/cart/cart.php\"><img src=\"/shared-files/200219998/cart.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
+                        echo "<a href=\"/authentication/logout.php\">Logout</a>";
                     }
                 ?>
             </div>
@@ -58,9 +59,9 @@
             </div>
             <div id="row-3">
                 <?php
-                    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
-                    require_once('scripts/fetch_product.php');
-                    require_once('scripts/save_product.php'); ?>
+                    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
+                    require_once('scripts/fetch.php');
+                    require_once('scripts/save_state.php'); ?>
                 <div id="product-stage">
                     <div id="product-gallery">
                         <?php 
@@ -108,7 +109,7 @@
                             ?></u></span>
                         </a>
                         <?php  
-                            require_once('scripts/check_stock.php');
+                            require_once('scripts/stock.php');
                         ?>
                     </div>
                 </div>
@@ -116,25 +117,20 @@
                         <h2>Description</h2>    
                         <p><?= $_SESSION['product']['description'] ?></p>
                 </div>
-                <div id="product-list-reviews">
+                <div id="product-feedback">
                     <h2>Feedback</h2>
                     <?php 
-                        require_once('scripts/list_reviews.php');
+                        require_once('scripts/feedback.php');
                     ?>
                 </div>
-                <div id="product-write-review">
+                <div id="product-review">
                     <h2>Write review</h2>
-                    <form method="post" action="scripts/submit_review.php">
+                    <form method="post" action="scripts/review.php">
                         <label>Rating</label>
                         <input type="text" class="long-field" name="product-review-rating" placeholder="(1-5)"><br>
                         <label>Comments</label>
                         <textarea class="long-field" name="product-review-comments" placeholder="Tell us what you think."></textarea><br>
                         <button type="submit" name="product-submit-review">Submit</button>
-                        <!-- CAPTCHA (after loading to webmin server)
-                            <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LdaKw8jAAAAABEnvzOPHGBMeb7hFM1WbUHlBCGJ" height="300" width="500" frameborder="0"></iframe><br>
-                            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
-                            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
-                        -->
                     </form>
                 </div>
             </div>
@@ -169,7 +165,7 @@
                     <input type="submit" value="Sign Up" id="footer-email-btn">
                 </div>
             
-                <?php require_once('scripts/increment_views.php'); ?>
+                <?php require_once('scripts/inc_views.php'); ?>
             </div>
         </div>
     </body>

@@ -1,14 +1,21 @@
 <?php
+/*
+    REQUIREMENTS:
+        1. INSERT record into orders table per unit bought
+        2. DECREMENT stock for pid in products table
+        3. INCREMENT bought_all_time for pid in products table
+*/
     session_start();
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/shared-files/200219998/database_connection.php");
 
     $_SESSION['authenticate']['username'] = "admin";
     if(isset($_SESSION['authenticate']['username']))
     {
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/shared-files/200219998/select_uid.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "scripts/getuid.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
         foreach($_SESSION['cart'] as $key => $quantity)
             for($i=0;$i<$quantity;$i++)
             {
+                echo $key . " is " . $quantity . "\n";
                 $query = "INSERT INTO orders (uid, pid) VALUES (:uid, :pid)";
                 $sth = $db->prepare($query);
                 $sth->bindParam(':uid', $uid);

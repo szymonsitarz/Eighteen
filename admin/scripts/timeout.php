@@ -7,7 +7,7 @@
     const MONTH = DAY * (365.25 / 12);
     const YEAR = DAY * 365.25;
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 
     if(isset($_POST['uid']))
     {

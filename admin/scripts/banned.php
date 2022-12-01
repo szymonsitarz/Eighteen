@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
     $query = "UPDATE users SET banned=:banned WHERE uid=:uid";
     $sth = $db->prepare($query);
     if(isset($_POST['change_banned']) && isset($_POST['uid']))

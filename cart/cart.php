@@ -48,31 +48,43 @@
 				ini_set('display_errors', 1);
 				ini_set('display_startup_errors', 1);
 				error_reporting(E_ALL);
+
+				// If previous action was to remove an item, do so for the particular pid.
 				if(isset($_POST['remove']))
 					unset($_SESSION['cart'][$_POST['remove']]);
+				
+				// Display each unique item in cart and calculate subtotal
 				$subtotal=0;
 				foreach($_SESSION['cart'] as $key => $quantity)
 				{
-					if(intval($key) == 0)
-						continue;
-					require_once($_SERVER['DOCUMENT_ROOT'] . "/shared-files/200219998/database_connection.php");
-					$query = "SELECT name, price FROM products WHERE pid=:pid";
-					$sth = $db->prepare($query);
-					$pid=intval($key);
-					$sth->bindParam(":pid", $pid);
-					$sth->execute();
-					$row = $sth->fetch(PDO::FETCH_ASSOC);
+					// STRANGE ERROR
+					if(intval($key) == 0) continue;
 
-					$subtotal+=$row['price'];
-					echo "<div class=\"box-container\">";
-					echo "<div class=\"box\">";
-					echo "<img src=\"/product/img/" . $row['name'] . "/1.png\">";
-					echo "<div class=\"content\">";
-					echo "<h3>" . $row['name'] . "</h3>";
-					echo "<h4>Price: " . $_SESSION['product']['price'] . "</h4>";
-					echo "<p class=\"unit\">Quantity: <input name=\"\" value=\"" . $quantity . "\"></p>";
-					echo "</div></div>";
-					echo "<form action=\"\" method=\"post\"><button type=\"submit\" name=\"remove\" value=\"" . $quantity . "\" class=\"btn-area\">Remove</button></form>";
+					// Remove items with negative quantities
+					if($quantity < 0)
+						unset($_SESSION['cart'][$key]);
+					else
+					{
+						require_once($_SERVER['DOCUMENT_ROOT'] . "/shared-files/200219998/db.php");
+						$query = "SELECT name, price FROM products WHERE pid=:pid";
+						$sth = $db->prepare($query);
+						$pid=intval($key);
+						$sth->bindParam(":pid", $pid);
+						$sth->execute();
+						$row = $sth->fetch(PDO::FETCH_ASSOC);
+
+						$subtotal+=$row['price']*$quantity;
+
+						echo "<div class=\"box-container\">";
+						echo "<div class=\"box\">";
+						echo "<img src=\"/product/img/" . $row['name'] . "/1.png\">";
+						echo "<div class=\"content\">";
+						echo "<h3>" . $row['name'] . "</h3>";
+						echo "<h4>Price: " . $_SESSION['product']['price'] . "</h4>";
+						echo "<p class=\"unit\">Quantity: <input name=\"\" value=\"" . $quantity . "\"></p>";
+						echo "</div></div>";
+						echo "<form action=\"\" method=\"post\"><button type=\"submit\" name=\"remove\" value=\"" . $key . "\" class=\"btn-area\">Remove</button></form>";
+					}
 				}
 				?>
 			</div>

@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 
     /* Passing conditions:
         1. User is authenticated - check if $_SESSION['authenticate']['username'] is set. 

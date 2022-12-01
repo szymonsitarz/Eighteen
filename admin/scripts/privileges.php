@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
     $query = "UPDATE users SET privileges=:privileges WHERE uid=:uid";
     $sth = $db->prepare($query);
     if(isset($_POST['change_privileges']) && isset($_POST['uid']))

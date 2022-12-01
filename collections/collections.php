@@ -1,9 +1,8 @@
 <?php 
     session_start(); 
-    $_SESSION['info']['referer']=$_SERVER['PHP_SELF'];
     if(isset($_POST['submit']))
         if($_POST['submit'] != 'Apply filters')
-            unset($_POST);
+            header('Location: /collections/collections.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,17 +11,11 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="collections.css?ts=<?=time()?>">
         <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-                <script>
-                    $(function(){
-                    $("#footer").load("/footer/footer.html"); 
-                    });
-        </script> 
     </head>
     <body>
         <div id="container">
             <div id="row-1-col-1">
-                <img src="/shared-files/200219998/logo-2.png" width=50px height=50px>
+                <img src="/shared-files/200219998/logo.png" width=50px height=50px>
             </div>
             <div id="row-1-col-2">
                 <a href="/home/home.html"><h1>HOME</h1></a>
@@ -32,16 +25,17 @@
             </div>
             <div id="row-1-col-3">
                 <?php
-                    echo "<a href=\"/cart/cart.php\">Cart   </a><br>";
-                    if(isset($_SESSION['authenticate']['username']))
+                    if(!isset($_SESSION['authenticate']['username']))
                     {
-                        echo "<a href=\"/authenticate/login.php\">Login   </a>";
-                        echo "<a href=\"/authenticate/register.php\">Register</a>";
+                        echo "<a href=\"/authentication/login.php\">Login</a>";
+                        echo "<a href=\"/authentication/register.php\">Register</a>";
                     }
                     else
                     {
-                        echo "<a href=\"/account/accountinfo.php\">Account    </a>";
-                        echo "<a href=\"/authenticate/logout.php\">Logout</a>";
+                        $size=40;
+                        echo "<a href=\"/cart/accountinfo.php\"><img src=\"/shared-files/200219998/account.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
+                        echo "<a href=\"/cart/cart.php\"><img src=\"/shared-files/200219998/cart.png\" width=\"{$size}px\" height=\"{$size}px\"></a>";
+                        echo "<a href=\"/authentication/logout.php\">Logout</a>";
                     }
                 ?>
             </div>
@@ -107,42 +101,64 @@
                             }
                         ?>
                     </div>
-                    <input type="submit" value="Apply filters">
-                    <input type="submit" value="Reset filters">
+                    <input type="submit" name="submit" value="Apply filters">
+                    <input type="submit" name="submit" value="Reset filters">
                 </form>
             </div>
             <div id="row-3-col-2">
                 <?php
                     echo "<h2>";
-                    if(isset($_GET['sort']))
-                    {
-                        switch($_GET['sort'])
+                    $array = array('best_selling', 'latest', 'trending');
+
+                    /* If no parameter set or invalid parameter, set heading to Products, otherwise to the value 
+                        of the valid parameter */
+                    $match=false;
+                    foreach($array as $comparer)
+                        if($_GET['sort'] === $comparer)
                         {
-                            // Most views and most sold
-                            case "best_selling":
-                                echo "Best Selling";
-                                break;
-                            case "latest":
-                                echo "Latest";
-                                break;
-                            case "trending":
-                                echo "Trending";
-                                break;
-                            default:
-                                echo "Products";
+                            $match=true;
+                            break;
                         }
-                    }
+                    if(isset($_GET['sort']) && $match)
+                        echo "<em>" . ucfirst($_GET['sort']) . "</em>";
                     else
                         echo "Products";
-
                     echo "</h2>";
-                    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/database_connection.php');
-                    require_once('scripts/assemble_query.php');
-                    require_once('scripts/display_products.php');
+                    require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
+                    require_once('scripts/sqlgen.php');
+                    require_once('scripts/presentation.php');
                 ?>
             </div>
             <div id="row-4">
-                <div id="footer"></div>
+                <div class="footer-heading footer-1">
+                    <h2>About Us</h2>
+                    <a href="#">Blog</a>
+                    <a href="#">Desmo</a>
+                    <a href="#">Customers</a>
+                    <a href="#">Investors</a>
+                    <a href="#">Terms of Services</a>
+                </div>
+
+                <div class="footer-heading footer-2">
+                    <h2>Contact Us</h2>
+                    <a href="#">Careers</a>
+                    <a href="#">Support</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Sponsorships</a>
+                </div>
+
+                <div class="footer-heading footer-3">
+                    <h2>Social Media </h2>
+                        <a href="#">Instagram</a>
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                </div>
+
+                <div class="footer-email-form">
+                    <h2>Join our newsletter subscription</h2>
+                    <input type="email" placeholder="your email address" id="footer-email">
+                    <input type="submit" value="Sign Up" id="footer-email-btn">
+                </div>
             </div>
         </div>
     </body>
