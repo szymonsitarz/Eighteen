@@ -16,6 +16,7 @@
         <title>Admin dashboard</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="admin.css?ts=<?=time()?>">
+        <link rel="stylesheet" href="/footer/footer.css">
         <link rel="stylesheet" href="/shared-files/200219998/footer.css?ts=<?=time()?>">
     </head>
     <body>
@@ -108,7 +109,46 @@
                     $_SESSION['admin']['tabbed_last'] = $_SESSION['admin']['tab_selected'];
                 ?>
             </div>
-            <div id="row-4">
+
+                
+            <div class="end-footer">
+
+            <div class="main-footer-container">
+                <div class="inside-footer">
+                    <div class="footer-heading1 foooter-1">
+                    <h2>Terms & Conditions</h2>
+                        <a href="/footer_pages/privacy-policy.html">Privacy Policy</a>
+                        <a href="/footer_pages/return-policy.html">Return Policy</a>
+                        <a href="/footer_pages/Terms.html">Terms & Conditions</a>
+                    </div>
+
+                    <div class="footer-heading1 foooter-2">
+                        <h2>Customer Service</h2>
+                        <a href="/contact/contact.php">Contact Us</a>
+                        <a href="/footer_pages/faq.html">FAQ's</a>
+                    </div>
+                        
+                    <div class="footer-heading1 foooter-3">
+                        <h2>Information</h2>
+                        <a href="/footer_pages/delivery-faq.html">Delivery Information</a>
+                        <a href="/footer_pages/genral-faq.html">Genral Information</a>
+                        <a href="/footer_pages/payments-faq.html">Payments Information</a>
+                        <a href="/footer_pages/products-faq.html">Products Information</a>
+                        <a href="/footer_pages/Vouchers-faq.html">Vouchers Information</a>
+                        <a href="/footer_pages/returns-faq.html">Returns Information</a>
+                    </div>
+
+                    <div class="footer-email-form1">
+                    <h2>Join our newsletter subscription</h2>
+                    <input type="email" placeholder="your email address" id="footer-email1">
+                    <input type="submit" value="Sign Up" id="footer-email-btn1">
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+            <!-- <div id="row-4">
                 <div class="footer-heading footer-1">
                     <h2>About Us</h2>
                     <a href="#">Blog</a>
@@ -139,6 +179,6 @@
                     <input type="submit" value="Sign Up" id="footer-email-btn">
                 </div>
             </div>
-        </div>
+        </div> -->
     </body>
 </html>
