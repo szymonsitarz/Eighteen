@@ -2,7 +2,7 @@
     session_start();
 
     // Only authorise access to users with privileges flag set in users table.
-    if(!isset($_SESSION['auth']))
+    if(!isset($_SESSION['is_admin']))
     {
         $_SESSION['info']['success'] = false;
         $_SESSION['info']['notification'] = "Access denied";
