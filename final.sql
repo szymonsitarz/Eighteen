@@ -1,7 +1,9 @@
 /* Handle conflict in testing; simply rerun script */
-DROP DATABASE IF EXISTS cs2tp;
-CREATE DATABASE cs2tp;
-USE cs2tp;
+DROP TABLE IF EXISTS contact;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS feedback;
 
 /* NOTE: Any NOT NULL field is set in register.php */
 CREATE TABLE users (
@@ -59,7 +61,7 @@ CREATE TABLE feedback (
     username VARCHAR(16) NOT NULL,
     review LONGTEXT,
     rating INT NOT NULL,
-    seconds_since_epoch INT DEFAULT UNIX_TIMESTAMP(CURRENT_TIMESTAMP),
+    seconds_since_epoch INT,
     PRIMARY KEY(fid)
 );
 

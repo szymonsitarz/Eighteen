@@ -26,12 +26,14 @@
 
         // Insert new record into feedback table.
         $rating = round($_POST['product-review-rating']);
-        $query = "INSERT INTO feedback (model, username, review, rating, seconds_since_epoch) VALUES (:model, :username, :review, :rating, UNIX_TIMESTAMP(now()))";
+        $epoch = time();
+        $query = "INSERT INTO feedback (model, username, review, rating, seconds_since_epoch) VALUES (:model, :username, :review, :rating, :epoch)";
         $sth = $db->prepare($query);
         $sth->bindParam(':model', $_SESSION['product']['model']);
         $sth->bindParam(':username', $_SESSION['auth']);
         $sth->bindParam(':rating', $rating);
         $sth->bindParam(':review', $_POST['product-review-comments']);
+        $sth->bindParam(':epoch', $epoch);
         $sth->execute();
 
         // Update avg_record from products table
