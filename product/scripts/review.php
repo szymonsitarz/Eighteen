@@ -41,7 +41,7 @@
         $sth = $db->prepare($query);
         $sth->bindParam(':model', $_SESSION['product']['model']);
         $sth->execute();
-        $current_average = $sth->fetch();
+        $current_average = $sth->fetchColumn();
 
         $query = "SELECT 1 FROM feedback WHERE model=:model";
         $sth = $db->prepare($query);
