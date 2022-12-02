@@ -21,11 +21,11 @@ if(isset($_POST['submit'])){
 		if($authorised){
 			header("Location: /home/home.php");}
 		else{
-			$authorised=false; $errorm="You are either banned or timmed out!";
+			$authorised=false; $errorm="You are either banned or timed out!";
 		}
-		}else{$errorm= "<script>alert('Woops! Password was wrong . Try again')</script>";}
-    }else{ $errorm= "<script>alert('Woops! Username was Wrong. Try again')</script>";}
-	echo $errorm;
+		}else{$errorm= "Woops! Password was wrong . Try again";}
+    }else{ $errorm= "Woops! Username was Wrong. Try again";}
+	echo "<script>alert('" . $errorm . "')</script>";
 }
 
 ?>
