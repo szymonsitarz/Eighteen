@@ -93,33 +93,35 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
         <div class="form">
           <?php
               $_SESSION['auth'] = "admin";
-              if(isset($_SESSION['auth'))
+              if(isset($_SESSION['auth']))
               {
-                if (isset($_POST['submit'])) 
+                if (isset($_POST['submit']))
                 {
-                  $success=0;
-                  $query = "SELECT password FROM users WHERE username=:username";
+                  $query = "SELECT password FROM users WHERE username=:username LIMIT 1";
                   $sth = $db->prepare($query);
                   $sth->bindParam(":username", $_SESSION['auth']);
                   $sth->execute();
                   $row = $sth->fetch(PDO::FETCH_ASSOC);
                   if($_POST['new-password'] == $_POST['confirm-new-password'])
+                  {
                     if(password_verify($_POST['current-password'], $row['password']))
                     {
-                      $query= "UPDATE users SET password=:new-password WHERE username=:username";
+                      $query= 'UPDATE users SET password=:password WHERE username=:username';
                       $sth = $db->prepare($query);
-                      $sth->bindParam(":new-password", $_POST['new-password']);
+                      $sth->bindParam(":password", $_POST['new-password']);
                       $sth->bindParam(":username", $_SESSION['auth']);
                       $sth->execute();
-                      $success=1;
+                      echo "<script>alert('Password changed.');</script>";
                     }
-
-                    if(!$success)
-                      echo "incorrect password or new passwords don't match";
-                    else
-                      echo "password changed.";
-                  } 
+                    else {
+                      echo "<script>alert('Error: Current password is incorrect.');</script>";
+                    }
+                  }
+                  else {
+                    echo "<script>alert('Error: New passwords do not match.');</script>";
+                  }
               }
+            }
               ?>
                 <form method="POST" action="">
                 <h3>Change your Password here</h3>
