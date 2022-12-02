@@ -17,10 +17,10 @@
                 <img src="/shared-files/logo.png" width="50" height="50">
             </div>
             <div id="row-1-col-2">
-                <a href="/home/home.php"><h1>HOME</h1></a>
-                <a href="/collections/collections.php"><h1>COLLECTIONS</h1></a>
-                <a href="/contact/contact.php"><h1>CONTACT</h1></a>
-                <a href="/about-us/about-us.php"><h1>ABOUT US</h1></a>
+                <span><h1><a href="/home/home.php">HOME</a></h1></span>
+                <span><h1><a href="/collections/collections.php">COLLECTIONS</a></h1></span>
+                <span><h1><a href="/contact/contact.php">CONTACT</a></h1></span>
+                <span><h1><a href="/about-us/about-us.php">ABOUT US</a></h1></span>
             </div>
             <div id="row-1-col-3">
                 <?php
