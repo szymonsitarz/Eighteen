@@ -1,9 +1,5 @@
 <?php session_start(); ?>
 <?php
-          ini_set('display_errors', 1);
-          ini_set('display_startup_errors', 1);
-          error_reporting(E_ALL);
-          echo "Value of POST SUBMIT: " . $_POST['submit'];
           if(isset($_POST['submit']))
           {
             require_once('database_connection.php');
@@ -13,7 +9,6 @@
             $sth->execute();
             $first_row = $sth->fetch(PDO::FETCH_ASSOC); echo $first_row['uid']; */
             
-            echo "Look at POST: <br>" . $_POST['cname'];
             $query = "INSERT INTO contact (forename, email, phone, message) VALUES (:forename, :email, :phone, :message)";
             $sth = $db->prepare($query);
             $sth->bindParam(":forename", $_POST['cname']);
@@ -43,7 +38,7 @@
                 <li><a href="/home/home.php" class="link">HOME</a></li>
                 <li><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
                 <li><a href="/contact/contact.php" class="link">CONTACT US</a></li>
-                <li><a href="#" class="link">ABOUT US</a></li>
+                <li><a href="/about-us/about-us.php" class="link">ABOUT US</a></li>
                 
             </ul>
         

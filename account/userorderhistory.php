@@ -96,7 +96,7 @@
   </br>
     <div class= "orderhistory-container">
       <div class="orderhistory-heading">
-        <p>Order History</p>
+        <p><strong>ORDER HISTORY</strong></p>
       </div>
       </br>
       <table id="orderhistorytable">

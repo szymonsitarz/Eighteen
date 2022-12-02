@@ -78,9 +78,9 @@
     <div class="main-left">
         <div class="social-media">
     
-        <a href="www.facebook.com" class="s-btn"><i class="fa fa-facebook-f"></i></a>
-        <a href="www.twitter.com" class="s-btn"><i class="fa fa-twitter"></i></a>
-        <a href="www.instagram.com" class="s-btn"><i class="fa fa-instagram"></i></a>
+        <a href="http://www.facebook.com" class="s-btn"><i class="fa fa-facebook-f"></i></a>
+        <a href="http://www.twitter.com" class="s-btn"><i class="fa fa-twitter"></i></a>
+        <a href="http://www.instagram.com" class="s-btn"><i class="fa fa-instagram"></i></a>
       </div>
     </div>
     <div class="main-right">
@@ -96,7 +96,7 @@
             BE 18.
           </h1>
         </div>
-        <a href="/product/product.php" class="btn">SHOP NOW</a>
+        <a href="/collections/collections.php" class="btn">SHOP NOW</a>
 
       </br>
     </div>
@@ -106,11 +106,9 @@
     <div class="BESTSELLING1" class="item">
       <img src= "/shared-files/home-images/product1.png" alt="hers" style="width:80%">
       <div class="f-text2">
-        <p class="BESTSELLING"> BESTSELLING</p>
+        <p class="BESTSELLING"><a href="/collections/collection.php?sort=best_selling">BESTSELLING</a></p>
         <h1>Women’s Cropped Full-Zip Hoodie</h1>
-        <p class="price">£20.00</p>
-        <a href="/cart/cart.php" ><p><button>Add to Cart</button></p></a>
-        <a href="/cart/checkout.php" ><p><button>Buy Now!</button></p></a>
+        <p class="price">£50.00</p>
       </div>
   </div>
                   
@@ -118,12 +116,9 @@
   <div class="TRENDING1" class="item">
     <img src="/shared-files/home-images/product2.png" alt="tshirt" style="width:80%">
     <div class="f-text3">
-      <p class="TRENDING"> TRENDING</p>
+      <p class="TRENDING"><a href="/collections/collection.php?sort=trending">TRENDING</a></p>
       <h1>Men’s Oversized Short-Sleeve T-Shirt</h1>
-      <p class="price">£35.00</p>
-      <a href="/cart/cart.php"><p><button>Add to Cart</button></p></a>
-      <a href="/cart/checkout.php" ><p><button>Buy Now!</button></p></a>
-
+      <p class="price">£12.99</p>
     </div>
   </div>
         
@@ -131,11 +126,9 @@
     <div class="NEWIN1" class="item">
       <img src="/shared-files/home-images/product3.png" alt="hoodie" style="width:80%">
       <div class="f-text4">
-        <p class="NEWIN"> NEW IN</p>
+        <p class="NEWIN"><a href="/collections/collections.php?sort=latest">LATEST</a></p>
         <h1>Unisex Bomber Sports Jacket</h1>
-        <p class="price">£15.00</p>
-        <a href="/cart/cart.php" ><p><button>Add to Cart</button></p></a>
-        <a href="/cart/checkout.php" ><p><button>Buy Now!</button></p></a>
+        <p class="price">£31.99</p>
     </div>
   </div>
 </div>

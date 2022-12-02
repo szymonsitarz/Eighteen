@@ -42,15 +42,15 @@ else if($row['timeout_stamp'] != NULL && $row['timeout_duration'] != NULL)
 if($authorised)
 {
     $_SESSION['info']['success'] = true;
-    $_SESSION['info']['notification'] = "You are now logged in.";
+    $_SESSION['info']['notification'] = "Logged in.";
 }
 else
 {
     $_SESSION['info']['success'] = false;
     if($row['banned']) 
-        $_SESSION['info']['notification'] = "This account is banned indefinitely.";
+        $_SESSION['info']['notification'] = "Banned.";
     else
-        $_SESSION['info']['notification'] = "This account is locked out until " . date("Y-m-d H:i:s", substr(($row['timeout_stamp']+$row['timeout_duration']), 0, 10)) . ".";
+        $_SESSION['info']['notification'] = "Lock until " . date("Y-m-d H:i:s", substr(($row['timeout_stamp']+$row['timeout_duration']), 0, 10));
 }
 
 /* Continue with authentication, setting $_SESSION['auth'] if and only 

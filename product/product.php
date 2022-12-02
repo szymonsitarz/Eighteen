@@ -78,7 +78,7 @@
                     <img id="product-selected-image" src="/product/img/<?= $_SESSION['product']['name'] . "/" . ((isset($_GET['selected'])) ? $_GET['selected'] : "1") ?>.png">
                     <div id="product-attributes">
                         <h1><?= $_SESSION['product']['name'] ?></h1>
-                        <a href="#product-list-reviews">
+                        <a href="#product-feedback">
                             <span class="product-feedback-overview">
                                 <?php
                                 for($j=1;$j <= 5;$j++)
@@ -93,7 +93,7 @@
                                 <span><?= number_format($product['avg_rating'], 2); ?></span>
                             </span>
                         </a>
-                        <a href="#product-write-review">
+                        <a href="#product-review">
                             
                             <span><u><?php
                                 if($product['avg_rating'] == 0) 
