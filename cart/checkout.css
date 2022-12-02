@@ -50,7 +50,7 @@ nav {
   align-items: center;
   padding:25px;
   min-height: 100vh;
-  background: linear-gradient(90deg, #020202 60%, #181a19 40.1%);
+  background-color: black;
 }
 
 .container form{
