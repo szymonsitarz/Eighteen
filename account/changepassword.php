@@ -1,5 +1,5 @@
-<?php echo "start"; ?>
 <?php
+ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
 ?>
@@ -28,6 +28,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/shared-files/200219998/db.php');
               <li class="each-li"><a href="/collections/collections.php" class="link">COLLECTIONS</a></li>
               <li class="each-li"><a href="/contact/contact.php" class="link">CONTACT US</a></li>
               <li class="each-li"><a href="/about-us/about-us.php" class="link">ABOUT US</a></li>
+             
+              
           </ul>
       
           <div class="navigation-buttons">

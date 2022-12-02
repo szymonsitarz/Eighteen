@@ -78,7 +78,7 @@
                     <img id="product-selected-image" src="/product/img/<?= $_SESSION['product']['name'] . "/" . ((isset($_GET['selected'])) ? $_GET['selected'] : "1") ?>.png">
                     <div id="product-attributes">
                         <h1><?= $_SESSION['product']['name'] ?></h1>
-                        <a href="#product-feedback">
+                        <a href="#product-list-reviews">
                             <span class="product-feedback-overview">
                                 <?php
                                 for($j=1;$j <= 5;$j++)
@@ -93,7 +93,7 @@
                                 <span><?= number_format($product['avg_rating'], 2); ?></span>
                             </span>
                         </a>
-                        <a href="#product-review">
+                        <a href="#product-write-review">
                             
                             <span><u><?php
                                 if($product['avg_rating'] == 0) 
@@ -135,42 +135,37 @@
                     </form>
                 </div>
             </div>
-                
-            <div class="end-footer">
-
-            <div class="main-footer-container">
-                <div class="inside-footer">
-                    <div class="footer-heading1 foooter-1">
+            <div id="row-4">
+                <div class="footer-heading footer-1">
                     <h2>Terms & Conditions</h2>
-                        <a href="/footer_pages/privacy-policy.html">Privacy Policy</a>
-                        <a href="/footer_pages/return-policy.html">Return Policy</a>
-                        <a href="/footer_pages/Terms.html">Terms & Conditions</a>
-                    </div>
-
-                    <div class="footer-heading1 foooter-2">
-                        <h2>Customer Service</h2>
-                        <a href="/contact/contact.php">Contact Us</a>
-                        <a href="/footer_pages/faq.html">FAQ's</a>
-                    </div>
-                        
-                    <div class="footer-heading1 foooter-3">
-                        <h2>Information</h2>
-                        <a href="/footer_pages/delivery-faq.html">Delivery Information</a>
-                        <a href="/footer_pages/genral-faq.html">Genral Information</a>
-                        <a href="/footer_pages/payments-faq.html">Payments Information</a>
-                        <a href="/footer_pages/products-faq.html">Products Information</a>
-                        <a href="/footer_pages/Vouchers-faq.html">Vouchers Information</a>
-                        <a href="/footer_pages/returns-faq.html">Returns Information</a>
-                    </div>
-
-                    <div class="footer-email-form1">
-                    <h2>Join our newsletter subscription</h2>
-                    <input type="email" placeholder="your email address" id="footer-email1">
-                    <input type="submit" value="Sign Up" id="footer-email-btn1">
-                    </div>
+                    <a href="/footer_pages/privacy-policy.html">Privacy Policy</a>
+                    <a href="/footer_pages/return-policy.html">Return Policy</a>
+                    <a href="/footer_pages/Terms.html">Terms & Conditions</a>
                 </div>
 
-</div>
+                <div class="footer-heading footer-2">
+                    <h2>Customer Service</h2>
+                    <a href="/contact/contact.php">Contact Us</a>
+                    <a href="/footer_pages/faq.html">FAQ's</a>
+                </div>
+
+                <div class="footer-heading footer-3">
+                    <h2>Information</h2>
+                    <a href="/footer_pages/delivery-faq.html">Delivery Information</a>
+                    <a href="/footer_pages/genral-faq.html">Genral Information</a>
+                    <a href="/footer_pages/payments-faq.html">Payments Information</a>
+                    <a href="/footer_pages/products-faq.html">Products Information</a>
+                    <a href="/footer_pages/Vouchers-faq.html">Vouchers Information</a>
+                    <a href="/footer_pages/returns-faq.html">Returns Information</a>
+                </div>
+
+                <div class="footer-email-form">
+                    <h2>Join our newsletter subscription</h2>
+                    <input type="email" placeholder="your email address" id="footer-email">
+                    <input type="submit" value="Sign Up" id="footer-email-btn">
+                </div>
+            </div>        
+        </div>
 </div>
 
 

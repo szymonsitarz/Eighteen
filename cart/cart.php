@@ -1,4 +1,3 @@
-
 <?php 
 	/*
 		1. Add paths to web pages in anchors (e.g. class=list-items, class=nav-btns)
@@ -20,7 +19,7 @@
     <header>
         <nav>
             <div class="logo 1">
-             <img src="C:\Users\pkafu\team 18 project\eighteen.png" alt="eighteen" width="80" height="90"
+             <img src="/shared-files/logo.png" alt="eighteen" width="80" height="90"
              div class="main-right">
 			 
             </div>

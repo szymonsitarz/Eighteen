@@ -78,7 +78,7 @@ error_reporting(E_ALL);
                     <div id="genders">
                         <h3>Gender</h3>
                         <?php
-                            $genders = array('M', 'F', 'U'); 
+                            $genders = array('M', 'F'); 
                             foreach($genders as $gender)
                             {
                                 echo '<label>' . ucfirst($gender) . '</label>';
@@ -89,7 +89,7 @@ error_reporting(E_ALL);
                     <div id="sizes">
                         <h3>Size</h3>
                         <?php
-                            $sizes = array('S', 'M', 'L', 'XL', 'XXL', '2XL', '3XL'); 
+                            $sizes = array('S', 'M', 'L', 'XL', '2XL', '3XL'); 
                             foreach($sizes as $size)
                             {
                                 echo '<label>' . ucfirst($size) . '</label>';
@@ -176,9 +176,7 @@ error_reporting(E_ALL);
                     <input type="submit" value="Sign Up" id="footer-email-btn">
                 </div>
             </div>
-  </div>
-</div>
-
+        </div>
 
     </body>
 </html>
