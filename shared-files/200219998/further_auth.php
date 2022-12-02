@@ -19,7 +19,6 @@ $sth->execute();
 $row = $sth->fetch(PDO::FETCH_ASSOC);
 
 $authorised = true;
-$_SESSION['info']['success'] = false;
 
 // Part 2/3: Determine whether user is authorised
 if($row['banned'])
@@ -39,18 +38,12 @@ else if($row['timeout_stamp'] != NULL && $row['timeout_duration'] != NULL)
 }
 
 // Part 3/3: Allow access if timeout remains or banned indefinitely 
-if($authorised)
+if(!$authorised)
 {
-    $_SESSION['info']['success'] = true;
-    $_SESSION['info']['notification'] = "Logged in.";
-}
-else
-{
-    $_SESSION['info']['success'] = false;
     if($row['banned']) 
-        $_SESSION['info']['notification'] = "Banned.";
+        $errorm = "Banned.";
     else
-        $_SESSION['info']['notification'] = "Lock until " . date("Y-m-d H:i:s", substr(($row['timeout_stamp']+$row['timeout_duration']), 0, 10));
+        $errorm = "Locked out until " . date("Y-m-d H:i:s", substr(($row['timeout_stamp']+$row['timeout_duration']), 0, 10));
 }
 
 /* Continue with authentication, setting $_SESSION['auth'] if and only 
