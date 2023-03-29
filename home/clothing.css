@@ -13,7 +13,7 @@
   header { 
     width: 100%;
     height:fit-content;
-    background: black;
+    background: white;
   }
   
   nav {
@@ -26,7 +26,7 @@
   .logo {
     width: 22%;
     padding-left: 30px;
-    color: white;
+    color: lightblue;
 
   }
   .list-items {
@@ -39,13 +39,13 @@
   .link {
     text-decoration: none;
     font-weight: bold;
-    color: white;
+    color: lightblue;
     font-size: 13px;
     transition: 0.4s;
   }
   
   .link:hover {
-    color: #4bb19b;
+    color: lightblue;
   }
   
   .nav-btns {
@@ -54,19 +54,19 @@
   }
   
   .btn-nav-i {
-    color: white;
+    color: lightblue;
     float: right;
     padding-right: 20px;
     transition: 0.4s;
   }
   
   .btn-nav-i:hover {
-    color:#4bb19b;
+    color:lightblue;
   }
   
   
   .main {
-    background: black;
+    background: white;
     position: relative;
     height: fit-content;
     width: 90%;
@@ -115,7 +115,7 @@
 }
 
 .s-btn:hover {
-  color: #4bb19b;
+  color: lightblue;
 }
 
 .banner {
@@ -135,7 +135,7 @@
   color: white;
 }
 .f-text span {
-  color: #4bb19b;
+  color: lightblue;
 }
 
 .btn {
@@ -148,17 +148,17 @@
 }
 
 .btn:hover {
-  background: #4bb19b;
+  background: lightblue;
 
 }
 .BESTSELLING1 {
-  box-shadow: 0 0 10px 0 #4bb19b;
+  box-shadow: 0 0 10px lightblue;
   max-width: 300px;
   margin: auto;
   text-align: center;
   font-family: sans-serif;
   border: none;
-  background-color:black;
+  background-color:white;
 }
 img{
   padding-top: 10px;
@@ -169,7 +169,7 @@ img{
 }
 
 .price {
-  color:#4bb19b;
+  color:lightblue;
   font-size: 22px;
   padding: 5px;
 
@@ -188,7 +188,7 @@ img{
 }
 .BESTSELLING1 button:hover {
   opacity: 0.7; 
-  color:#4bb19b;
+  color:lightblue;
 }
 
 .f-text2 h1 {
@@ -199,7 +199,7 @@ img{
 }
 
 .TRENDING1 {
-  box-shadow: 0 0 10px 0 #4bb19b;
+  box-shadow: 0 0 10px 0 lightblue;
   max-width: 300px;
   margin: auto;
   text-align:center;
@@ -213,9 +213,8 @@ img{
 }
 /* 
 .price {
-  color: #4bb19b;
+  color: lightblue;
   font-size: 22px;
-
 } */
 .TRENDING1 button {
   border: none;
@@ -231,7 +230,7 @@ img{
 }
 .TRENDING1 button:hover {
   opacity: 0.7;
-  color:#4bb19b;
+  color:lightblue;
 }
 
 .f-text3 h1 {
@@ -242,7 +241,7 @@ img{
 }
 
 .NEWIN1 {
-  box-shadow: 0 0 10px 0 #4bb19b;
+  box-shadow: 0 0 10px 0 lightblue;
   max-width: 300px;
   margin: auto;
   text-align:center;
@@ -256,9 +255,8 @@ img{
 }
 
 /* .price {
-  color:#4bb19b;
+  color:lightblue;
   font-size: 22px;
-
 } */
 .NEWIN1 button {
   border: none;
@@ -274,7 +272,7 @@ img{
 }
 .NEWIN1 button:hover {
   opacity: 0.7;
-  color:#4bb19b;
+  color:lightblue;
 }
 
 .f-text4 h1 {
@@ -327,9 +325,7 @@ img{
   padding-left: 0.5rem;
   font-size: 1rem;
   margin-bottom:1rem;
-
 }
-
 #footer-email::placeholder{
   color: grey;
 }
@@ -342,7 +338,6 @@ img{
   border: none;
   color: white;
   font-size: 1rem;
-
 }
 #footer-email-btn:hover{
 cursor:pointer;
@@ -358,7 +353,6 @@ transition: all 0.4s ease-out;
     margin-top: 4rem;
   }
 }
-
 @media screen and(max-width:280px) {
   .footer{
     padding-top: 2rem;
