@@ -90,46 +90,37 @@
     <div class="banner">
         <div class="f-text">
           <h1>
-            BE TRUE
-            <br />
-            <span>BE DIVINE</span>
-            <br />
-            BE 18.
+            STEP CORRECT
           </h1>
         </div>
-        <a href="/collections/collections.php" class="btn">SHOP NOW</a>
-
-      </br>
+        <a href="../HTML/homepage.php" class="btn">SHOP NOW</a>
     </div>
   </div>
 
   <div id="container"> 
     <div class="BESTSELLING1" class="item">
-      <img src= "/shared-files/home-images/product1.png" alt="hers" style="width:80%">
+      <img src= "../images/Airmax-90.jpg" alt="90" style="width:80%">
       <div class="f-text2">
-        <p class="BESTSELLING"><a style="text-decoration: none;color:white;" href="/collections/collections.php?sort=best_selling">BESTSELLING</a></p>
-        <h1>Women’s Cropped Full-Zip Hoodie</h1>
-        <p class="price">£50.00</p>
+        <h1>Unisex Nike Airmax 90</h1>
+        <p class="price">£150.00</p>
       </div>
   </div>
                   
           
   <div class="TRENDING1" class="item">
-    <img src="/shared-files/home-images/product2.png" alt="tshirt" style="width:80%">
+    <img src="../images/Airmax-97.jpg" alt="97s" style="width:80%">
     <div class="f-text3">
-        <p class="TRENDING"><a style="text-decoration: none;color:white;" href="/collections/collections.php?sort=trending">TRENDING</a></p>
-      <h1>Men’s Oversized Short-Sleeve T-Shirt</h1>
-      <p class="price">£12.99</p>
+      <h1>Men’s Nike AirMax 97s</h1>
+      <p class="price">£125.99</p>
     </div>
   </div>
         
 
     <div class="NEWIN1" class="item">
-      <img src="/shared-files/home-images/product3.png" alt="hoodie" style="width:80%">
+      <img src="../images/Ultraboost.jpg" alt="ultraboost" style="width:80%">
       <div class="f-text4">
-        <p class="NEWIN"><a style="text-decoration: none;color:white;" href="/collections/collections.php?sort=latest">LATEST</a></p>
-        <h1>Unisex Bomber Sports Jacket</h1>
-        <p class="price">£31.99</p>
+        <h1> Women Adidas </h1>
+        <p class="price">£131.99</p>
     </div>
   </div>
 </div>
